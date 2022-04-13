@@ -1,0 +1,11 @@
+@import "./colors";
+/* theme color */
+$--color-primary: $primary;
+$--color-success: $success;
+$--color-warning: $warning;
+$--color-danger: $danger;
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
