@@ -29,3 +29,11 @@
         }
     }
 }
+
+.el-dropdown-menu__item {
+    &--active {
+        background-color: $light-primary;
+        color: $primary !important;
+    }
+}
+

@@ -29,7 +29,7 @@
             <nuxt-link v-for="item in adminMenu" :key="item.url" :to="item.url">
                 <el-menu-item :index="item.url">
                     <span class="material-icons-outlined mr-2">{{ item.icon }}</span>
-                    <span slot="title" class="text-base">{{ item.label }}</span>
+                    <span slot="title" class="text-base">{{ $t(item.label) }}</span>
                 </el-menu-item>
             </nuxt-link>
         </el-menu>
@@ -48,17 +48,17 @@
                     {
                         url: '/',
                         icon: 'home',
-                        label: 'Dashboard',
+                        label: 'dashboard',
                     },
                     {
                         url: '/candidates',
                         icon: 'groups',
-                        label: 'Candidates',
+                        label: 'candidates',
                     },
                     {
                         url: '/pipelines',
                         icon: 'view_week',
-                        label: 'Pipelines',
+                        label: 'pipelines',
                     },
                 ],
             };
