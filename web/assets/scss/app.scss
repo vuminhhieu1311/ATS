@@ -1,4 +1,15 @@
+@import "./colors";
+
+html {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    color: $text;
+    background-color: $light;
+}
+
 // Gradient colors
 .bg-primary-gradient {
     background: linear-gradient(118deg, rgba(115, 103, 240, 1), rgba(115, 103, 240, .7))
 }
+
+

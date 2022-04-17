@@ -1,20 +1,10 @@
+import head from './config/head';
+
 export default {
+    ssr: false,
+
     // Global page headers: https://go.nuxtjs.dev/config-head
-    head: {
-        title: 'web',
-        htmlAttrs: {
-            lang: 'en',
-        },
-        meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '' },
-            { name: 'format-detection', content: 'telephone=no' },
-        ],
-        link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        ],
-    },
+    head,
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
@@ -26,6 +16,7 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '@/plugins/element-ui',
+        '@/plugins/nuxt-client-init',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
