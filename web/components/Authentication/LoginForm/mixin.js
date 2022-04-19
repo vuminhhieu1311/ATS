@@ -6,8 +6,8 @@ export default {
                 password: null,
             },
             rules: {
-                name: 'required|type:email|max:255',
-                password: 'required|min:8',
+                email: 'required',
+                password: 'required',
             },
         };
     },

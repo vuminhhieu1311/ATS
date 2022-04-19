@@ -1,5 +1,5 @@
-import _mapValues from 'lodash/mapValues';
 import _isEmpty from 'lodash/isEmpty';
+import _mapValues from 'lodash/mapValues';
 
 function collectServerError(errors) {
     return _mapValues(errors, '0');
@@ -28,6 +28,24 @@ function parseValue(value) {
     }
 
     return value;
+}
+
+function handleError(error) {
+    if (error === false) {
+        return;
+    }
+
+    if (error.response) {
+        if (error.response.status === 419) {
+            this.$message.error(this.$t('Your session is expired'));
+        } else if (error.response.status === 422) {
+            this.serverErrors = collectServerError(error.response.data.errors);
+        } else {
+            this.$handleError(error);
+        }
+    } else {
+        throw error;
+    }
 }
 
 const customValidator = {
@@ -119,22 +137,24 @@ export default {
                 const response = await send(form.model);
                 this.$emit('saved', response ? response.data : null);
             } catch (error) {
-                this.handleError(error);
+                handleError.call(this, error);
             } finally {
                 this.processing = false;
             }
         },
 
-        close() {
-            this.show = false;
+        clearError(form) {
+            if (form) {
+                form.clearValidate();
+            }
+            this.serverErrors = {};
         },
 
         resetForm(form) {
-            if (form.model) {
+            if (form) {
                 form.resetFields();
             }
         },
-
         handleError(error) {
             if (error === false) {
                 return;
@@ -142,7 +162,7 @@ export default {
 
             if (error.response) {
                 if (error.response.status === 419) {
-                    this.$message.error(this.$t('your session has expired'));
+                    this.$message.error(this.$t('Your session is expired'));
                 } else if (error.response.status === 422) {
                     this.serverErrors = collectServerError(error.response.data.errors);
                 } else {

@@ -1,4 +1,15 @@
 {
+    "validation": {
+        "required": "Trường {field} là bắt buộc.",
+        "required_notice_to": "Hãy chọn một lựa chọn.",
+        "type": "Trường {field} phải là một {value}.",
+        "pattern": "Trường {field} phải có định dạng {value}.",
+        "min": "Trường {field} phải có ít nhất {value} ký tự.",
+        "max": "Trường {field} không được vượt quá {value} ký tự",
+        "length": "Trường {field} phải có {value} ký tự",
+        "enum": "Trường {field} phải có giá trị trong tập {value}",
+        "whitespace": "Trường {field} là bắt buộc"
+    },
     "dashboard": "Trang chủ",
     "candidates": "Ứng viên",
     "pipelines": "Pipelines",

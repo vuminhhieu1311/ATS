@@ -1,4 +1,15 @@
 {
+    "validation": {
+        "required": "The {field} is required.",
+        "required_notice_to": "Please choose an option.",
+        "type": "The {field} must be a valid {value}.",
+        "pattern": "The {field} must match the pattern {value}.",
+        "min": "The {field} must be at least {value} characters.",
+        "max": "The {field} must not be longer than {value} characters.",
+        "length": "The {field} must be {value} characters.",
+        "enum": "The {field} must be a value in {value}.",
+        "whitespace": "The {field} is required."
+    },
     "dashboard": "Dashboard",
     "candidates": "Candidates",
     "pipelines": "Pipelines",

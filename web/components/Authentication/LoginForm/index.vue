@@ -9,13 +9,17 @@
             label-position="top"
             class="mb-10"
         >
-            <el-form-item :label="$t('email')" class="form-input">
-                <el-input v-model="form.email" prop="email" placeholder="john@example.com" />
+            <el-form-item
+                :label="$t('email')"
+                prop="email"
+                :error="serverErrors.email"
+                class="form-input"
+            >
+                <el-input v-model="form.email" placeholder="john@example.com" />
             </el-form-item>
-            <el-form-item :label="$t('password')">
+            <el-form-item :label="$t('password')" prop="password" :error="serverErrors.password">
                 <el-input
                     v-model="form.password"
-                    prop="password"
                     placeholder="........"
                     show-password
                 />
