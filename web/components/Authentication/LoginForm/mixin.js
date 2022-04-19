@@ -17,7 +17,6 @@ export default {
             await this.$auth.loginWith('laravelSanctum', {
                 data: this.form,
             });
-            this.$router.push({ path: '/' });
         },
     },
 };

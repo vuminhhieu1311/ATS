@@ -82,7 +82,7 @@ export default {
         redirect: {
             login: '/login',
             logout: '/login',
-            home: false,
+            home: '/',
         },
     },
 
