@@ -1,3 +1,4 @@
+import { API_URL, BACKEND_URL } from './config/env';
 import head from './config/head';
 
 export default {
@@ -17,6 +18,8 @@ export default {
     plugins: [
         '@/plugins/element-ui',
         '@/plugins/nuxt-client-init',
+        '@/plugins/lodash-get',
+        '@/plugins/handle-error',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,12 +51,39 @@ export default {
                 },
             },
         ],
+        '@nuxtjs/auth-next',
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: '/',
+        baseURL: API_URL,
+        credentials: true,
+    },
+
+    auth: {
+        strategies: {
+            laravelSanctum: {
+                provider: 'laravel/sanctum',
+                url: BACKEND_URL,
+                endpoints: {
+                    login: {
+                        url: '/api/login',
+                    },
+                    logout: {
+                        url: '/api/logout',
+                    },
+                    user: {
+                        url: '/api/user',
+                    },
+                },
+            },
+        },
+        redirect: {
+            login: '/login',
+            logout: '/login',
+            home: false,
+        },
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build

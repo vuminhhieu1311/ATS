@@ -3,6 +3,12 @@
     "candidates": "Ứng viên",
     "pipelines": "Pipelines",
     "sign out": "Đăng xuất",
+    "sign in": "Đăng nhập",
     "Sorry, something went wrong": "Xin lỗi, có lỗi xảy ra.",
-    "Update language successfully": "Cập nhật ngôn ngữ thành công."
+    "Update language successfully": "Cập nhật ngôn ngữ thành công.",
+    "welcome": "Chào mừng đến với hệ thống ATS!",
+    "sign in title": "Hãy đăng nhập và bắt đầu trải nghiệm",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "or": "hoặc"
 }

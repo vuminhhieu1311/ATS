@@ -12,7 +12,7 @@ const validEnv = cleanEnv(process.env, {
         desc: 'Application environment',
     }),
     APP_URL: url({
-        default: 'http://localhost',
+        default: 'http://localhost:3000',
         desc: 'Default application url',
     }),
     APP_NAME: str({
@@ -25,11 +25,15 @@ const validEnv = cleanEnv(process.env, {
     }),
     PORT: port({
         default: 3000,
-        desc: 'Application post',
+        desc: 'Application port',
     }),
     API_URL: str({
-        default: '/api',
+        default: 'http://localhost:8000/api',
         desc: 'API rewrite entry point',
+    }),
+    BACKEND_URL: str({
+        default: 'http://localhost:8000',
+        desc: 'Backend entry point',
     }),
 });
 
@@ -40,4 +44,5 @@ export const {
     HOST,
     PORT,
     API_URL,
+    BACKEND_URL,
 } = validEnv;

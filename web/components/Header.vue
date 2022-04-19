@@ -29,7 +29,7 @@
             <el-dropdown trigger="click">
                 <el-avatar size="medium" :src="require('~/assets/images/avatar.jpg')" />
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>{{ $t('sign out') }}</el-dropdown-item>
+                    <el-dropdown-item @click.native="logout">{{ $t('sign out') }}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -51,6 +51,13 @@
 
         methods: {
             ...mapActions(['toggleSidebar']),
+            async logout() {
+                try {
+                    await this.$auth.logout();
+                } catch (error) {
+                    this.$handleError(error);
+                }
+            },
         },
     };
 </script>

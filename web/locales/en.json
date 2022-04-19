@@ -3,6 +3,12 @@
     "candidates": "Candidates",
     "pipelines": "Pipelines",
     "sign out": "Sign out",
+    "sign in": "Sign in",
     "Sorry, something went wrong": "Sorry, something went wrong",
-    "Update language successfully": "Update language successfully"
+    "Update language successfully": "Update language successfully",
+    "welcome": "Welcome to ATS System!",
+    "sign in title": "Please sign in to your account and start the adventure",
+    "email": "Email",
+    "password": "Password",
+    "or": "or"
 }
