@@ -1,5 +1,6 @@
-import { API_URL, BACKEND_URL } from './config/env';
 import head from './config/head';
+import axios from './config/axios';
+import auth from './config/auth';
 
 export default {
     ssr: false,
@@ -54,37 +55,9 @@ export default {
         '@nuxtjs/auth-next',
     ],
 
-    // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {
-        // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: API_URL,
-        credentials: true,
-    },
+    axios,
 
-    auth: {
-        strategies: {
-            laravelSanctum: {
-                provider: 'laravel/sanctum',
-                url: BACKEND_URL,
-                endpoints: {
-                    login: {
-                        url: '/api/login',
-                    },
-                    logout: {
-                        url: '/api/logout',
-                    },
-                    user: {
-                        url: '/api/user',
-                    },
-                },
-            },
-        },
-        redirect: {
-            login: '/login',
-            logout: '/login',
-            home: '/',
-        },
-    },
+    auth,
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {

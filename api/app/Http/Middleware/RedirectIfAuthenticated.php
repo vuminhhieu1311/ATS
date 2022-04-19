@@ -23,13 +23,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if ($request->expectsJson()) {
-                    return response()->json([
-                        'message' => 'Logged In Successfully',
-                    ], 200);
-                }
-
-                return redirect(url(env('SPA_URL')));
+//                if ($request->expectsJson()) {
+//                    return response()->json([
+//                        'message' => 'Logged In Successfully',
+//                    ], 200);
+//                }
+//
+//                return redirect(url(env('SPA_URL')));
+                return redirect(RouteServiceProvider::HOME);
             }
         }
 
