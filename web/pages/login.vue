@@ -28,7 +28,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .login-image {
         height: 70%;
         width: 70%;
@@ -36,14 +36,5 @@
 
     .logo {
         height: theme('spacing.20');
-    }
-
-    .form-input {
-        margin-bottom: theme('spacing.4') !important;
-    }
-
-    .social-icon {
-        height: 35px;
-        width: 35px;
     }
 </style>

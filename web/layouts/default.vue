@@ -20,10 +20,6 @@
 
         middleware: 'auth',
 
-        data() {
-            return {};
-        },
-
         computed: {
             ...mapState(['sidebarCollapsed']),
         },

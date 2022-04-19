@@ -20,7 +20,7 @@
             <el-form-item :label="$t('password')" prop="password" :error="serverErrors.password">
                 <el-input
                     v-model="form.password"
-                    placeholder="........"
+                    placeholder="..................."
                     show-password
                 />
             </el-form-item>
@@ -60,3 +60,14 @@
         mixins: [formMixin, mixin],
     };
 </script>
+
+<style lang="scss" scoped>
+    .form-input {
+        margin-bottom: theme('spacing.4') !important;
+    }
+
+    .social-icon {
+        height: 35px;
+        width: 35px;
+    }
+</style>
