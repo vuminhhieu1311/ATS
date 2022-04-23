@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'address',
+    ];
+
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class);
+    }
 }

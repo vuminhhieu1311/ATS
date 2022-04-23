@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class SocialProfile extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'url',
+        'candidate_id',
+    ];
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }

@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_tags');
+    }
 }
