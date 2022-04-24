@@ -25,12 +25,12 @@
             JobList,
         },
 
-        async asyncData({ $get, $axios, query }) {
-            const data = await $axios.$get('jobs', { params: query });
+        async asyncData({ $axios, query }) {
+            const { data: jobs, meta } = await $axios.$get('jobs', { params: query });
 
             return {
-                jobs: $get(data, 'data', []),
-                meta: $get(data, 'meta', {}),
+                jobs,
+                meta,
             };
         },
 

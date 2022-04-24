@@ -63,3 +63,30 @@
     }
 }
 
+.el-step {
+    &__title {
+        &.is-process {
+            color: $text !important;
+            font-weight: 500 !important;
+        }
+    }
+    &__head {
+        &.is-process {
+            color: $text !important;
+            border-color: $text !important;
+        }
+    }
+}
+
+.el-form {
+    background-color: $white;
+    padding: theme('spacing.8');
+    padding-bottom: theme('spacing.4');
+    border-radius: 7px;
+}
+
+.el-form-item {
+    &__label {
+        color: $text !important;
+    }
+}
