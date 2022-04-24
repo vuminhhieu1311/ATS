@@ -18,12 +18,7 @@ class CandidateResource extends ShareResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'phoneNumber' => $this->phone_number,
-            'address' => $this->address,
             'description' => $this->description,
-            'profilePhotoUrl' => $this->profile_photo_url,
             'resumeUrl' => $this->sume_url,
             'status' => $this->status,
             'experiences' => ExperienceResource::collection($this->whenLoaded('experiences')),

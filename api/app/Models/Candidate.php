@@ -15,12 +15,7 @@ class Candidate extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'phone_number',
-        'address',
         'description',
-        'profile_photo_url',
         'resume_url',
         'status',
         'user_id',

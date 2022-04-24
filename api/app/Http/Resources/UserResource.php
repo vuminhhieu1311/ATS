@@ -17,7 +17,13 @@ class UserResource extends ShareResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->name,
             'email' => $this->email,
+            'phoneNumber' => $this->phone_number,
+            'gender' => $this->gender,
+            'birthday' => $this->birthday,
+            'address' => $this->address,
+            'profilePhotoUrl' => $this->profile_photo_url,
         ];
     }
 }

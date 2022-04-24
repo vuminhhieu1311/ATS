@@ -17,9 +17,7 @@ class StaffResource extends ShareResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'staffCode' => $this->staff_code,
-            'phoneNumber' => $this->phone_number,
             'position' => $this->position,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
