@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\WebInitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', WebInitController::class);
+    Route::resources([
+        'jobs' => JobController::class,
+    ]);
 });

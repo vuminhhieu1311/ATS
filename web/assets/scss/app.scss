@@ -12,4 +12,7 @@ html {
     background: linear-gradient(118deg, rgba(115, 103, 240, 1), rgba(115, 103, 240, .7))
 }
 
-
+.table-header {
+    background-color: $light-primary !important;
+    text-transform: uppercase;
+}

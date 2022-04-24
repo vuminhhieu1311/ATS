@@ -60,6 +60,11 @@
                         icon: 'view_week',
                         label: 'pipelines',
                     },
+                    {
+                        url: '/jobs',
+                        icon: 'business_center',
+                        label: 'jobs',
+                    },
                 ],
             };
         },

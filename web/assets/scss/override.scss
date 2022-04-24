@@ -37,3 +37,29 @@
     }
 }
 
+.el-button {
+    font-size: theme("fontSize.lg") !important;
+    span {
+        line-height: 1;
+        &:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.el-pagination {
+    .el-pager {
+        li {
+            background-color: $white !important;
+            &.active {
+                background-color: $primary !important;
+            }
+        }
+    }
+    .btn-prev, .btn-next {
+        background-color: $white !important;
+    }
+}
+
