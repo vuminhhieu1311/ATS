@@ -15,6 +15,7 @@
 
 <script>
     import _findIndex from 'lodash/findIndex';
+    import _find from 'lodash/find';
     import CreateForm from '~/components/Job/CreateForm/index.vue';
 
     export default {
@@ -34,9 +35,9 @@
 
         async fetch() {
             try {
-                const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries/currency');
+                const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries');
 
-                const index = _findIndex(countries, ['name', 'Vietnam']);
+                const index = _findIndex(countries, ['country', 'Vietnam']);
                 const country = countries[index];
                 countries.splice(index, 1);
                 countries.unshift(country);
@@ -48,25 +49,17 @@
         },
 
         methods: {
-            async getCitiesByCountry(country) {
-                this.loadingCities = true;
-                this.cities = [];
-                try {
-                    const { data: cities } = await this.$axios.$post('https://countriesnow.space/api/v0.1/countries/cities', { country });
-                    this.cities = cities;
-                    this.loadingCities = false;
-                } catch (error) {
-                    this.loadingCities = false;
-                    this.$handleError(error);
-                }
+            async getCitiesByCountry(countryName) {
+                const country = _find(this.countries, ['country', countryName]);
+
+                this.cities = this.$get(country, 'cities', []);
             },
-            async submitCreateForm() {
-                // await createJob({
-                //     is_remote: formData.isRemote,
-                //     ...formData,
-                // });
-                // this.$router.push('/jobs');
-                // this.$message.success(this.$t('messages.create_job'));
+            async submitCreateForm(formData) {
+                await this.$axios.$post('jobs', {
+                    ...formData,
+                });
+                this.$router.push('/jobs');
+                this.$message.success(this.$t('create successfully'));
             },
         },
     };

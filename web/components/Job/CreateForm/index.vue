@@ -29,8 +29,8 @@
                         <el-option
                             v-for="(country, index) in countries"
                             :key="index"
-                            :label="$get(country, 'name')"
-                            :value="$get(country, 'name')"
+                            :label="$get(country, 'country')"
+                            :value="$get(country, 'country')"
                         />
                     </el-select>
                 </el-form-item>
@@ -50,9 +50,9 @@
                         />
                     </el-select>
                 </el-form-item>
-                <el-form-item :label="$t('employment type')" prop="type">
+                <el-form-item :label="$t('employment type')" prop="employmentType">
                     <el-select
-                        v-model="form.type"
+                        v-model="form.employmentType"
                         class="w-full capitalize"
                         :placeholder="$t('employment type')"
                     >
@@ -67,11 +67,11 @@
                 </el-form-item>
                 <el-form-item :label="$t('offer')">
                     <div class="grid grid-cols-5 gap-5">
-                        <el-form-item class="col-span-2" prop="min_offer" :error="serverErrors.min_offer">
-                            <el-input v-model="form.min_offer" :placeholder="$t('min offer')" />
+                        <el-form-item class="col-span-2" prop="minOffer" :error="serverErrors.minOffer">
+                            <el-input v-model="form.minOffer" :placeholder="$t('min offer')" />
                         </el-form-item>
-                        <el-form-item class="col-span-2" prop="max_offer" :error="serverErrors.max_offer">
-                            <el-input v-model="form.max_offer" :placeholder="$t('max offer')" />
+                        <el-form-item class="col-span-2" prop="maxOffer" :error="serverErrors.maxOffer">
+                            <el-input v-model="form.maxOffer" :placeholder="$t('max offer')" />
                         </el-form-item>
                         <el-form-item class="col-span-1" prop="currency">
                             <el-select
@@ -112,18 +112,18 @@
                         @onChangeText="(val) => onChangeValue('description', val)"
                     />
                 </el-form-item>
-                <el-form-item :label="$t('benefit')" prop="benefit" :error="serverErrors.benefit">
-                    <TextEditor
-                        :text="form.benefit"
-                        :placeholder="$t('benefit')"
-                        @onChangeText="(val) => onChangeValue('benefit', val)"
-                    />
-                </el-form-item>
                 <el-form-item :label="$t('requirement')" prop="requirement" :error="serverErrors.requirement">
                     <TextEditor
                         :text="form.requirement"
                         :placeholder="$t('requirement')"
                         @onChangeText="(val) => onChangeValue('requirement', val)"
+                    />
+                </el-form-item>
+                <el-form-item :label="$t('benefit')" prop="benefit" :error="serverErrors.benefit">
+                    <TextEditor
+                        :text="form.benefit"
+                        :placeholder="$t('benefit')"
+                        @onChangeText="(val) => onChangeValue('benefit', val)"
                     />
                 </el-form-item>
                 <div class="flex justify-end">
