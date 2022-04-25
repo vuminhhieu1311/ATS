@@ -70,7 +70,7 @@
 
 <style lang="scss">
     .ql-editor {
-        height: 30vh;
+        height: 25vh;
     }
 
     .quill-editor {

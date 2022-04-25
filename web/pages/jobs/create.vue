@@ -48,16 +48,17 @@
         },
 
         methods: {
-            async getCitiesByCountry() {
-                // this.loadingCities = true;
-                // this.cities = [];
-                // try {
-                //     const { data: { data: cities } } = await getCitiesByCountry({ country });
-                //     this.cities = cities;
-                //     this.loadingCities = false;
-                // } catch (error) {
-                //     this.$handleError(error);
-                // }
+            async getCitiesByCountry(country) {
+                this.loadingCities = true;
+                this.cities = [];
+                try {
+                    const { data: cities } = await this.$axios.$post('https://countriesnow.space/api/v0.1/countries/cities', { country });
+                    this.cities = cities;
+                    this.loadingCities = false;
+                } catch (error) {
+                    this.loadingCities = false;
+                    this.$handleError(error);
+                }
             },
             async submitCreateForm() {
                 // await createJob({

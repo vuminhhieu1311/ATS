@@ -39,5 +39,17 @@
     "draft": "Draft",
     "published": "Published",
     "closed": "Closed",
-    "pending": "Pending"
+    "pending": "Pending",
+    "country": "Country",
+    "city": "City",
+    "min offer": "Min offer",
+    "max offer": "Max offer",
+    "employment type": "Employment type",
+    "description": "Description",
+    "requirement": "Requirement",
+    "benefit": "Benefit",
+    "next": "Next",
+    "previous": "Previous",
+    "pipeline": "Pipeline",
+    "save as": "Save as"
 }

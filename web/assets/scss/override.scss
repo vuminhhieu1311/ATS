@@ -81,7 +81,6 @@
 .el-form {
     background-color: $white;
     padding: theme('spacing.8');
-    padding-bottom: theme('spacing.4');
     border-radius: 7px;
 }
 
@@ -89,4 +88,8 @@
     &__label {
         color: $text !important;
     }
+}
+
+.el-date-editor {
+    width: 100% !important;
 }

@@ -39,5 +39,17 @@
     "draft": "Bản nháp",
     "published": "Công khai",
     "closed": "Đóng",
-    "pending": "Đang chờ"
+    "pending": "Đang chờ",
+    "country": "Quốc gia",
+    "city": "Thành phố",
+    "min offer": "Mức lương tối thiểu",
+    "max offer": "Mức lương tối đa",
+    "employment type": "Loại công việc",
+    "description": "Mô tả",
+    "requirement": "Yêu cầu",
+    "benefit": "Lợi ích",
+    "next": "Tiếp",
+    "previous": "Trước",
+    "pipeline": "Pipeline",
+    "save as": "Lưu thành"
 }
