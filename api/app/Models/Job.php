@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +21,7 @@ class Job extends Model
         'city',
         'employment_type',
         'description',
-        'requirements',
+        'requirement',
         'benefit',
         'min_offer',
         'max_offer',
@@ -33,18 +32,6 @@ class Job extends Model
         'pipeline_id',
         'user_id',
     ];
-
-    /**
-     * Get the user's first name.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    protected function deadline(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => Carbon::parse($value)->format('d/m/Y'),
-        );
-    }
 
     public function candidates()
     {

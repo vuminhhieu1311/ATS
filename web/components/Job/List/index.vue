@@ -41,7 +41,7 @@
                 </el-table-column>
                 <el-table-column :label="$t('deadline')" prop="deadline" min-width="100">
                     <template slot-scope="{ row }">
-                        <span>{{ $get(row, 'deadline') }}</span>
+                        <span>{{ formatDate($get(row, 'deadline')) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -81,6 +81,7 @@
     import Pagination from '~/components/Shared/Pagination.vue';
     import JobType from '~/components/Shared/JobType.vue';
     import JobStatus from '~/components/Shared/JobStatus.vue';
+    import mixin from './mixin';
 
     export default {
         name: 'JobList',
@@ -91,44 +92,6 @@
             JobStatus,
         },
 
-        props: {
-            jobs: {
-                type: Array,
-                required: true,
-            },
-            meta: {
-                type: Object,
-                required: true,
-            },
-        },
-
-        methods: {
-            // async deleteJob(id) {
-            //     this.$confirm(this.$t('ask_delete'), 'Warning', {
-            //         confirmButtonText: this.$t('ok'),
-            //         cancelButtonText: this.$t('cancel'),
-            //         type: 'warning',
-            //     }).then(() => {
-            //         this.$emit('handleDelete', id);
-            //     });
-            // },
-            offer(job) {
-                const minOffer = this.$get(job, 'minOffer', null);
-                const maxOffer = this.$get(job, 'maxOffer', null);
-                const currency = this.$get(job, 'currency', null);
-
-                if (minOffer > 0 && maxOffer > 0) {
-                    return `${minOffer} - ${maxOffer} (${currency})`;
-                }
-                if (!minOffer && maxOffer > 0) {
-                    return `${this.$t('up to')} ${maxOffer} (${currency})`;
-                }
-                if (minOffer > 0 && !maxOffer) {
-                    return `${this.$t('from')} ${minOffer} (${currency})`;
-                }
-
-                return this.$t('no data');
-            },
-        },
+        mixins: [mixin],
     };
 </script>

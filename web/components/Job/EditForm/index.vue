@@ -1,19 +1,14 @@
 <template>
     <div>
-        <el-steps :active="active" align-center>
-            <el-step :title="$t('details')" />
-            <el-step :title="$t('description')" />
-            <el-step :title="$t('pipeline')" />
-        </el-steps>
-        <div class="bg-white p-8 mt-8 rounded-md">
-            <el-form
-                ref="form"
-                :model="form"
-                :rules="formRules"
-                label-width="20%"
-                label-position="left"
-            >
-                <div v-show="active === 0">
+        <el-form
+            ref="form"
+            :model="form"
+            :rules="formRules"
+            label-width="20%"
+            label-position="left"
+        >
+            <el-tabs type="border-card">
+                <el-tab-pane :label="$t('details')">
                     <el-form-item :label="$t('name')" prop="name" :error="serverErrors.name">
                         <el-input v-model="form.name" :placeholder="$t('name')" />
                     </el-form-item>
@@ -98,11 +93,11 @@
                         />
                     </el-form-item>
                     <div class="flex justify-end">
-                        <NextButton :next="next" />
+                        <SaveAsButton :handle-command="handleCommand" />
                     </div>
-                </div>
+                </el-tab-pane>
 
-                <div v-show="active === 1">
+                <el-tab-pane :label="$t('description')">
                     <el-form-item :label="$t('description')" prop="description" :error="serverErrors.description">
                         <TextEditor
                             :text="form.description"
@@ -125,12 +120,11 @@
                         />
                     </el-form-item>
                     <div class="flex justify-end">
-                        <PrevButton :prev="prev" />
-                        <NextButton :next="next" />
+                        <SaveAsButton :handle-command="handleCommand" />
                     </div>
-                </div>
+                </el-tab-pane>
 
-                <div v-show="active === 2">
+                <el-tab-pane :label="$t('pipeline')">
                     <el-form-item :label="$t('pipeline')" prop="pipeline">
                         <el-select
                             v-model="form.pipeline"
@@ -148,26 +142,11 @@
                         </el-select>
                     </el-form-item>
                     <div class="flex justify-end">
-                        <PrevButton :prev="prev" />
-                        <el-dropdown class="ml-3" @command="handleCommand">
-                            <el-button type="primary" class="capitalize el-dropdown-link">
-                                {{ $t('save as') }} <i class="el-icon-arrow-down el-icon--right" />
-                            </el-button>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item
-                                    v-for="(value, index) in jobStatuses"
-                                    :key="index"
-                                    :command="value"
-                                    class="capitalize"
-                                >
-                                    {{ $t(value) }}
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
+                        <SaveAsButton :handle-command="handleCommand" />
                     </div>
-                </div>
-            </el-form>
-        </div>
+                </el-tab-pane>
+            </el-tabs>
+        </el-form>
     </div>
 </template>
 <script>
@@ -175,7 +154,7 @@
     import mixin from './mixin';
 
     export default {
-        name: 'JobCreateForm',
+        name: 'JobEditForm',
 
         mixins: [formMixin, mixin],
     };

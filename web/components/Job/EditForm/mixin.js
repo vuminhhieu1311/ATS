@@ -2,17 +2,19 @@ import TextEditor from '~/components/Shared/TextEditor.vue';
 import { ALL_TYPE } from '~/enums/job/employment-type';
 import { ALL_STATUS } from '~/enums/job/job-status';
 import { VND, ALL_CURRENCY } from '~/enums/job/offer-currency';
-import NextButton from './NextButton.vue';
-import PrevButton from './PrevButton.vue';
+import SaveAsButton from './SaveAsButton.vue';
 
 export default {
     components: {
         TextEditor,
-        NextButton,
-        PrevButton,
+        SaveAsButton,
     },
 
     props: {
+        job: {
+            type: Object,
+            required: true,
+        },
         countries: {
             type: Array,
             required: true,
@@ -37,23 +39,22 @@ export default {
 
     data() {
         return {
-            active: 0,
             jobTypes: ALL_TYPE,
             jobStatuses: ALL_STATUS,
             currencies: ALL_CURRENCY,
             form: {
-                name: null,
-                country: null,
-                city: null,
-                employmentType: null,
-                minOffer: null,
-                maxOffer: null,
-                currency: VND,
-                deadline: null,
-                description: '',
-                requirement: '',
-                benefit: '',
-                status: null,
+                name: this.$get(this.job, 'name', null),
+                country: this.$get(this.job, 'country', null),
+                city: this.$get(this.job, 'city', null),
+                employmentType: this.$get(this.job, 'employmentType', null),
+                minOffer: this.$get(this.job, 'minOffer', null),
+                maxOffer: this.$get(this.job, 'maxOffer', null),
+                currency: this.$get(this.job, 'currency', VND),
+                deadline: this.$get(this.job, 'deadline', null),
+                description: this.$get(this.job, 'description') ? this.$get(this.job, 'description') : '',
+                requirement: this.$get(this.job, 'requirement') ? this.$get(this.job, 'requirement') : '',
+                benefit: this.$get(this.job, 'benefit') ? this.$get(this.job, 'benefit') : '',
+                status: this.$get(this.job, 'status', null),
             },
             rules: {
                 name: 'required|max:255|type:string',
@@ -72,16 +73,6 @@ export default {
         handleCommand(status) {
             this.form.status = status;
             this.submit(this.$refs.form, this.submitForm);
-        },
-        next() {
-            if (this.active < 2) {
-                this.active += 1;
-            }
-        },
-        prev() {
-            if (this.active > 0) {
-                this.active -= 1;
-            }
         },
         onChangeValue(key, value) {
             this.form[key] = value;

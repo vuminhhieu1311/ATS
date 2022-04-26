@@ -62,16 +62,42 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
-        //
+        return JobResource::make($job);
     }
 
     public function update(Request $request, Job $job)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $job->update([
+                'name' => $request->input('name'),
+                'country' => $request->input('country'),
+                'city' => $request->input('city'),
+                'employment_type' => $request->input('employmentType'),
+                'min_offer' => $request->input('minOffer'),
+                'max_offer' => $request->input('maxOffer'),
+                'currency' => $request->input('currency'),
+                'deadline' => $request->input('deadline'),
+                'description' => $request->input('description'),
+                'requirement' => $request->input('requirement'),
+                'benefit' => $request->input('benefit'),
+                'status' => $request->input('status'),
+                'pipeline_id' => $request->input('pipeline_id', 0),
+            ]);
+
+            DB::commit();
+
+            return JobResource::make($job);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     public function destroy(Job $job)
     {
-        //
+        return $job->delete();
     }
 }

@@ -51,5 +51,9 @@
     "next": "Tiếp",
     "previous": "Trước",
     "pipeline": "Pipeline",
-    "save as": "Lưu thành"
+    "save as": "Lưu thành",
+    "edit job": "Chỉnh sửa việc làm",
+    "create successfully": "Thêm mới thành công",
+    "update successfully": "Cập nhật thành công",
+    "details": "Thông tin chi tiết"
 }

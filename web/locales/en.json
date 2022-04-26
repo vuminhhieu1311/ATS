@@ -51,5 +51,9 @@
     "next": "Next",
     "previous": "Previous",
     "pipeline": "Pipeline",
-    "save as": "Save as"
+    "save as": "Save as",
+    "edit job": "Edit job",
+    "create successfully": "Create successfully",
+    "update successfully": "Update successfully",
+    "details": "Details"
 }

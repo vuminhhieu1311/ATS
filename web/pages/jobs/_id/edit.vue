@@ -1,14 +1,15 @@
 <template>
     <div>
         <h3 class="capitalize text-xl font-medium mb-8">
-            {{ $t('create job') }}
+            {{ $t('edit job') }}
         </h3>
-        <CreateForm
+        <EditForm
+            :job="job"
             :countries="countries"
             :loading-cities="loadingCities"
             :cities="cities"
             :on-change-country="getCitiesByCountry"
-            :submit-form="submitCreateForm"
+            :submit-form="submitEditForm"
         />
     </div>
 </template>
@@ -16,36 +17,40 @@
 <script>
     import _findIndex from 'lodash/findIndex';
     import _find from 'lodash/find';
-    import CreateForm from '~/components/Job/CreateForm/index.vue';
+    import EditForm from '~/components/Job/EditForm/index.vue';
 
     export default {
-        name: 'CreateJobPage',
+        name: 'EditJobPage',
 
         components: {
-            CreateForm,
+            EditForm,
+        },
+
+        async asyncData({ $axios, params }) {
+            const { data: job } = await $axios.$get(`/jobs/${params.id}`);
+
+            return { job };
         },
 
         data() {
             return {
                 loadingCities: false,
+                loading: false,
                 cities: [],
                 countries: [],
+                pipelines: [],
             };
         },
 
         async fetch() {
-            try {
-                const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries');
+            const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries');
 
-                const index = _findIndex(countries, ['country', 'Vietnam']);
-                const country = countries[index];
-                countries.splice(index, 1);
-                countries.unshift(country);
+            const index = _findIndex(countries, ['country', 'Vietnam']);
+            const country = countries[index];
+            countries.splice(index, 1);
+            countries.unshift(country);
 
-                this.countries = countries;
-            } catch (error) {
-                this.$handleError(error);
-            }
+            this.countries = countries;
         },
 
         methods: {
@@ -54,12 +59,13 @@
 
                 this.cities = this.$get(country, 'cities', []);
             },
-            async submitCreateForm(formData) {
-                await this.$axios.$post('jobs', {
+            async submitEditForm(formData) {
+                await this.$axios.put(`/jobs/${this.job.id}`, {
                     ...formData,
                 });
+
                 this.$router.push('/jobs');
-                this.$message.success(this.$t('create successfully'));
+                this.$message.success(this.$t('update successfully'));
             },
         },
     };
