@@ -5,7 +5,6 @@
         </h3>
         <CreateForm
             :countries="countries"
-            :loading-cities="loadingCities"
             :cities="cities"
             :on-change-country="getCitiesByCountry"
             :submit-form="submitCreateForm"
@@ -27,7 +26,6 @@
 
         data() {
             return {
-                loadingCities: false,
                 cities: [],
                 countries: [],
             };

@@ -21,10 +21,6 @@ export default {
             type: Array,
             required: true,
         },
-        loadingCities: {
-            type: Boolean,
-            required: true,
-        },
         onChangeCountry: {
             type: Function,
             required: true,

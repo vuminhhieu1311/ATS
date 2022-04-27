@@ -1,3 +1,5 @@
+import _find from 'lodash/find';
+import _findIndex from 'lodash/findIndex';
 import TextEditor from '~/components/Shared/TextEditor.vue';
 import { ALL_TYPE } from '~/enums/job/employment-type';
 import { ALL_STATUS } from '~/enums/job/job-status';
@@ -15,22 +17,6 @@ export default {
             type: Object,
             required: true,
         },
-        countries: {
-            type: Array,
-            required: true,
-        },
-        cities: {
-            type: Array,
-            required: true,
-        },
-        loadingCities: {
-            type: Boolean,
-            required: true,
-        },
-        onChangeCountry: {
-            type: Function,
-            required: true,
-        },
         submitForm: {
             type: Function,
             required: true,
@@ -42,6 +28,8 @@ export default {
             jobTypes: ALL_TYPE,
             jobStatuses: ALL_STATUS,
             currencies: ALL_CURRENCY,
+            countries: [],
+            cities: [],
             form: {
                 name: this.$get(this.job, 'name', null),
                 country: this.$get(this.job, 'country', null),
@@ -69,6 +57,18 @@ export default {
         };
     },
 
+    async fetch() {
+        const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries');
+
+        const index = _findIndex(countries, ['country', 'Vietnam']);
+        const country = countries[index];
+        countries.splice(index, 1);
+        countries.unshift(country);
+
+        this.countries = countries;
+        this.getCitiesByCountry(this.form.country);
+    },
+
     methods: {
         handleCommand(status) {
             this.form.status = status;
@@ -76,6 +76,10 @@ export default {
         },
         onChangeValue(key, value) {
             this.form[key] = value;
+        },
+        getCitiesByCountry(countryName) {
+            const country = _find(this.countries, ['country', countryName]);
+            this.cities = this.$get(country, 'cities', []);
         },
     },
 };

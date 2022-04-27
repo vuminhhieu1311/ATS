@@ -19,7 +19,7 @@
                             filterable
                             clearable
                             :placeholder="$t('country')"
-                            @change="onChangeCountry"
+                            @change="getCitiesByCountry"
                         >
                             <el-option
                                 v-for="(country, index) in countries"
@@ -34,7 +34,6 @@
                             v-model="form.city"
                             class="w-full"
                             filterable
-                            :loading="loadingCities"
                             :placeholder="$t('city')"
                         >
                             <el-option
