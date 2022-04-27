@@ -19,7 +19,7 @@
     import JobList from '~/components/Job/List/index.vue';
 
     export default {
-        name: 'JobPage',
+        name: 'JobsPage',
 
         components: {
             JobList,

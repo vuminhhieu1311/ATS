@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resources([
+    'candidates' => \App\Http\Controllers\CandidateController::class,
+]);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', WebInitController::class);
     Route::resources([

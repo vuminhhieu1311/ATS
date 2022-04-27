@@ -10,9 +10,9 @@ final class JobStatus
     public const PENDING = 'pending';
 
     public const ALL_STATUS = [
-        'draft',
-        'published',
-        'closed',
-        'pending',
+        self::DRAFT,
+        self::PUBLISHED,
+        self::CLOSE,
+        self::PENDING,
     ];
 }
