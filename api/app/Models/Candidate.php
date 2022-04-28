@@ -60,4 +60,9 @@ class Candidate extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function stages()
+    {
+        return $this->belongsToMany(Stage::class, 'candidate_jobs');
+    }
 }

@@ -1,0 +1,18 @@
+.board-column {
+    min-width: 300px;
+    background: theme('colors.lightGray');
+    .board-column-header {
+        height: 50px;
+    }
+    .board-column-content {
+        height: 70vh;
+        max-height: 70vh;
+    }
+}
+
+.el-loading-mask {
+    .el-loading-spinner {
+        display: flex;
+        justify-content: center;
+    }
+}

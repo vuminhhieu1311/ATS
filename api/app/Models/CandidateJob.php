@@ -18,8 +18,8 @@ class CandidateJob extends Model
         'candidate_id',
         'job_id',
         'stage_id',
+        'is_active',
         'rejection_id',
-        'status',
     ];
 
     public function candidate()

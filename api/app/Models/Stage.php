@@ -29,4 +29,9 @@ class Stage extends Model
     {
         return $this->hasMany(PipelineStage::class);
     }
+
+    public function candidates()
+    {
+        return $this->belongsToMany(Candidate::class, 'candidate_jobs');
+    }
 }

@@ -9,7 +9,7 @@ interface RepositoryInterface
      * @param array $relations
      * @return mixed
      */
-    public function all(array $relations = []);
+    public function getAll(array $relations = []);
 
     /**
      * Get one

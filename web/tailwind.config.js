@@ -12,6 +12,7 @@ module.exports = {
                 text: '#625f6e',
                 light: '#f6f6f6',
                 lightPrimary: '#f1f0fe',
+                lightGray: '#f0f0f0',
             },
         },
     },

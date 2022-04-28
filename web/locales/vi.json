@@ -55,5 +55,13 @@
     "edit job": "Chỉnh sửa việc làm",
     "create successfully": "Thêm mới thành công",
     "update successfully": "Cập nhật thành công",
-    "details": "Thông tin chi tiết"
+    "details": "Thông tin chi tiết",
+    "view detail": "Xem chi tiết",
+    "delete": "Xóa",
+    "schedule interview": "Đặt lịch phỏng vấn",
+    "add candidate": "Thêm ứng viên",
+    "candidate": "Candidate",
+    "all jobs": "Tất cả việc làm",
+    "create pipeline": "Tạo pipeline",
+    "edit pipeline": "Chỉnh sửa pipeline"
 }
