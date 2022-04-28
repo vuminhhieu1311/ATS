@@ -11,6 +11,7 @@
         <JobList
             :jobs="jobs"
             :meta="meta"
+            :delete-job="deleteJob"
         />
     </div>
 </template>
@@ -34,29 +35,24 @@
             };
         },
 
-        data() {
-            return {
-                services: [],
-                jobId: '',
-                loading: false,
-                countries: [],
-                pipelines: [],
-            };
-        },
-
         watchQuery: true,
 
         methods: {
-            // async deleteJob(jobId) {
-            //     try {
-            //         await deleteJob(jobId);
-            //         this.jobs = this.jobs.filter((item) => item.id !== jobId);
-            //         this.$message.success(this.$t('messages.delete_job'));
-            //     } catch (error) {
-            //         this.loading = false;
-            //         this.$handleError(error);
-            //     }
-            // },
+            deleteJob(jobId) {
+                try {
+                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete job'), {
+                        confirmButtonText: this.$t('confirm'),
+                        cancelButtonText: this.$t('cancel'),
+                        type: 'warning',
+                    }).then(async () => {
+                        await this.$axios.$delete(`jobs/${jobId}`);
+                        this.jobs = this.jobs.filter((item) => item.id !== jobId);
+                        this.$message.success(this.$t('delete successfully'));
+                    });
+                } catch (error) {
+                    this.$handleError(error);
+                }
+            },
         },
     };
 </script>

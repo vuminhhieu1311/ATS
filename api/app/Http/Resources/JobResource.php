@@ -30,6 +30,7 @@ class JobResource extends ShareResource
             'deadline' => $this->deadline,
             'photoUrl' => $this->photo_url,
             'status' => $this->status,
+            'pipelineId' => $this->pipeline_id,
             'candidates' => CandidateResource::collection($this->whenLoaded('candidates')),
             'tags' => TagResource::collection($this->whenLoaded('tags')),
             'pipeline' => new PipelineResource($this->whenLoaded('pipeline')),

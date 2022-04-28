@@ -63,5 +63,10 @@
     "candidate": "Candidate",
     "all jobs": "Tất cả việc làm",
     "create pipeline": "Tạo pipeline",
-    "edit pipeline": "Chỉnh sửa pipeline"
+    "edit pipeline": "Chỉnh sửa pipeline",
+    "do you want to delete?": "Bạn có chắc chắn muốn xóa?",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "delete job": "Xóa việc làm",
+    "delete successfully": "Xóa thành công"
 }

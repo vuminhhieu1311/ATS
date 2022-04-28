@@ -47,7 +47,7 @@ class JobController extends Controller
                 'requirement' => $request->input('requirement'),
                 'benefit' => $request->input('benefit'),
                 'status' => $request->input('status'),
-                'pipeline_id' => $request->input('pipeline_id', 0),
+                'pipeline_id' => $request->input('pipelineId'),
             ]);
 
             DB::commit();
@@ -83,7 +83,7 @@ class JobController extends Controller
                 'requirement' => $request->input('requirement'),
                 'benefit' => $request->input('benefit'),
                 'status' => $request->input('status'),
-                'pipeline_id' => $request->input('pipeline_id', 0),
+                'pipeline_id' => $request->input('pipelineId'),
             ]);
 
             DB::commit();

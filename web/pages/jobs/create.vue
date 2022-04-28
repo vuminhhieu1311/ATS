@@ -6,6 +6,7 @@
         <CreateForm
             :countries="countries"
             :cities="cities"
+            :pipelines="pipelines"
             :on-change-country="getCitiesByCountry"
             :submit-form="submitCreateForm"
         />
@@ -28,12 +29,19 @@
             return {
                 cities: [],
                 countries: [],
+                pipelines: [],
             };
         },
 
         async fetch() {
             try {
-                const { data: countries } = await this.$axios.$get('https://countriesnow.space/api/v0.1/countries');
+                const [
+                    { data: countries },
+                    { data: pipelines },
+                ] = await Promise.all([
+                    this.$axios.$get('https://countriesnow.space/api/v0.1/countries'),
+                    this.$axios.$get('pipelines'),
+                ]);
 
                 const index = _findIndex(countries, ['country', 'Vietnam']);
                 const country = countries[index];
@@ -41,6 +49,7 @@
                 countries.unshift(country);
 
                 this.countries = countries;
+                this.pipelines = pipelines;
             } catch (error) {
                 this.$handleError(error);
             }

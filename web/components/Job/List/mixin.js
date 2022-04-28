@@ -10,18 +10,13 @@ export default {
             type: Object,
             required: true,
         },
+        deleteJob: {
+            type: Function,
+            required: true,
+        },
     },
 
     methods: {
-        // async deleteJob(id) {
-        //     this.$confirm(this.$t('ask_delete'), 'Warning', {
-        //         confirmButtonText: this.$t('ok'),
-        //         cancelButtonText: this.$t('cancel'),
-        //         type: 'warning',
-        //     }).then(() => {
-        //         this.$emit('handleDelete', id);
-        //     });
-        // },
         offer(job) {
             const minOffer = this.$get(job, 'minOffer', null);
             const maxOffer = this.$get(job, 'maxOffer', null);

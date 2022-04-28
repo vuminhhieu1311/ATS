@@ -5,6 +5,7 @@
         </h3>
         <EditForm
             :job="job"
+            :pipelines="pipelines"
             :submit-form="submitEditForm"
         />
     </div>
@@ -21,9 +22,18 @@
         },
 
         async asyncData({ $axios, params }) {
-            const { data: job } = await $axios.$get(`/jobs/${params.id}`);
+            const [
+                { data: job },
+                { data: pipelines },
+            ] = await Promise.all([
+                $axios.$get(`/jobs/${params.id}`),
+                $axios.$get('pipelines'),
+            ]);
 
-            return { job };
+            return {
+                job,
+                pipelines,
+            };
         },
 
         data() {

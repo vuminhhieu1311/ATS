@@ -63,5 +63,10 @@
     "candidate": "Ứng viên",
     "all jobs": "All jobs",
     "create pipeline": "Create pipeline",
-    "edit pipeline": "Edit pipeline"
+    "edit pipeline": "Edit pipeline",
+    "do you want to delete?": "Do you want to delete?",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete job": "Delete job",
+    "delete successfully": "Delete successfully"
 }

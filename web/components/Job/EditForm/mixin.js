@@ -17,6 +17,10 @@ export default {
             type: Object,
             required: true,
         },
+        pipelines: {
+            type: Array,
+            required: true,
+        },
         submitForm: {
             type: Function,
             required: true,
@@ -42,6 +46,7 @@ export default {
                 description: this.$get(this.job, 'description') ? this.$get(this.job, 'description') : '',
                 requirement: this.$get(this.job, 'requirement') ? this.$get(this.job, 'requirement') : '',
                 benefit: this.$get(this.job, 'benefit') ? this.$get(this.job, 'benefit') : '',
+                pipelineId: this.$get(this.job, 'pipelineId', null),
                 status: this.$get(this.job, 'status', null),
             },
             rules: {

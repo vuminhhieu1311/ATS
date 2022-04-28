@@ -124,19 +124,19 @@
                 </el-tab-pane>
 
                 <el-tab-pane :label="$t('pipeline')">
-                    <el-form-item :label="$t('pipeline')" prop="pipeline">
+                    <el-form-item :label="$t('pipeline')" prop="pipelineId">
                         <el-select
-                            v-model="form.pipeline"
+                            v-model="form.pipelineId"
                             class="w-full"
                             filterable
                             clearable
-                            :placeholder="$t('country')"
+                            :placeholder="$t('pipeline')"
                         >
                             <el-option
-                                v-for="(country, index) in countries"
+                                v-for="(pipeline, index) in pipelines"
                                 :key="index"
-                                :label="$get(country, 'name')"
-                                :value="$get(country, 'name')"
+                                :label="$get(pipeline, 'name')"
+                                :value="$get(pipeline, 'id')"
                             />
                         </el-select>
                     </el-form-item>

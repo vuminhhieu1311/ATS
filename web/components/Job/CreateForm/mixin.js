@@ -21,6 +21,10 @@ export default {
             type: Array,
             required: true,
         },
+        pipelines: {
+            type: Array,
+            required: true,
+        },
         onChangeCountry: {
             type: Function,
             required: true,
@@ -49,17 +53,18 @@ export default {
                 description: '',
                 requirement: '',
                 benefit: '',
+                pipelineId: null,
                 status: null,
             },
             rules: {
                 name: 'required|max:255|type:string',
                 country: 'required|max:255|type:string',
                 city: 'required|max:255|type:string',
-                employmentType: 'name: employment type|required|type:string',
-                minOffer: 'name: min offer',
-                maxOffer: 'name: max offer',
+                employmentType: 'name:employment type|required|type:string',
+                minOffer: 'name:min offer',
+                maxOffer: 'name:max offer',
+                pipelineId: 'name:pipeline|required|type:integer',
                 status: 'required|type:string',
-
             },
         };
     },

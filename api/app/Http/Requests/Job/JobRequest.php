@@ -37,7 +37,7 @@ class JobRequest extends FormRequest
             'description' => 'string|nullable',
             'requirement' => 'string|nullable',
             'benefit' => 'string|nullable',
-//            'pipelineId' => 'required',
+            'pipelineId' => 'required|exists:pipelines,id',
         ];
     }
 }
