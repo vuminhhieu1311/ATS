@@ -26,29 +26,25 @@
         >
             <div v-for="(candidate, index) in candidates" :key="index">
                 <CandidateCard
-                    :job-id="jobId"
                     :candidate="candidate"
-                    :handle-show-interviews="handleShowInterviews"
                     :open-form-interview="openFormInterview"
                 />
             </div>
         </draggable>
-        <!-- <InterviewForm
+        <InterviewForm
             ref="formInterview"
-            :interviewers="interviewers"
-            :get-services-form-interview="getServicesFormInterview"
+            :staffs="staffs"
+            :rooms="rooms"
             :mail-templates="mailTemplates"
-            :notification-templates="notificationTemplates"
-            :interview-services="interviewServices"
-            :notice-services="noticeServices"
-            :submit-form="submitInterviewForm"
             :loading="loading"
-        /> -->
+            :submit-form="createInterviewSchedule"
+        />
     </div>
 </template>
 
 <script>
     import draggable from 'vuedraggable';
+    import InterviewForm from '~/components/Interview/InterviewForm/index.vue';
     import CandidateCard from '../../Candidate/CandidateCard.vue';
     import mixin from './mixin';
 
@@ -58,6 +54,7 @@
         components: {
             draggable,
             CandidateCard,
+            InterviewForm,
         },
 
         mixins: [mixin],

@@ -42,8 +42,10 @@
                 type: Object,
                 required: true,
             },
-            openFormInterview: Function,
-            handleShowInterviews: Function,
+            openFormInterview: {
+                type: Function,
+                required: true,
+            },
         },
 
         methods: {

@@ -19,6 +19,10 @@ export default {
         page: 1,
         totalPage: 1,
         candidateLoading: false,
+        loading: false,
+        staffs: [],
+        rooms: [],
+        mailTemplates: [],
     }),
 
     watch: {
@@ -84,36 +88,34 @@ export default {
             // }
         },
         openFormInterview(candidate) {
-            const interview = '';
-            const isEdit = false;
-            this.$refs.formInterview.open(candidate, isEdit, interview);
+            this.$refs.formInterview.open(candidate, false, null);
         },
-        // async submitInterviewForm(formData) {
-        //     try {
-        //         this.loading = true;
-        //         const interviewResponse = await createInterviewSchedule(formData.candidate_stage_id, {
-        //             subject: formData.subject,
-        //             start_date: formData.start_date,
-        //             end_date: formData.end_date,
-        //             note: formData.note,
-        //             service_id: formData.service_id,
-        //             mail_template_id: formData.mail_template_id,
-        //             notification_template_id: formData.notification_template_id,
-        //             staff_id: formData.interviewer,
-        //             notice_before_interview: formData.notice_before_interview,
-        //             interviewer_notice_service: formData.interviewer_notice_service,
-        //         });
-        //         this.loading = false;
-        //         this.candidates = _map(this.candidates, (candidate) => {
-        //             if (candidate.id === formData.candidate_id) {
-        //                 candidate.interviews.push(interviewResponse.data.data);
-        //             }
-        //             return candidate;
-        //         });
-        //         this.$message.success(this.$t('messages.set_interview'));
-        //     } catch (error) {
-        //         this.$handleError(error);
-        //     }
-        // },
+        async createInterviewSchedule() {
+            try {
+                this.loading = true;
+                // const interviewResponse = await createInterviewSchedule(formData.candidate_stage_id, {
+                //     subject: formData.subject,
+                //     start_date: formData.start_date,
+                //     end_date: formData.end_date,
+                //     note: formData.note,
+                //     service_id: formData.service_id,
+                //     mail_template_id: formData.mail_template_id,
+                //     notification_template_id: formData.notification_template_id,
+                //     staff_id: formData.interviewer,
+                //     notice_before_interview: formData.notice_before_interview,
+                //     interviewer_notice_service: formData.interviewer_notice_service,
+                // });
+                // this.loading = false;
+                // this.candidates = _map(this.candidates, (candidate) => {
+                //     if (candidate.id === formData.candidate_id) {
+                //         candidate.interviews.push(interviewResponse.data.data);
+                //     }
+                //     return candidate;
+                // });
+                this.$message.success(this.$t('messages.set_interview'));
+            } catch (error) {
+                this.$handleError(error);
+            }
+        },
     },
 };

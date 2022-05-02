@@ -68,5 +68,20 @@
     "cancel": "Hủy",
     "confirm": "Xác nhận",
     "delete job": "Xóa việc làm",
-    "delete successfully": "Xóa thành công"
+    "delete successfully": "Xóa thành công",
+    "edit interview schedule": "Chỉnh sửa lịch phỏng vấn",
+    "interview information": "Thông tin cuộc phỏng vấn",
+    "interview notification": "Thông báo phỏng vấn",
+    "interview name": "Tên cuộc phỏng vấn",
+    "date": "Ngày",
+    "start time": "Thời gian bắt đầu",
+    "end time": "Thời gian kết thúc",
+    "note": "Ghi chú",
+    "interviewers": "Người phỏng vấn",
+    "submit": "Gửi yêu cầu",
+    "reset": "Đặt lại",
+    "send mail to candidate": "Gửi mail cho ứng viên",
+    "mail template": "Template mail",
+    "meeting room": "Phòng họp",
+    "online meeting": "Phỏng vấn online"
 }

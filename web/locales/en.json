@@ -68,5 +68,20 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "delete job": "Delete job",
-    "delete successfully": "Delete successfully"
+    "delete successfully": "Delete successfully",
+    "edit interview schedule": "Edit interview schedule",
+    "interview information": "Interview information",
+    "interview notification": "Interview notification",
+    "interview name": "Interview name",
+    "date": "Date",
+    "start time": "Start time",
+    "end time": "End time",
+    "note": "Note",
+    "interviewers": "Interviewers",
+    "submit": "Submit",
+    "reset": "Reset",
+    "send mail to candidate": "Sending mail to candidate",
+    "mail template": "Mail template",
+    "meeting room": "Meeting room",
+    "online meeting": "Online meeting"
 }
