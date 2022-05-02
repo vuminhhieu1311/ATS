@@ -80,8 +80,10 @@
     "interviewers": "Interviewers",
     "submit": "Submit",
     "reset": "Reset",
-    "send mail to candidate": "Sending mail to candidate",
+    "send mail to candidate": "Send mail to candidate",
     "mail template": "Mail template",
     "meeting room": "Meeting room",
-    "online meeting": "Online meeting"
+    "online meeting": "Online meeting",
+    "mail title": "Mail title",
+    "mail content": "Mail content"
 }

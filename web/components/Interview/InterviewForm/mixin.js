@@ -43,8 +43,7 @@ export default {
                 mailTemplateId: null,
                 mailTitle: '',
                 mailContent: '',
-
-                candidate_id: '',
+                candidate: null,
                 stage_id: '',
                 interview_id: '',
             },
@@ -77,9 +76,9 @@ export default {
 
     methods: {
         async open(candidate, isEdit, interview) {
-            const candidateId = candidate.id;
             this.show = true;
-            this.form.candidate_id = candidateId;
+            this.form.candidate = candidate;
+            this.isEdit = isEdit;
             this.form.candidate_stage_id = this.$get(candidate, 'currentCandidateStage.id', 0);
             if (isEdit) {
                 this.form.subject = interview.subject;
@@ -92,7 +91,6 @@ export default {
                 this.form.mail_template_id = interview.mail_template_id;
                 this.form.note = interview.note;
                 this.form.interview_id = interview.id;
-                this.isEdit = isEdit;
                 this.job = interview.job;
             } else {
                 this.form.name = `Hangout: Interview - ${candidate.job.name} - ${candidate.name}`;
@@ -101,10 +99,6 @@ export default {
                 this.form.end_date = '';
                 this.form.interviewer = '';
                 this.form.send_mail = false;
-                this.formInterview.mail_template_id = '';
-                this.formInterview.note = '';
-                this.formInterview.interview_id = '';
-                this.isEdit = false;
                 this.job = null;
             }
         },
@@ -115,6 +109,21 @@ export default {
         },
         resetForm() {
             this.$refs.interviewForm.resetFields();
+        },
+        async onChangeMailTemplate(val) {
+            try {
+                const { data: mailTemplate } = await this.$axios.$post(`mail-templates/${val}/candidates/${this.form.candidate.id}/fill-interview-mail`, {
+                    startTime: this.form.startTime,
+                });
+
+                this.form.mailTitle = this.$get(mailTemplate, 'title', '');
+                this.form.mailContent = this.$get(mailTemplate, 'content', '');
+            } catch (error) {
+                this.$handleError(error);
+            }
+        },
+        onChangeMailContent(val) {
+            this.form.mailContent = val;
         },
         handleSubmitForm(formData) {
             this.submitForm(formData);

@@ -83,5 +83,7 @@
     "send mail to candidate": "Gửi mail cho ứng viên",
     "mail template": "Template mail",
     "meeting room": "Phòng họp",
-    "online meeting": "Phỏng vấn online"
+    "online meeting": "Phỏng vấn online",
+    "mail title": "Tiêu đề mail",
+    "mail content": "Nội dung mail"
 }

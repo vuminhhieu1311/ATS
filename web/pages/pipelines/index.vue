@@ -34,6 +34,7 @@
                 :stage="stage"
                 :pipeline="pipeline"
                 :job-id="jobId"
+                :mail-templates="mailTemplates"
             />
         </div>
         <div v-else class="mt-6 text-center">
@@ -58,7 +59,6 @@
     import PipelineSelect from '~/components/Pipeline/List/PipelineSelect.vue';
     import JobSelect from '~/components/Pipeline/List/JobSelect.vue';
     import PipelineSetting from '~/components/Pipeline/List/PipelineSetting.vue';
-    // import InterviewForm from '~/components/Interview/Modal/InterviewForm/index.vue';
     // import InterviewList from '~/components/Interview/Modal/InterviewList/index.vue';
 
     export default {
@@ -86,7 +86,18 @@
         data() {
             return {
                 jobId: 0,
+                mailTemplates: [],
             };
+        },
+
+        async fetch() {
+            const [
+                { data: mailTemplates },
+            ] = await Promise.all([
+                await this.$axios.$get('mail-templates'),
+            ]);
+
+            this.mailTemplates = mailTemplates;
         },
 
         methods: {

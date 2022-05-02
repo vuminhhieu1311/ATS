@@ -78,8 +78,8 @@
                                 <el-option
                                     v-for="(interview, index) in staffs"
                                     :key="index"
-                                    :label="$_get(interview, 'name')"
-                                    :value="$_get(interview, 'id')"
+                                    :label="$get(interview, 'name')"
+                                    :value="$get(interview, 'id')"
                                 />
                             </el-select>
                         </el-form-item>
@@ -91,10 +91,10 @@
                                 :placeholder="$t('meeting room')"
                             >
                                 <el-option
-                                    v-for="(interview, index) in rooms"
+                                    v-for="(room, index) in rooms"
                                     :key="index"
-                                    :label="$_get(interview, 'name')"
-                                    :value="$_get(interview, 'id')"
+                                    :label="$get(room, 'name')"
+                                    :value="$get(room, 'id')"
                                 />
                             </el-select>
                         </el-form-item>
@@ -109,21 +109,31 @@
                 <el-form-item :label="$t('send mail to candidate')">
                     <el-switch v-model="form.isSendMail" />
                 </el-form-item>
-                <el-form-item>
-                    <el-form-item v-if="form.isSendMail" :label="$t('mail template')">
+                <div v-if="form.isSendMail">
+                    <el-form-item>
                         <el-select
                             v-model="form.mailTemplateId"
                             class="w-full"
+                            :placeholder="$t('mail template')"
+                            @change="onChangeMailTemplate"
                         >
                             <el-option
-                                v-for="(template, index) in mailTemplates"
-                                :key="index"
-                                :label="$_get(template, 'subject')"
-                                :value="$_get(template, 'id')"
+                                v-for="template in mailTemplates"
+                                :key="$get(template, 'id')"
+                                :label="$get(template, 'name')"
+                                :value="$get(template, 'id')"
                             />
                         </el-select>
                     </el-form-item>
-                </el-form-item>
+                    <el-form-item prop="mailTitle">
+                        <el-input v-model="form.mailTitle" :placeholder="$t('mail title')" />
+                    </el-form-item>
+                    <TextEditor
+                        :text="form.mailContent"
+                        :placeholder="$t('mail content')"
+                        @onChangeText="onChangeMailContent"
+                    />
+                </div>
             </div>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -142,10 +152,15 @@
 </template>
 <script>
     import formMixin from '~/mixins/form';
+    import TextEditor from '~/components/Shared/TextEditor.vue';
     import mixin from './mixin';
 
     export default {
         name: 'InterviewForm',
+
+        components: {
+            TextEditor,
+        },
 
         mixins: [formMixin, mixin],
     };

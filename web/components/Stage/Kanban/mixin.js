@@ -12,6 +12,10 @@ export default {
             type: Number,
             required: true,
         },
+        mailTemplates: {
+            type: Array,
+            required: true,
+        },
     },
 
     data: () => ({
@@ -22,7 +26,6 @@ export default {
         loading: false,
         staffs: [],
         rooms: [],
-        mailTemplates: [],
     }),
 
     watch: {
