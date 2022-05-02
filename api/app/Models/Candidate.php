@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,25 @@ class Candidate extends Model
         'status',
         'user_id',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'current_job',
+    ];
+
+    protected function currentJob(): Attribute
+    {
+        $jobId = optional($this->application)->job_id;
+        $job = $this->jobs->firstWhere('id', $jobId);
+
+        return new Attribute(
+            get: fn () => $job,
+        );
+    }
 
     public function experiences()
     {
@@ -63,6 +83,8 @@ class Candidate extends Model
 
     public function stages()
     {
-        return $this->belongsToMany(Stage::class, 'candidate_jobs');
+        return $this->belongsToMany(Stage::class, 'candidate_jobs')
+            ->as('application')
+            ->withPivot('id', 'job_id', 'rejection_id');
     }
 }

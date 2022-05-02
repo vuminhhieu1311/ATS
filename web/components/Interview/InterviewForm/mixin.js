@@ -1,13 +1,13 @@
 import moment from 'moment';
-import { map } from 'lodash';
+import _map from 'lodash/map';
 
 export default {
     props: {
-        rooms: {
+        staffs: {
             type: Array,
             required: true,
         },
-        staffs: {
+        rooms: {
             type: Array,
             required: true,
         },
@@ -27,9 +27,8 @@ export default {
 
     data() {
         return {
-            isEdit: false,
             show: false,
-            job: null,
+            isEdit: false,
             form: {
                 name: null,
                 date: moment().format('YYYY-MM-DD'),
@@ -44,11 +43,13 @@ export default {
                 mailTitle: '',
                 mailContent: '',
                 candidate: null,
+
                 stage_id: '',
                 interview_id: '',
             },
             rules: {
                 name: 'required|max:255',
+                staffs: 'name: interviewers|required',
                 date: 'required',
                 startTime: 'name:start time|required',
                 endTime: 'name:end time|required',
@@ -77,30 +78,21 @@ export default {
     methods: {
         async open(candidate, isEdit, interview) {
             this.show = true;
-            this.form.candidate = candidate;
             this.isEdit = isEdit;
-            this.form.candidate_stage_id = this.$get(candidate, 'currentCandidateStage.id', 0);
-            if (isEdit) {
-                this.form.subject = interview.subject;
-                this.form.date = interview.date;
-                this.form.start_date = interview.startDate;
-                this.form.end_date = interview.endDate;
-                this.form.interviewer = map(interview.interviewers, 'staffId');
-                this.form.send_mail = interview.isSendMail;
-                this.form.edit_mail = interview.isSendMail;
-                this.form.mail_template_id = interview.mail_template_id;
-                this.form.note = interview.note;
-                this.form.interview_id = interview.id;
-                this.job = interview.job;
-            } else {
-                this.form.name = `Hangout: Interview - ${candidate.job.name} - ${candidate.name}`;
-                this.form.date = moment().format('YYYY-MM-DD');
-                this.form.start_date = '';
-                this.form.end_date = '';
-                this.form.interviewer = '';
-                this.form.send_mail = false;
-                this.job = null;
-            }
+            const interviewName = `Hangout: Interview - ${this.$get(candidate, 'currentJob.name')} - ${this.$get(candidate, 'user.name')}`;
+            this.form.name = this.$get(interview, 'name', interviewName);
+            this.form.date = this.$get(interview, 'date', moment().format('YYYY-MM-DD'));
+            this.form.startTime = this.$get(interview, 'startTime', null);
+            this.form.endTime = this.$get(interview, 'endTime', null);
+            this.form.note = this.$get(interview, 'note', null);
+            this.form.staffs = _map(this.$get(interview, 'staffs', []), 'id');
+            this.form.roomId = this.$get(interview, 'roomId', null);
+            this.form.isOnline = this.$get(interview, 'isOnline', false);
+            this.form.isSendMail = Boolean(this.$get(interview, 'mailTemplateId', null));
+            this.form.mailTemplateId = this.$get(interview, 'mailTemplateId', null);
+            this.form.mailTitle = this.$get(interview, 'mailTitle', '');
+            this.form.mailContent = this.$get(interview, 'mailContent', '');
+            this.form.candidate = candidate;
         },
         onClose() {
             this.isEdit = false;

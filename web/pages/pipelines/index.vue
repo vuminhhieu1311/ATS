@@ -34,6 +34,8 @@
                 :stage="stage"
                 :pipeline="pipeline"
                 :job-id="jobId"
+                :staffs="staffs"
+                :rooms="rooms"
                 :mail-templates="mailTemplates"
             />
         </div>
@@ -86,17 +88,25 @@
         data() {
             return {
                 jobId: 0,
+                staffs: [],
+                rooms: [],
                 mailTemplates: [],
             };
         },
 
         async fetch() {
             const [
+                { data: staffs },
+                { data: rooms },
                 { data: mailTemplates },
             ] = await Promise.all([
+                await this.$axios.$get('staffs'),
+                await this.$axios.$get('rooms'),
                 await this.$axios.$get('mail-templates'),
             ]);
 
+            this.staffs = staffs;
+            this.rooms = rooms;
             this.mailTemplates = mailTemplates;
         },
 

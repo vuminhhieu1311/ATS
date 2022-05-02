@@ -10,6 +10,10 @@ use App\Repositories\MailTemplate\MailTemplateRepository;
 use App\Repositories\MailTemplate\MailTemplateRepositoryInterface;
 use App\Repositories\Pipeline\PipelineRepository;
 use App\Repositories\Pipeline\PipelineRepositoryInterface;
+use App\Repositories\Room\RoomRepository;
+use App\Repositories\Room\RoomRepositoryInterface;
+use App\Repositories\Staff\StaffRepository;
+use App\Repositories\Staff\StaffRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CandidateRepositoryInterface::class, CandidateRepository::class);
         $this->app->singleton(PipelineRepositoryInterface::class, PipelineRepository::class);
         $this->app->singleton(MailTemplateRepositoryInterface::class, MailTemplateRepository::class);
+        $this->app->singleton(StaffRepositoryInterface::class, StaffRepository::class);
+        $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
     }
 
     /**

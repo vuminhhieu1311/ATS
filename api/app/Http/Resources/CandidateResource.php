@@ -21,6 +21,8 @@ class CandidateResource extends ShareResource
             'description' => $this->description,
             'resumeUrl' => $this->sume_url,
             'status' => $this->status,
+            'currentJob' => $this->current_job ?? new MissingValue(),
+            'application' => new CandidateJobResource($this->whenLoaded('application')),
             'experiences' => ExperienceResource::collection($this->whenLoaded('experiences')),
             'education' => EducationResource::collection($this->whenLoaded('education')),
             'socialProfiles' => SocialProfileResource::collection($this->whenLoaded('socialProfiles')),

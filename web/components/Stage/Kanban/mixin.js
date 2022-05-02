@@ -12,6 +12,14 @@ export default {
             type: Number,
             required: true,
         },
+        staffs: {
+            type: Array,
+            required: true,
+        },
+        rooms: {
+            type: Array,
+            required: true,
+        },
         mailTemplates: {
             type: Array,
             required: true,
@@ -24,8 +32,6 @@ export default {
         totalPage: 1,
         candidateLoading: false,
         loading: false,
-        staffs: [],
-        rooms: [],
     }),
 
     watch: {

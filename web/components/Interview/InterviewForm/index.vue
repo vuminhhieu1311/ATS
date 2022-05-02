@@ -76,9 +76,9 @@
                                 :placeholder="$t('interviewers')"
                             >
                                 <el-option
-                                    v-for="(interview, index) in staffs"
-                                    :key="index"
-                                    :label="$get(interview, 'name')"
+                                    v-for="interview in staffs"
+                                    :key="$get(interview, 'id')"
+                                    :label="$get(interview, 'user.name')"
                                     :value="$get(interview, 'id')"
                                 />
                             </el-select>
@@ -91,8 +91,8 @@
                                 :placeholder="$t('meeting room')"
                             >
                                 <el-option
-                                    v-for="(room, index) in rooms"
-                                    :key="index"
+                                    v-for="room in rooms"
+                                    :key="$get(room, 'id')"
                                     :label="$get(room, 'name')"
                                     :value="$get(room, 'id')"
                                 />

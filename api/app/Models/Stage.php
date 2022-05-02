@@ -32,6 +32,8 @@ class Stage extends Model
 
     public function candidates()
     {
-        return $this->belongsToMany(Candidate::class, 'candidate_jobs');
+        return $this->belongsToMany(Candidate::class, 'candidate_jobs')
+            ->as('application')
+            ->withPivot('id', 'job_id', 'rejection_id');
     }
 }
