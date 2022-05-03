@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Repositories\Candidate\CandidateRepository;
 use App\Repositories\Candidate\CandidateRepositoryInterface;
+use App\Repositories\CandidateJob\CandidateJobRepository;
+use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
+use App\Repositories\Interview\InterviewRepository;
+use App\Repositories\Interview\InterviewRepositoryInterface;
 use App\Repositories\Job\JobRepository;
 use App\Repositories\Job\JobRepositoryInterface;
 use App\Repositories\MailTemplate\MailTemplateRepository;
@@ -31,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(MailTemplateRepositoryInterface::class, MailTemplateRepository::class);
         $this->app->singleton(StaffRepositoryInterface::class, StaffRepository::class);
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
+        $this->app->singleton(CandidateJobRepositoryInterface::class, CandidateJobRepository::class);
+        $this->app->singleton(InterviewRepositoryInterface::class, InterviewRepository::class);
     }
 
     /**

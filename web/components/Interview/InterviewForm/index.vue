@@ -2,7 +2,7 @@
     <el-dialog
         :visible.sync="show"
         width="75%"
-        @close="onClose"
+        @close="close"
     >
         <span slot="title">
             <h4 class="text-xl font-medium">
@@ -18,7 +18,7 @@
             <div class="bg-gray-50 p-8 pb-2 border">
                 <p class="text-xl font-semibold mb-5">{{ $t('interview information') }}</p>
                 <el-form-item prop="name">
-                    <el-input v-model="form.name" :placeholder="$t('interview name')" />
+                    <el-input v-model="form.name" clearable :placeholder="$t('interview name')" />
                 </el-form-item>
                 <el-form-item>
                     <div class="grid grid-cols-3 gap-4">
@@ -88,6 +88,7 @@
                                 v-model="form.roomId"
                                 class="w-full"
                                 filterable
+                                clearable
                                 :placeholder="$t('meeting room')"
                             >
                                 <el-option
@@ -137,13 +138,13 @@
             </div>
         </el-form>
         <span slot="footer" class="dialog-footer">
-            <el-button type="info" plain @click="onClose">{{ $t('cancel') }}</el-button>
+            <el-button type="info" plain @click="close">{{ $t('cancel') }}</el-button>
             <el-button v-if="!isEdit" type="info" @click="resetForm">{{ $t('reset') }}</el-button>
             <el-button
                 v-if="!isEdit"
                 type="primary"
                 :loading="loading"
-                @click="submit($refs.interviewForm, handleSubmitForm)"
+                @click="submit($refs.interviewForm, handleCreateInterviewSchedule)"
             >
                 {{ $t('submit') }}
             </el-button>

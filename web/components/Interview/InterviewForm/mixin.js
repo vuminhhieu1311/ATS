@@ -42,9 +42,9 @@ export default {
                 mailTemplateId: null,
                 mailTitle: '',
                 mailContent: '',
-                candidate: null,
+                candidateId: 0,
+                candidateJobId: 0,
 
-                stage_id: '',
                 interview_id: '',
             },
             rules: {
@@ -92,11 +92,12 @@ export default {
             this.form.mailTemplateId = this.$get(interview, 'mailTemplateId', null);
             this.form.mailTitle = this.$get(interview, 'mailTitle', '');
             this.form.mailContent = this.$get(interview, 'mailContent', '');
-            this.form.candidate = candidate;
+            this.form.candidateId = this.$get(candidate, 'id', 0);
+            this.form.candidateJobId = this.$get(candidate, 'application.id', 0);
         },
-        onClose() {
-            this.isEdit = false;
+        close() {
             this.show = false;
+            this.isEdit = false;
             this.resetForm();
         },
         resetForm() {
@@ -104,7 +105,7 @@ export default {
         },
         async onChangeMailTemplate(val) {
             try {
-                const { data: mailTemplate } = await this.$axios.$post(`mail-templates/${val}/candidates/${this.form.candidate.id}/fill-interview-mail`, {
+                const { data: mailTemplate } = await this.$axios.$post(`mail-templates/${val}/candidates/${this.form.candidateId}/fill-interview-mail`, {
                     startTime: this.form.startTime,
                 });
 
@@ -117,9 +118,9 @@ export default {
         onChangeMailContent(val) {
             this.form.mailContent = val;
         },
-        handleSubmitForm(formData) {
+        handleCreateInterviewSchedule(formData) {
             this.submitForm(formData);
-            this.onClose();
+            this.close();
         },
     },
 };

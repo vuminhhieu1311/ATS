@@ -41,4 +41,9 @@ class CandidateJob extends Model
     {
         return $this->belongsTo(Rejection::class);
     }
+
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class);
+    }
 }

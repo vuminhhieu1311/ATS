@@ -24,6 +24,8 @@ class Interview extends Model
         'status',
         'candidate_job_id',
         'mail_template_id',
+        'mail_title',
+        'mail_content',
         'room_id',
     ];
 
@@ -40,5 +42,10 @@ class Interview extends Model
     public function room()
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function interviewStaffs()
+    {
+        return $this->hasMany(InterviewStaff::class);
     }
 }

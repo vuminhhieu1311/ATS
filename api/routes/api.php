@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
@@ -21,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::resources([
+    'interviews' => InterviewController::class,
+]);
 
 Route::prefix('stages')->group(function () {
     Route::get('/{stage}/pipelines/{pipeline}/jobs/{jobId}/candidates', GetCandidatesByStageAndJobController::class);

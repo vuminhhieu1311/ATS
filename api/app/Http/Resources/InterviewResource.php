@@ -24,7 +24,13 @@ class InterviewResource extends ShareResource
             'isOnline' => $this->is_online,
             'link' => $this->link,
             'status' => $this->status,
-            'rooms' => RoomResource::collection($this->whenLoaded('rooms')),
+            'candidateJobId' => $this->candidate_job_id,
+            'mailTemplateId' => $this->mail_template_id,
+            'mailTitle' => $this->mail_title,
+            'mailContent' => $this->mail_content,
+            'roomId' => $this->room_id,
+            'room' => new RoomResource($this->whenLoaded('room')),
+            'candidateJob' => new CandidateJobResource($this->whenLoaded('candidateJob')),
             'staffs' => StaffResource::collection($this->whenLoaded('staffs')),
         ];
     }

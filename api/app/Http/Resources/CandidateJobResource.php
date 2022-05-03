@@ -22,6 +22,7 @@ class CandidateJobResource extends ShareResource
             'jobId' => $this->job_id,
             'stageId' => $this->stage_id,
             'rejectionId' => $this->rejection_id,
+            'job' => new JobResource($this->whenLoaded('job')),
         ];
     }
 }
