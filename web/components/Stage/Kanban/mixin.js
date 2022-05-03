@@ -31,7 +31,6 @@ export default {
         page: 1,
         totalPage: 1,
         candidateLoading: false,
-        loading: false,
     }),
 
     watch: {
@@ -54,16 +53,17 @@ export default {
             this.showCandidateInterviews(this.$get(this.stage, 'id'), candidateId);
         },
         async fetch() {
-            this.candidateLoading = true;
             try {
+                this.candidateLoading = true;
                 const { data: candidates, meta } = await
                     this.$axios.$get(`stages/${this.stage.id}/pipelines/${this.pipeline.id}/jobs/${this.jobId}/candidates?page=${this.page}`);
                 candidates.forEach((candidate) => {
                     this.candidates.push(candidate);
                 });
                 this.totalPage = meta.lastPage;
-                this.candidateLoading = false;
             } catch (error) {
+                //
+            } finally {
                 this.candidateLoading = false;
             }
         },
@@ -99,24 +99,13 @@ export default {
         openFormInterview(candidate) {
             this.$refs.formInterview.open(candidate, false, null);
         },
-        async createInterviewSchedule(formData) {
-            try {
-                this.loading = true;
-                await this.$axios.$post('interviews', {
-                    ...formData,
-                });
-                this.loading = false;
-                // this.candidates = _map(this.candidates, (candidate) => {
-                //     if (candidate.id === formData.candidate_id) {
-                //         candidate.interviews.push(interviewResponse.data.data);
-                //     }
-                //     return candidate;
-                // });
-                this.$message.success(this.$t('create successfully'));
-            } catch (error) {
-                this.loading = false;
-                this.$handleError(error);
-            }
+        async createInterviewSchedule() {
+            // this.candidates = _map(this.candidates, (candidate) => {
+            //     if (candidate.id === formData.candidate_id) {
+            //         candidate.interviews.push(interviewResponse.data.data);
+            //     }
+            //     return candidate;
+            // });
         },
     },
 };

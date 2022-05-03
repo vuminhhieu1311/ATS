@@ -36,8 +36,6 @@
             :staffs="staffs"
             :rooms="rooms"
             :mail-templates="mailTemplates"
-            :loading="loading"
-            :submit-form="createInterviewSchedule"
         />
     </div>
 </template>

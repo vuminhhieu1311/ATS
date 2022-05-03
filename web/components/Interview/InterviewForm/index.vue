@@ -10,14 +10,14 @@
             </h4>
         </span>
         <el-form
-            ref="interviewForm"
+            ref="form"
             :model="form"
             :rules="formRules"
             label-position="left"
         >
             <div class="bg-gray-50 p-8 pb-2 border">
                 <p class="text-xl font-semibold mb-5">{{ $t('interview information') }}</p>
-                <el-form-item prop="name">
+                <el-form-item prop="name" :error="serverErrors.name">
                     <el-input v-model="form.name" clearable :placeholder="$t('interview name')" />
                 </el-form-item>
                 <el-form-item>
@@ -34,7 +34,7 @@
                             </el-form-item>
                         </div>
                         <div class="col-span-1">
-                            <el-form-item prop="startTime">
+                            <el-form-item prop="startTime" :error="serverErrors.startTime">
                                 <el-time-picker
                                     v-model="form.startTime"
                                     format="HH:mm"
@@ -44,7 +44,7 @@
                             </el-form-item>
                         </div>
                         <div class="col-span-1">
-                            <el-form-item prop="endTime">
+                            <el-form-item prop="endTime" :error="serverErrors.endTime">
                                 <el-time-picker
                                     v-model="form.endTime"
                                     format="HH:mm"
@@ -57,7 +57,7 @@
                 </el-form-item>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-1">
-                        <el-form-item prop="note">
+                        <el-form-item prop="note" :error="serverErrors.note">
                             <el-input
                                 v-model="form.note"
                                 type="textarea"
@@ -67,7 +67,7 @@
                         </el-form-item>
                     </div>
                     <div class="col-span-1">
-                        <el-form-item prop="staffs" class="w-full">
+                        <el-form-item prop="staffs" class="w-full" :error="serverErrors.staffs">
                             <el-select
                                 v-model="form.staffs"
                                 multiple
@@ -83,7 +83,7 @@
                                 />
                             </el-select>
                         </el-form-item>
-                        <el-form-item prop="room" class="w-full">
+                        <el-form-item prop="room" class="w-full" :error="serverErrors.roomId">
                             <el-select
                                 v-model="form.roomId"
                                 class="w-full"
@@ -99,7 +99,7 @@
                                 />
                             </el-select>
                         </el-form-item>
-                        <el-form-item :label="$t('online meeting')">
+                        <el-form-item :label="$t('online meeting')" prop="isOnline" :error="serverErrors.isOnline">
                             <el-switch v-model="form.isOnline" />
                         </el-form-item>
                     </div>
@@ -107,11 +107,11 @@
             </div>
             <div class="bg-gray-50 p-8 pb-2 mt-8 border">
                 <p class="text-xl font-semibold mb-5">{{ $t('interview notification') }}</p>
-                <el-form-item :label="$t('send mail to candidate')">
+                <el-form-item :label="$t('send mail to candidate')" prop="isSendMail" :error="serverErrors.isSendMail">
                     <el-switch v-model="form.isSendMail" />
                 </el-form-item>
                 <div v-if="form.isSendMail">
-                    <el-form-item>
+                    <el-form-item prop="mailTemplateId" :error="serverErrors.mailTemplateId">
                         <el-select
                             v-model="form.mailTemplateId"
                             class="w-full"
@@ -126,7 +126,7 @@
                             />
                         </el-select>
                     </el-form-item>
-                    <el-form-item prop="mailTitle">
+                    <el-form-item prop="mailTitle" :error="serverErrors.mailTitle">
                         <el-input v-model="form.mailTitle" :placeholder="$t('mail title')" />
                     </el-form-item>
                     <TextEditor
@@ -143,8 +143,8 @@
             <el-button
                 v-if="!isEdit"
                 type="primary"
-                :loading="loading"
-                @click="submit($refs.interviewForm, handleCreateInterviewSchedule)"
+                :loading="processing"
+                @click="submit($refs.form, submitForm)"
             >
                 {{ $t('submit') }}
             </el-button>

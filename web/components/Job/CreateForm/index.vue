@@ -39,7 +39,6 @@
                             v-model="form.city"
                             class="w-full"
                             filterable
-                            :loading="loadingCities"
                             :placeholder="$t('city')"
                         >
                             <el-option

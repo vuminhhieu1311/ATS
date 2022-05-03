@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Interview\InterviewStaffType;
 use App\Enums\Interview\InterviewStatus;
+use App\Http\Requests\Interview\InterviewRequest;
 use App\Http\Resources\InterviewResource;
 use App\Models\Interview;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
@@ -26,7 +27,7 @@ class InterviewController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(InterviewRequest $request)
     {
         $candidateJob = $this->candidateJobRepo->findOrFail($request->input('candidateJobId'));
         $inProgress = $candidateJob->load([

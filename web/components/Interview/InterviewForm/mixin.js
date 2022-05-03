@@ -15,14 +15,6 @@ export default {
             type: Array,
             required: true,
         },
-        loading: {
-            type: Boolean,
-            default: false,
-        },
-        submitForm: {
-            type: Function,
-            default: false,
-        },
     },
 
     data() {
@@ -101,7 +93,7 @@ export default {
             this.resetForm();
         },
         resetForm() {
-            this.$refs.interviewForm.resetFields();
+            this.$refs.form.resetFields();
         },
         async onChangeMailTemplate(val) {
             try {
@@ -118,8 +110,11 @@ export default {
         onChangeMailContent(val) {
             this.form.mailContent = val;
         },
-        handleCreateInterviewSchedule(formData) {
-            this.submitForm(formData);
+        async submitForm(formData) {
+            await this.$axios.$post('interviews', {
+                ...formData,
+            });
+            this.$message.success(this.$t('create successfully'));
             this.close();
         },
     },
