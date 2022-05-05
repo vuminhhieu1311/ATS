@@ -76,7 +76,18 @@
             };
         },
 
-        methods: {
+        watch: {
+            interviews(val) {
+                this.calendarOptions.events = _map(val, (interview) => ({
+                    id: this.$get(interview, 'id'),
+                    start: this.$get(interview, 'startTime'),
+                    end: this.$get(interview, 'endTime'),
+                    title: this.$get(interview, 'name'),
+                    backgroundColor: '#7367f0',
+                    borderColor: '#7367f0',
+                    classNames: ['pointer'],
+                }));
+            },
         },
     };
 </script>

@@ -60,16 +60,11 @@ class InterviewController extends Controller
                 'mail_title' => $request->input('mailTitle'),
                 'mail_content' => $request->input('mailContent'),
                 'room_id' => $request->input('roomId'),
-            ]);
-
-            $interview->interviewStaffs()->create([
-                'type' => InterviewStaffType::SCHEDULER,
                 'staff_id' => optional(Auth::user())->staff->id,
             ]);
 
             foreach ($request->input('staffs', []) as $staffId) {
                 $interview->interviewStaffs()->create([
-                    'type' => InterviewStaffType::INTERVIEWER,
                     'staff_id' => $staffId,
                 ]);
                 // Send notification to interviewers
@@ -81,7 +76,11 @@ class InterviewController extends Controller
 
             DB::commit();
 
-            return InterviewResource::make($interview->load('candidateJob.job'));
+            return InterviewResource::make($interview->load([
+                'candidateJob.job',
+                'candidateJob.candidate.user',
+                'interviewers.user',
+            ]));
         } catch (Exception $e) {
             DB::rollback();
 
@@ -94,9 +93,54 @@ class InterviewController extends Controller
         //
     }
 
-    public function update(Request $request, Interview $interview)
+    public function update(InterviewRequest $request, Interview $interview)
     {
-        //
+        $inProgress = $interview->candidateJob->load([
+            'interviews' => function ($query) use ($request, $interview) {
+                $query->where('id', '!=', $interview->id)
+                    ->whereBetween('start_time', [$request->input('startTime'), $request->input('endTime')]);
+            },
+        ]);
+        abort_if(!$inProgress->interviews->isEmpty(), 403, 'Another interview had already been set for this time frame!');
+
+        try {
+            DB::beginTransaction();
+
+            $interview->update([
+                'name' => $request->input('name'),
+                'start_time' => $request->input('startTime'),
+                'end_time' => $request->input('endTime'),
+                'note' => $request->input('note'),
+                'is_online' => $request->input('isOnline'),
+                'status' => InterviewStatus::UPDATED,
+                'mail_template_id' => $request->input('mailTemplateId'),
+                'mail_title' => $request->input('mailTitle'),
+                'mail_content' => $request->input('mailContent'),
+                'room_id' => $request->input('roomId'),
+            ]);
+
+            $interview->interviewers()->syncWithPivotValues($request->input('staffs', []), [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            // Send notification to interviewers
+
+            if ($request->input('isSendMail')) {
+                // Send mail to candidate
+            }
+
+            DB::commit();
+
+            return InterviewResource::make($interview->load([
+                'candidateJob.job',
+                'candidateJob.candidate.user',
+                'interviewers.user',
+            ]));
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     public function destroy(Interview $interview)

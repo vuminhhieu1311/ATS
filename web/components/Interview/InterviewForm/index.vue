@@ -139,9 +139,8 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button type="info" plain @click="close">{{ $t('cancel') }}</el-button>
-            <el-button v-if="!isEdit" type="info" @click="resetForm">{{ $t('reset') }}</el-button>
+            <el-button type="info" @click="resetForm">{{ $t('reset') }}</el-button>
             <el-button
-                v-if="!isEdit"
                 type="primary"
                 :loading="processing"
                 @click="submit($refs.form, submitForm)"

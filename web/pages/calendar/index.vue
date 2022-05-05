@@ -6,11 +6,13 @@
             :staffs="staffs"
             :rooms="rooms"
             :mail-templates="mailTemplates"
+            :submit-form="updateInterviewSchedule"
         />
     </div>
 </template>
 
 <script>
+    import _findIndex from 'lodash/findIndex';
     import Calendar from '~/components/Calendar/index.vue';
     import InterviewForm from '~/components/Interview/InterviewForm/index.vue';
 
@@ -57,6 +59,19 @@
         methods: {
             openInterviewForm(interview) {
                 this.$refs.interviewForm.open(this.$get(interview, 'candidateJob.candidate'), true, interview);
+            },
+            async updateInterviewSchedule(formData) {
+                const { data: interview } = await this.$axios.$put(`interviews/${formData.interviewId}`, {
+                    ...formData,
+                });
+
+                const index = _findIndex(this.interviews, ['id', formData.interviewId]);
+                if (index !== -1) {
+                    this.interviews.splice(index, 1, interview);
+                }
+
+                this.$message.success(this.$t('update successfully'));
+                this.$refs.interviewForm.close();
             },
         },
     };

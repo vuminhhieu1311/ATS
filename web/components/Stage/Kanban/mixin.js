@@ -99,13 +99,18 @@ export default {
         openFormInterview(candidate) {
             this.$refs.formInterview.open(candidate, false, null);
         },
-        async createInterviewSchedule() {
+        async createInterviewSchedule(formData) {
             // this.candidates = _map(this.candidates, (candidate) => {
             //     if (candidate.id === formData.candidate_id) {
             //         candidate.interviews.push(interviewResponse.data.data);
             //     }
             //     return candidate;
             // });
+            await this.$axios.$post('interviews', {
+                ...formData,
+            });
+            this.$message.success(this.$t('create successfully'));
+            this.$refs.formInterview.close();
         },
     },
 };

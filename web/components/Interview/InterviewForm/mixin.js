@@ -15,6 +15,10 @@ export default {
             type: Array,
             required: true,
         },
+        submitForm: {
+            type: Function,
+            required: true,
+        },
     },
 
     data() {
@@ -36,8 +40,7 @@ export default {
                 mailContent: '',
                 candidateId: 0,
                 candidateJobId: 0,
-
-                interview_id: '',
+                interviewId: 0,
             },
             rules: {
                 name: 'required|max:255',
@@ -73,7 +76,7 @@ export default {
             this.isEdit = isEdit;
             const interviewName = `Hangout: Interview - ${this.$get(candidate, 'currentJob.name')} - ${this.$get(candidate, 'user.name')}`;
             this.form.name = this.$get(interview, 'name', interviewName);
-            this.form.date = this.$get(interview, 'date', moment().format('YYYY-MM-DD'));
+            this.form.date = this.$get(interview, 'startTime', moment().format('YYYY-MM-DD'));
             this.form.startTime = this.$get(interview, 'startTime', null);
             this.form.endTime = this.$get(interview, 'endTime', null);
             this.form.note = this.$get(interview, 'note', null);
@@ -86,6 +89,7 @@ export default {
             this.form.mailContent = this.$get(interview, 'mailContent', '');
             this.form.candidateId = this.$get(candidate, 'id', 0);
             this.form.candidateJobId = this.$get(candidate, 'application.id', 0);
+            this.form.interviewId = this.$get(interview, 'id', 0);
         },
         close() {
             this.show = false;
@@ -109,13 +113,6 @@ export default {
         },
         onChangeMailContent(val) {
             this.form.mailContent = val;
-        },
-        async submitForm(formData) {
-            await this.$axios.$post('interviews', {
-                ...formData,
-            });
-            this.$message.success(this.$t('create successfully'));
-            this.close();
         },
     },
 };

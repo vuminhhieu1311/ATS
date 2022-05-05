@@ -28,6 +28,7 @@ class Interview extends Model
         'mail_title',
         'mail_content',
         'room_id',
+        'staff_id',
     ];
 
     public function candidateJob()
@@ -52,7 +53,6 @@ class Interview extends Model
 
     public function interviewers()
     {
-        return $this->belongsToMany(Staff::class, 'interview_staffs')
-            ->where('type', InterviewStaffType::INTERVIEWER);
+        return $this->belongsToMany(Staff::class, 'interview_staffs');
     }
 }
