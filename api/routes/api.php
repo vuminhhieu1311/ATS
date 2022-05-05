@@ -26,14 +26,12 @@ Route::resources([
     'interviews' => InterviewController::class,
 ]);
 
-Route::prefix('stages')->group(function () {
-    Route::get('/{stage}/pipelines/{pipeline}/jobs/{jobId}/candidates', GetCandidatesByStageAndJobController::class);
-});
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', WebInitController::class);
 
-
+    Route::prefix('stages')->group(function () {
+        Route::get('/{stage}/pipelines/{pipeline}/jobs/{jobId}/candidates', GetCandidatesByStageAndJobController::class);
+    });
 
     Route::prefix('mail-templates')->group(function () {
         Route::post('{mailTemplate}/candidates/{candidate}/fill-interview-mail', FillInterviewMailController::class);

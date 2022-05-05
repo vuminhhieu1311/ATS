@@ -31,7 +31,7 @@ class InterviewResource extends ShareResource
             'roomId' => $this->room_id,
             'room' => new RoomResource($this->whenLoaded('room')),
             'candidateJob' => new CandidateJobResource($this->whenLoaded('candidateJob')),
-            'staffs' => StaffResource::collection($this->whenLoaded('staffs')),
+            'interviewers' => StaffResource::collection($this->whenLoaded('interviewers')),
         ];
     }
 }

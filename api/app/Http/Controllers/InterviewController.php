@@ -8,6 +8,7 @@ use App\Http\Requests\Interview\InterviewRequest;
 use App\Http\Resources\InterviewResource;
 use App\Models\Interview;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
+use App\Repositories\Interview\InterviewRepositoryInterface;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +17,23 @@ use Illuminate\Support\Facades\DB;
 class InterviewController extends Controller
 {
     protected CandidateJobRepositoryInterface $candidateJobRepo;
+    protected InterviewRepositoryInterface $interviewRepository;
 
-    public function __construct(CandidateJobRepositoryInterface $candidateJobRepo)
+    public function __construct(CandidateJobRepositoryInterface $candidateJobRepo, InterviewRepositoryInterface $interviewRepository)
     {
         $this->candidateJobRepo = $candidateJobRepo;
+        $this->interviewRepository = $interviewRepository;
     }
 
     public function index()
     {
-        //
+        $interviews = $this->interviewRepository->queryAllByConditions([], [
+            'candidateJob.job',
+            'candidateJob.candidate.user',
+            'interviewers.user',
+        ]);
+
+        return InterviewResource::collection($interviews);
     }
 
     public function store(InterviewRequest $request)

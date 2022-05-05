@@ -71,7 +71,6 @@
             JobSelect,
             PipelineSelect,
             PipelineSetting,
-            // InterviewForm,
             // InterviewList,
         },
 

@@ -51,6 +51,11 @@
                         label: 'dashboard',
                     },
                     {
+                        url: '/calendar',
+                        icon: 'calendar_month',
+                        label: 'calendar',
+                    },
+                    {
                         url: '/candidates',
                         icon: 'groups',
                         label: 'candidates',

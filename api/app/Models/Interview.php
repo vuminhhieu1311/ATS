@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Interview\InterviewStaffType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,5 +48,11 @@ class Interview extends Model
     public function interviewStaffs()
     {
         return $this->hasMany(InterviewStaff::class);
+    }
+
+    public function interviewers()
+    {
+        return $this->belongsToMany(Staff::class, 'interview_staffs')
+            ->where('type', InterviewStaffType::INTERVIEWER);
     }
 }

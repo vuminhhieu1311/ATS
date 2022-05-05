@@ -77,7 +77,7 @@ export default {
             this.form.startTime = this.$get(interview, 'startTime', null);
             this.form.endTime = this.$get(interview, 'endTime', null);
             this.form.note = this.$get(interview, 'note', null);
-            this.form.staffs = _map(this.$get(interview, 'staffs', []), 'id');
+            this.form.staffs = _map(this.$get(interview, 'interviewers', []), 'id');
             this.form.roomId = this.$get(interview, 'roomId', null);
             this.form.isOnline = this.$get(interview, 'isOnline', false);
             this.form.isSendMail = Boolean(this.$get(interview, 'mailTemplateId', null));

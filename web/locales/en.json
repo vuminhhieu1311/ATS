@@ -85,5 +85,11 @@
     "meeting room": "Meeting room",
     "online meeting": "Online meeting",
     "mail title": "Mail title",
-    "mail content": "Mail content"
+    "mail content": "Mail content",
+    "calendar": "Calendar",
+    "today": "Today",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "list": "List"
 }

@@ -11,4 +11,11 @@ class InterviewRepository extends BaseRepository implements InterviewRepositoryI
     {
         return new Interview();
     }
+
+
+    public function queryAllByConditions($conditions = [], $relations = [])
+    {
+        return $this->model()
+            ->latest()->with($relations)->get();
+    }
 }
