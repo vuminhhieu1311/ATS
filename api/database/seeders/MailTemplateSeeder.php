@@ -36,10 +36,8 @@ class MailTemplateSeeder extends Seeder
             'content' => 'Dear Mr/Ms. [CANDIDATE_NAME],<br><br>
                 Thank you for your application for the position of [JOB_NAME] at ATS.<br>
                 We would like to invite you to the interview as following:<br><br>
-                Time: [INTERVIEW_START_TIME] (Estimated interview time is .... hour).
-                Please be present at our office 5 minutes before the scheduled interview.<br>
-                Address: ATS. - Da Nang Office - 4F, FHome Building, 16 Ly Thuong Kiet Street,
-                Hai Chau District, Da Nang.<br>
+                Time: [INTERVIEW_START_TIME]. Please be present at our office 5 minutes before the scheduled interview.<br>
+                Address: ATS. - Da Nang Office - 4F, FHome Building, 16 Ly Thuong Kiet Street, Hai Chau District, Da Nang.<br>
                 If you are unable to attend at the specified time, please could you let me know as soon as possible
                 via email or phone (in the signature line below) so that we can try to rearrange.<br><br>
                 In case you are a software developer and your CV does not have the following information,
@@ -60,7 +58,7 @@ class MailTemplateSeeder extends Seeder
                 Due to the spread of Covid-19 and its significant impact recently,
                 ATS temporarily changes the interview method from offline to online (via Google Hangouts).
                 <br><br>We would like to invite you to the interview as following:<br><br>
-                Time: [INTERVIEW_START_TIME] (Estimated interview time is .... hour).<br>
+                Time: [INTERVIEW_START_TIME].<br>
                 Method: Online via Google Hangouts<br>Hangout link:<br>
                 Please prepare your device in a quiet place and have a good network signal and join link
                 above 5 minutes before scheduled call. Our interviewer will call you at that time.<br><br>

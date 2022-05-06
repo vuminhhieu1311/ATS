@@ -17,6 +17,7 @@ class FillInterviewMailController extends Controller
         $data = [
             MailTemplateKeyWord::CANDIDATE_NAME => $candidate->user->name,
             MailTemplateKeyWord::INTERVIEW_START_TIME => date('H:i (d/m/Y)', strtotime($request->input('startTime'))),
+            MailTemplateKeyWord::JOB_NAME => $request->input('jobName'),
         ];
 
         $mailFilled = (new FillMailTemplate($mailTemplate, $data))->fill();

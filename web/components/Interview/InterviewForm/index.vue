@@ -115,6 +115,7 @@
                         <el-select
                             v-model="form.mailTemplateId"
                             class="w-full"
+                            filterable
                             :placeholder="$t('mail template')"
                             @change="onChangeMailTemplate"
                         >

@@ -25,6 +25,7 @@ export default {
         return {
             show: false,
             isEdit: false,
+            candidate: {},
             form: {
                 name: null,
                 date: moment().format('YYYY-MM-DD'),
@@ -74,7 +75,8 @@ export default {
         async open(candidate, isEdit, interview) {
             this.show = true;
             this.isEdit = isEdit;
-            const interviewName = `Hangout: Interview - ${this.$get(candidate, 'currentJob.name')} - ${this.$get(candidate, 'user.name')}`;
+            const interviewName = `Interview - ${this.$get(candidate, 'currentJob.name')} - ${this.$get(candidate, 'user.name')}`;
+            this.candidate = candidate;
             this.form.name = this.$get(interview, 'name', interviewName);
             this.form.date = this.$get(interview, 'startTime', moment().format('YYYY-MM-DD'));
             this.form.startTime = this.$get(interview, 'startTime', null);
@@ -103,6 +105,7 @@ export default {
             try {
                 const { data: mailTemplate } = await this.$axios.$post(`mail-templates/${val}/candidates/${this.form.candidateId}/fill-interview-mail`, {
                     startTime: this.form.startTime,
+                    jobName: this.$get(this.candidate, 'currentJob.name'),
                 });
 
                 this.form.mailTitle = this.$get(mailTemplate, 'title', '');
