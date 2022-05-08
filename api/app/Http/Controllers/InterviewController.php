@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Interview\InterviewStaffType;
 use App\Enums\Interview\InterviewStatus;
 use App\Http\Requests\Interview\InterviewRequest;
 use App\Http\Resources\InterviewResource;
 use App\Models\Interview;
+use App\Notifications\AddInterviewSchedule;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
 use App\Repositories\Interview\InterviewRepositoryInterface;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -71,7 +70,8 @@ class InterviewController extends Controller
             }
 
             if ($request->input('isSendMail')) {
-                // Send mail to candidate
+                $candidate = $interview->candidateJob->candidate;
+                $candidate->notify(new AddInterviewSchedule($interview));
             }
 
             DB::commit();
