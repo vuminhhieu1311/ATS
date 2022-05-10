@@ -3,6 +3,10 @@ import axios from './config/axios';
 import auth from './config/auth';
 
 export default {
+    server: {
+        host: '0',
+    },
+
     ssr: false,
 
     // Global page headers: https://go.nuxtjs.dev/config-head
