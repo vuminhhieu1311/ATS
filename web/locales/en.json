@@ -91,5 +91,8 @@
     "month": "Month",
     "week": "Week",
     "day": "Day",
-    "list": "List"
+    "list": "List",
+    "permission denied": "Permission denied",
+    "join meeting denied": "You do not have permission to join this meeting",
+    "homepage": "Home page"
 }

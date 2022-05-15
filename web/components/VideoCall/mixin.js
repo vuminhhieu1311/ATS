@@ -1,6 +1,17 @@
 import AgoraRTC from 'agora-rtc-sdk-ng';
 
 export default {
+    props: {
+        token: {
+            type: String,
+            required: true,
+        },
+        channelName: {
+            type: String,
+            required: true,
+        },
+    },
+
     data() {
         return {
             localAudioTrack: null,
@@ -13,8 +24,6 @@ export default {
             joined: false,
             microMuted: false,
             cameraMuted: false,
-
-            token: '0061aed775f74034be7a1c59605cdef13b7IABUdTXnTVx/9nMLu8gXQY7nRu27EmFbSj3Q+62R1KwVPQx+f9gAAAAAEAASVDxDMtSBYgEAAQAy1IFi',
         };
     },
 
@@ -24,7 +33,7 @@ export default {
             this.client.on('user-published', this.handleUserJoined);
             this.client.on('user-left', this.handleUserLeft);
             // Join an RTC channel.
-            const uid = await this.client.join(process.env.AGORA_APP_ID, 'test', this.token, null);
+            const uid = await this.client.join(process.env.AGORA_APP_ID, this.channelName, this.token, null);
             // Create a local audio track from the audio sampled by a microphone
             // and a local video track from the video captured by a camera.
             [this.localAudioTrack, this.localVideoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();

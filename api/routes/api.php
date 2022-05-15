@@ -9,6 +9,7 @@ use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Stage\GetCandidatesByStageAndJobController;
+use App\Http\Controllers\VideoCall\GenerateAgoraToken;
 use App\Http\Controllers\WebInitController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('mail-templates')->group(function () {
         Route::get('{mailTemplate}/interviews/{interview}/fill-interview-mail', FillInterviewMailController::class);
+    });
+
+    Route::prefix('video-call')->group(function () {
+        Route::post('interviews/{interview}/token', GenerateAgoraToken::class);
     });
 
     Route::resources([

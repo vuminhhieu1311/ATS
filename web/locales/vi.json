@@ -91,5 +91,8 @@
     "month": "Tháng",
     "week": "Tuần",
     "day": "Ngày",
-    "list": "Danh sách"
+    "list": "Danh sách",
+    "permission denied": "Từ chối yêu cầu",
+    "join meeting denied": "Bạn không có quyền tham dự cuộc họp này",
+    "homepage": "Trang chủ"
 }

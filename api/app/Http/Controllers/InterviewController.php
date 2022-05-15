@@ -85,7 +85,13 @@ class InterviewController extends Controller
 
     public function show(Interview $interview)
     {
-        //
+        $interview->load([
+            'candidateJob.job',
+            'candidateJob.candidate.user',
+            'interviewers.user',
+        ]);
+
+        return InterviewResource::make($interview);
     }
 
     public function update(InterviewRequest $request, Interview $interview)

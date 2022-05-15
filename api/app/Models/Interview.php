@@ -55,4 +55,9 @@ class Interview extends Model
     {
         return $this->belongsToMany(Staff::class, 'interview_staffs');
     }
+
+    public function scheduler()
+    {
+        return $this->belongsTo(Staff::class, 'staff_id');
+    }
 }

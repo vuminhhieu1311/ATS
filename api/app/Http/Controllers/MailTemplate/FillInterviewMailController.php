@@ -19,7 +19,7 @@ class FillInterviewMailController extends Controller
             return response()->json([
                 'title' => $result[0],
                 'content' => $result[1],
-            ]);
+            ], 200);
         } catch (Exception $e) {
             logger($e);
             return false;
