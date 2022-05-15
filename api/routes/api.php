@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::resources([
-    'interviews' => InterviewController::class,
-]);
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', WebInitController::class);
 
@@ -34,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('mail-templates')->group(function () {
-        Route::post('{mailTemplate}/candidates/{candidate}/fill-interview-mail', FillInterviewMailController::class);
+        Route::get('{mailTemplate}/interviews/{interview}/fill-interview-mail', FillInterviewMailController::class);
     });
 
     Route::resources([
@@ -44,5 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'mail-templates' => MailTemplateController::class,
         'staffs' => StaffController::class,
         'rooms' => RoomController::class,
+        'interviews' => InterviewController::class,
     ]);
 });

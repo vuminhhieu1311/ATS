@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers\MailTemplate;
 
-use App\Enums\MailTemplate\MailTemplateKeyWord;
+use App\Helper\FillMailTemplate;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MailTemplateResource;
-use App\Models\Candidate;
+use App\Models\Interview;
 use App\Models\MailTemplate;
-use App\Services\MailTemplate\FillMailTemplate;
+use Exception;
 use Illuminate\Http\Request;
 
 class FillInterviewMailController extends Controller
 {
-    public function __invoke(Request $request, MailTemplate $mailTemplate, Candidate $candidate)
+    public function __invoke(Request $request, MailTemplate $mailTemplate, Interview $interview)
     {
-        $data = [
-            MailTemplateKeyWord::CANDIDATE_NAME => $candidate->user->name,
-            MailTemplateKeyWord::INTERVIEW_START_TIME => date('H:i (d/m/Y)', strtotime($request->input('startTime'))),
-            MailTemplateKeyWord::JOB_NAME => $request->input('jobName'),
-        ];
+        try {
+            $result = (new FillMailTemplate($interview, $mailTemplate))->fill();
 
-        $mailFilled = (new FillMailTemplate($mailTemplate, $data))->fill();
-
-        return MailTemplateResource::make($mailFilled);
+            return response()->json([
+                'title' => $result[0],
+                'content' => $result[1],
+            ]);
+        } catch (Exception $e) {
+            logger($e);
+            return false;
+        }
     }
 }

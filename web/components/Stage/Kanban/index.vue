@@ -27,12 +27,12 @@
             <div v-for="(candidate, index) in candidates" :key="index">
                 <CandidateCard
                     :candidate="candidate"
-                    :open-form-interview="openFormInterview"
+                    :open-interview-form="openInterviewForm"
                 />
             </div>
         </draggable>
-        <InterviewForm
-            ref="formInterview"
+        <CreateInterviewForm
+            ref="createInterviewForm"
             :staffs="staffs"
             :rooms="rooms"
             :mail-templates="mailTemplates"
@@ -43,7 +43,7 @@
 
 <script>
     import draggable from 'vuedraggable';
-    import InterviewForm from '~/components/Interview/InterviewForm/index.vue';
+    import CreateInterviewForm from '~/components/Interview/CreateForm/index.vue';
     import CandidateCard from '../../Candidate/CandidateCard.vue';
     import mixin from './mixin';
 
@@ -53,7 +53,7 @@
         components: {
             draggable,
             CandidateCard,
-            InterviewForm,
+            CreateInterviewForm,
         },
 
         mixins: [mixin],

@@ -96,8 +96,8 @@ export default {
             //     });
             // }
         },
-        openFormInterview(candidate) {
-            this.$refs.formInterview.open(candidate, false, null);
+        openInterviewForm(candidate) {
+            this.$refs.createInterviewForm.open(candidate);
         },
         async createInterviewSchedule(formData) {
             // this.candidates = _map(this.candidates, (candidate) => {
@@ -106,11 +106,10 @@ export default {
             //     }
             //     return candidate;
             // });
-            await this.$axios.$post('interviews', {
+            const { data: interview } = await this.$axios.$post('interviews', {
                 ...formData,
             });
-            this.$message.success(this.$t('create successfully'));
-            this.$refs.formInterview.close();
+            this.$refs.createInterviewForm.next(interview);
         },
     },
 };

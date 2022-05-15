@@ -69,11 +69,6 @@ class InterviewController extends Controller
                 // Send notification to interviewers
             }
 
-            if ($request->input('isSendMail')) {
-                $candidate = $interview->candidateJob->candidate;
-                $candidate->notify(new AddInterviewSchedule($interview));
-            }
-
             DB::commit();
 
             return InterviewResource::make($interview->load([
@@ -112,7 +107,7 @@ class InterviewController extends Controller
                 'end_time' => $request->input('endTime'),
                 'note' => $request->input('note'),
                 'is_online' => $request->input('isOnline'),
-                'status' => InterviewStatus::UPDATED,
+                'status' => $request->input('status'),
                 'mail_template_id' => $request->input('mailTemplateId'),
                 'mail_title' => $request->input('mailTitle'),
                 'mail_content' => $request->input('mailContent'),
@@ -126,7 +121,8 @@ class InterviewController extends Controller
             // Send notification to interviewers
 
             if ($request->input('isSendMail')) {
-                // Send mail to candidate
+                $candidate = $interview->candidateJob->candidate;
+                $candidate->notify(new AddInterviewSchedule($interview));
             }
 
             DB::commit();

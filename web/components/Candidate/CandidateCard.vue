@@ -19,7 +19,7 @@
                     </el-dropdown-item>
                     <el-dropdown-item>{{ $t('delete') }}</el-dropdown-item>
                     <el-dropdown-item
-                        @click.native="openFormInterview(candidate)"
+                        @click.native="openInterviewForm(candidate)"
                     >
                         {{ $t('schedule interview') }}
                     </el-dropdown-item>
@@ -42,7 +42,7 @@
                 type: Object,
                 required: true,
             },
-            openFormInterview: {
+            openInterviewForm: {
                 type: Function,
                 required: true,
             },
