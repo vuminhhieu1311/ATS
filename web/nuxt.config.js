@@ -2,6 +2,8 @@ import head from './config/head';
 import axios from './config/axios';
 import auth from './config/auth';
 
+require('dotenv').config();
+
 export default {
     server: {
         host: '0',
@@ -36,6 +38,7 @@ export default {
         '@nuxtjs/eslint-module',
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
+        '@nuxtjs/dotenv',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules

@@ -1,10 +1,8 @@
-import { BACKEND_URL } from './env';
-
 export default {
     strategies: {
         laravelSanctum: {
             provider: 'laravel/sanctum',
-            url: BACKEND_URL,
+            url: process.env.BACKEND_URL,
             endpoints: {
                 login: {
                     url: '/api/login',

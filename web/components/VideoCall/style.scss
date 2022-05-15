@@ -1,0 +1,11 @@
+.video-stream {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    height: 91vh;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.control-btn {
+    height: 9vh;
+}

@@ -21,7 +21,7 @@
         "@nuxtjs/auth-next": "5.0.0-1648802546.c9880dc",
         "@nuxtjs/axios": "^5.13.6",
         "@nuxtjs/i18n": "^7.2.1",
-        "agora-react-uikit": "^1.0.7",
+        "agora-rtc-sdk-ng": "^4.11.1",
         "core-js": "^3.19.3",
         "element-ui": "^2.15.6",
         "envalid": "^7.3.1",
@@ -38,6 +38,7 @@
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.16.3",
+        "@nuxtjs/dotenv": "^1.4.1",
         "@nuxtjs/eslint-config": "^8.0.0",
         "@nuxtjs/eslint-module": "^3.0.2",
         "@nuxtjs/tailwindcss": "^5.0.2",
