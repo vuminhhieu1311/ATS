@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\Job\GetAllLocationController;
+use App\Http\Controllers\Job\GetAllPublishedJobController;
+use App\Http\Controllers\Job\GetAllTagController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
@@ -23,6 +26,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('jobs')->group(function () {
+    Route::get('/published', GetAllPublishedJobController::class);
+    Route::get('/locations', GetAllLocationController::class);
+    Route::get('/tags', GetAllTagController::class);
+});
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', WebInitController::class);
 
@@ -37,6 +45,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('video-call')->group(function () {
         Route::post('interviews/{interview}/token', GenerateAgoraToken::class);
     });
+
+//    Route::prefix('jobs')->group(function () {
+//        Route::get('/published', GetAllPublishedJobController::class);
+//        Route::get('/locations', GetAllLocationController::class);
+//        Route::get('/tags', GetAllTagController::class);
+//    });
 
     Route::resources([
         'jobs' => JobController::class,

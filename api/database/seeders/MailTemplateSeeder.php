@@ -59,7 +59,7 @@ class MailTemplateSeeder extends Seeder
                 ATS temporarily changes the interview method from offline to online (via Google Hangouts).
                 <br><br>We would like to invite you to the interview as following:<br><br>
                 Time: [INTERVIEW_START_TIME].<br>
-                Method: Online via Google Hangouts<br>Hangout link:<br>
+                Method: Online via Hangouts<br>Hangout link: [HANGOUT_LINK]<br>
                 Please prepare your device in a quiet place and have a good network signal and join link
                 above 5 minutes before scheduled call. Our interviewer will call you at that time.<br><br>
                 If you are unable to attend at the specified time, please could you let me know as soon as possible

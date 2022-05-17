@@ -18,6 +18,8 @@ use App\Repositories\Room\RoomRepository;
 use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\Staff\StaffRepository;
 use App\Repositories\Staff\StaffRepositoryInterface;
+use App\Repositories\Tag\TagRepository;
+use App\Repositories\Tag\TagRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
         $this->app->singleton(CandidateJobRepositoryInterface::class, CandidateJobRepository::class);
         $this->app->singleton(InterviewRepositoryInterface::class, InterviewRepository::class);
+        $this->app->singleton(TagRepositoryInterface::class, TagRepository::class);
     }
 
     /**

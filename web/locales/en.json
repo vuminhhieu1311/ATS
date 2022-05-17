@@ -94,5 +94,8 @@
     "list": "List",
     "permission denied": "Permission denied",
     "join meeting denied": "You do not have permission to join this meeting",
-    "homepage": "Home page"
+    "homepage": "Home page",
+    "job tag": "Job tag",
+    "negotiable salary": "Negotiable salary",
+    "search": "Search"
 }

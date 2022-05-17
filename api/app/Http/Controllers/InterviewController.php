@@ -62,6 +62,12 @@ class InterviewController extends Controller
                 'staff_id' => optional(Auth::user())->staff->id,
             ]);
 
+            if ($interview->is_online) {
+                $interview->update([
+                    'link' => env('SPA_URL') . '/meeting/' . $interview->id,
+                ]);
+            }
+
             foreach ($request->input('staffs', []) as $staffId) {
                 $interview->interviewStaffs()->create([
                     'staff_id' => $staffId,
