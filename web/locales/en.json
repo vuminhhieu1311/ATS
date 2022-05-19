@@ -97,5 +97,15 @@
     "homepage": "Home page",
     "job tag": "Job tag",
     "negotiable salary": "Negotiable salary",
-    "search": "Search"
+    "search": "Search",
+    "apply now": "Apply now",
+    "job information": "Job information",
+    "salary level": "Salary level",
+    "apply for this job": "Apply for this job",
+    "phone number": "Phone number",
+    "resume": "Resume",
+    "drop file here or": "Drop file here or",
+    "click to upload": "Click to upload",
+    "submit application": "Submit application",
+    "resume file validation": ".pdf, .doc, .docx, .png, .jpg, .jpeg files with a size less than 2MB"
 }

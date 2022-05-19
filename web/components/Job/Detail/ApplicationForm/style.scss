@@ -1,0 +1,32 @@
+.application-container {
+    position: relative;
+    .decore-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .decore-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    @media (max-width: 576px) {
+        .decore-left,
+        .decore-right {
+            width: 140px;
+        }
+    }
+}
+
+.el-upload {
+    width: 100%;
+    .el-upload-dragger {
+        width: 100%;
+    }
+}
+
+.submit-btn {
+    padding: 20px 40px !important;
+    border-radius: 10px !important;
+    margin-top: theme('spacing.5') !important;
+}
