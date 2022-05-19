@@ -23,9 +23,9 @@
                             :placeholder="$t('email')"
                         />
                     </el-form-item>
-                    <el-form-item :label="$t('phone number')" prop="phone_number">
+                    <el-form-item :label="$t('phone number')" prop="phoneNumber">
                         <el-input
-                            v-model="form.phone_number"
+                            v-model="form.phoneNumber"
                             :placeholder="$t('phone number')"
                         />
                     </el-form-item>

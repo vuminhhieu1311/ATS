@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\Job\CreateCandidateController;
 use App\Http\Controllers\Job\GetAllLocationController;
 use App\Http\Controllers\Job\GetAllPublishedJobController;
 use App\Http\Controllers\Job\GetPublishedJobController;
@@ -27,6 +28,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('jobs')->group(function () {
+    Route::get('/published', GetAllPublishedJobController::class);
+    Route::get('/published/{job}', GetPublishedJobController::class);
+    Route::get('/locations', GetAllLocationController::class);
+    Route::get('/tags', GetAllTagController::class);
+    Route::post('/{job}/candidates', CreateCandidateController::class);
+});
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', WebInitController::class);
 
@@ -42,12 +51,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('interviews/{interview}/token', GenerateAgoraToken::class);
     });
 
-    Route::prefix('jobs')->group(function () {
-        Route::get('/published', GetAllPublishedJobController::class);
-        Route::get('/published/{job}', GetPublishedJobController::class);
-        Route::get('/locations', GetAllLocationController::class);
-        Route::get('/tags', GetAllTagController::class);
-    });
+//    Route::prefix('jobs')->group(function () {
+//        Route::get('/published', GetAllPublishedJobController::class);
+//        Route::get('/published/{job}', GetPublishedJobController::class);
+//        Route::get('/locations', GetAllLocationController::class);
+//        Route::get('/tags', GetAllTagController::class);
+//        Route::post('/{job}/candidates', 'CreateCandidateController');
+//    });
 
     Route::resources([
         'jobs' => JobController::class,

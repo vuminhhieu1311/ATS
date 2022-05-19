@@ -1,3 +1,5 @@
+import { ALLOWED_MINE_TYPES, FILE_MAX_SIZE } from '~/enums/resume/file-rules';
+
 export default {
     props: {
         job: {
@@ -9,13 +11,13 @@ export default {
     data() {
         const validateResume = (rule, value, callback) => {
             if (value) {
-                // if (!ALLOWED_MINE_TYPES.includes(value.type)) {
-                //     callback(new Error('The file format is invalid'));
-                // } else if (value.size > FILE_MAX_SIZE) {
-                //     callback(new Error('The file is too large'));
-                // } else {
+                if (!ALLOWED_MINE_TYPES.includes(value.type)) {
+                    callback(new Error('The file format is invalid'));
+                } else if (value.size > FILE_MAX_SIZE) {
+                    callback(new Error('The file is too large'));
+                } else {
                     callback();
-                // }
+                }
             }
         };
 
@@ -23,7 +25,7 @@ export default {
             form: {
                 name: null,
                 email: null,
-                phone_number: null,
+                phoneNumber: null,
                 resume: null,
             },
             fileList: [],
@@ -36,7 +38,7 @@ export default {
                     { required: true, message: 'Email is required' },
                     { type: 'email', message: 'Invalid email', trigger: ['blur', 'change'] },
                 ],
-                phone_number: [
+                phoneNumber: [
                     { required: true, message: 'Phone number is required' },
                 ],
                 resume: [
@@ -50,22 +52,19 @@ export default {
     methods: {
         async submitForm(form) {
             try {
-                console.log(form);
-                // const formData = new FormData();
-                // formData.append('image', form.resume, form.resume.name);
-                // formData.append('bucket', HIRING);
-                // formData.append('prefix', RESUME);
-                // const { data: { data: resumeFile } } = await uploadResume(formData);
+                const formData = new FormData();
+                formData.append('name', form.name);
+                formData.append('email', form.email);
+                formData.append('phoneNumber', form.phoneNumber);
+                formData.append('resume', form.resume, form.resume.name);
 
-                // await createCandidate(this.$get(this.job, 'id'), {
-                //     ...form,
-                //     resume_id: this.$get(resumeFile, 'uuid', null),
-                // });
+                const data = await await this.$axios.$post(`jobs/${this.job.id}/candidates`, formData);
+                console.log(data);
 
                 this.$alert(this.$t('apply_successfully'), this.$t('congratulations'), {
                     confirmButtonText: this.$t('close'),
                     callback: () => {
-                        this.$router.push('/landing');
+                        this.$router.push('/ats');
                     },
                 });
             } catch (error) {
