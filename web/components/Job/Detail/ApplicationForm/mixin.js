@@ -58,8 +58,7 @@ export default {
                 formData.append('phoneNumber', form.phoneNumber);
                 formData.append('resume', form.resume, form.resume.name);
 
-                const data = await await this.$axios.$post(`jobs/${this.job.id}/candidates`, formData);
-                console.log(data);
+                await await this.$axios.$post(`jobs/${this.job.id}/candidates`, formData);
 
                 this.$alert(this.$t('apply_successfully'), this.$t('congratulations'), {
                     confirmButtonText: this.$t('close'),

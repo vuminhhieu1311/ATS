@@ -3,6 +3,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: '#7367f0',
+                secondary: '#a5b4fc',
                 success: '#28c76f',
                 danger: '#ea5455',
                 warning: '#ff9f43',
@@ -13,8 +14,6 @@ module.exports = {
                 light: '#f6f6f6',
                 lightPrimary: '#f1f0fe',
                 lightGray: '#f0f0f0',
-                gray: '#E2E8F0',
-                blackGray: '#1E2A3B',
             },
         },
     },

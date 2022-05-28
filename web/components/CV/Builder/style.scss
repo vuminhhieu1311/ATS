@@ -1,0 +1,105 @@
+.cv-builder {
+    .el-tabs {
+        &__item {
+            padding-top: 5px;
+        }
+        &__header {
+            margin: 0 !important;
+        }
+        &__content {
+            padding: 0 !important;
+        }
+    }
+}
+
+.gjs-navbar {
+    .el-button {
+        padding: 10px !important;
+        span {
+            margin: 0 !important;
+        }
+    }
+}
+
+.gjs-pn-panel {
+    position: relative;
+}
+
+.gjs-cv-canvas {
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.gjs-one-bg {
+    background-color: transparent;
+    color: theme('colors.text');
+}
+
+.gjs-two-color {
+    color: theme('colors.text');
+}
+
+.gjs-four-color-h {
+    color: theme('colors.text');
+    background-color: theme('colors.white');
+}
+
+.gjs-four-color,
+.gjs-four-color-h:hover {
+    color: theme('colors.primary');
+    background-color: theme('colors.lightPrimary');
+}
+
+.gjs-sm-sector-title {
+    background-color: theme('colors.lightPrimary');
+    font-weight: 500;
+}
+
+.gjs-sm-label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.gjs-field {
+    background-color: theme('colors.secondary');
+    color: theme('colors.white');
+}
+
+.gjs-sm-field.gjs-sm-composite, .gjs-sm-composite.gjs-clm-select, .gjs-sm-composite.gjs-clm-field {
+    background-color: theme('colors.white');
+}
+
+.gjs-input-holder input, .gjs-input-holder input::placeholder{
+    color: theme('colors.white');
+}
+
+.gjs-toolbar, .gjs-com-badge, .gjs-com-badge-red, .gjs-badge  {
+    background-color: theme('colors.primary');
+}
+
+.gjs-cv-canvas .gjs-highlighter, .gjs-cv-canvas .gjs-highlighter-sel {
+    outline: 1px solid theme('colors.primary');
+}
+
+.gjs-am-add-asset .gjs-am-add-field input {
+    background-color: theme('colors.white');
+    color: theme('colors.text');
+}
+
+.gjs-selected {
+    outline: none;
+}
+
+.gjs-mdl-dialog {
+    background-color: theme('colors.white');
+}
+
+.gjs-am-add-asset button {
+    background-color: theme('colors.primary');
+    color: theme('colors.white');
+}
+
+#styles-container {
+    background-color: theme('colors.white');
+}

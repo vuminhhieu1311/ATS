@@ -68,7 +68,7 @@
                     },
                     events,
                     eventClick(info) {
-                        // eslint-disable-next-line eqeqeq
+                        // eslint-disable-next-line
                         const interview = instance.interviews.find((item) => item.id == info.event.id);
                         instance.openInterviewForm(interview);
                     },
