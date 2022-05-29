@@ -6,7 +6,7 @@
                 <title>Job Pro</title>
                 <link
                     rel="stylesheet"
-                    href="http://localhost:3000/template/template1.css"
+                    href="http://localhost:3000/templates/template1.css"
                 >
                 <link
                     rel="stylesheet"

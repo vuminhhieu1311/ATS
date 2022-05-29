@@ -19,6 +19,13 @@ class Resume extends Model
         'content',
         'candidate_id',
     ];
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['template'];
+
 
     public function candidate()
     {

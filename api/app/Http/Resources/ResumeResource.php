@@ -19,7 +19,10 @@ class ResumeResource extends ShareResource
             'id' => $this->id,
             'uuid' => $this->uuid,
             'content' => $this->content,
+            'templateId' => $this->template_id,
+            'updatedAt' => $this->updated_at,
             'candidate' => new CandidateResource($this->whenLoaded('candidate')),
+            'template' => new ResumeTemplateResource($this->whenLoaded('template')),
         ];
     }
 }

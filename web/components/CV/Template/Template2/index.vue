@@ -9,7 +9,7 @@
                 >
                 <link
                     rel="stylesheet"
-                    href="http://localhost:3000/template/template2.css"
+                    href="http://localhost:3000/templates/template2.css"
                 >
             </head>
             <body>
