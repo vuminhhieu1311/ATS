@@ -1,5 +1,5 @@
 <template>
-    <div id="editor" class="border">
+    <div ref="resume">
         <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -95,69 +95,10 @@
                         </div>
                     </div>
                     <div class="resume_right">
-                        <div class="resume_item resume_about">
-                            <div class="title">
-                                <p class="bold">About me</p>
-                            </div>
-                            <p>Hello</p>
-                        </div>
-                        <div class="resume_item resume_work">
-                            <div class="title">
-                                <p class="bold">
-                                    Experience
-                                </p>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="date">
-                                        13/12/2000 -
-                                        13/11/2000
-                                    </div>
-                                    <div class="info">
-                                        <p class="">
-                                            PHP Dev.
-                                        </p>
-                                        <p>FPT</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="resume_item resume_education">
-                            <div class="title">
-                                <p class="bold">
-                                    Education
-                                </p>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="date">
-                                        13/12/2000 -
-                                        13/11/2000
-                                    </div>
-                                    <div class="info">
-                                        <p>BK</p>
-                                        <p>
-                                            IT
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="resume_item resume_education">
-                            <div class="title">
-                                <p class="bold">
-                                    Certification
-                                </p>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="info">
-                                        <p class="semi-bold">
-                                            TOEIC 350
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
+                        <div v-for="(item, index) in outline" :key="index">
+                            <component
+                                :is="item"
+                            />
                         </div>
                     </div>
                 </div>
@@ -167,7 +108,26 @@
 </template>
 
 <script>
+    import Description from './Description.vue';
+    import Education from './Education.vue';
+    import Experience from './Experience.vue';
+    import Certification from './Certification.vue';
+
     export default {
-        name: 'CVTemplate1',
+        name: 'CVTemplate2',
+
+        components: {
+            Description,
+            Education,
+            Experience,
+            Certification,
+        },
+
+        props: {
+            outline: {
+                type: Array,
+                required: true,
+            },
+        },
     };
 </script>

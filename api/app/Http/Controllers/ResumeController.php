@@ -7,6 +7,7 @@ use App\Models\Candidate;
 use App\Models\Resume;
 use App\Repositories\Resume\ResumeRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
@@ -16,14 +17,12 @@ class ResumeController extends Controller
         $this->resumeRepository = $resumeRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $candidate = Auth::user()->candidate;
+        $resumes = $candidate->resumes;
+
+        return ResumeResource::collection($resumes);
     }
 
     public function store(Request $request)

@@ -25,6 +25,11 @@ class Resume extends Model
         return $this->belongsTo(Candidate::class);
     }
 
+    public function template()
+    {
+        return $this->belongsTo(ResumeTemplate::class, 'template_id');
+    }
+
     /**
      * Get the route key for the model.
      *

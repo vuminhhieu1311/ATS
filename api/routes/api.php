@@ -29,9 +29,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::resources([
-    'resumes' => ResumeController::class,
-]);
 
 Route::prefix('jobs')->group(function () {
     Route::get('/published', GetAllPublishedJobController::class);
@@ -77,5 +74,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'staffs' => StaffController::class,
         'rooms' => RoomController::class,
         'interviews' => InterviewController::class,
+        'resumes' => ResumeController::class,
     ]);
 });

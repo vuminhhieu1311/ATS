@@ -107,5 +107,6 @@
     "drop file here or": "Drop file here or",
     "click to upload": "Click to upload",
     "submit application": "Submit application",
-    "resume file validation": ".pdf, .doc, .docx, .png, .jpg, .jpeg files with a size less than 2MB"
+    "resume file validation": ".pdf, .doc, .docx, .png, .jpg, .jpeg files with a size less than 2MB",
+    "contents of CV": "Contents of CV"
 }
