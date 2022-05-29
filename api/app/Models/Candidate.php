@@ -57,6 +57,11 @@ class Candidate extends Model
         return $this->hasMany(SocialProfile::class);
     }
 
+    public function resumes()
+    {
+        return $this->hasMany(Resume::class);
+    }
+
     public function candidateStaffs()
     {
         return $this->hasMany(CandidateStaff::class);

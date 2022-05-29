@@ -4,6 +4,13 @@ import 'grapesjs-preset-newsletter';
 import editorConfig from './editorConfig';
 
 export default {
+    props: {
+        resume: {
+            type: Object,
+            required: true,
+        },
+    },
+
     data() {
         return {
             editor: {},
@@ -11,7 +18,7 @@ export default {
     },
 
     mounted() {
-        this.editor = grapesjs.init(editorConfig);
+        this.editor = grapesjs.init(editorConfig(this.resume));
 
         this.editor.Panels.removePanel('devices-c');
     },

@@ -1,3 +1,5 @@
+import cookies from 'axios/lib/helpers/cookies';
+
 const styleManager = {
     appendTo: '#styles-container',
     sectors: [
@@ -30,10 +32,25 @@ const styleManager = {
     ],
 };
 
-const editorConfig = {
+const editorConfig = (resume) => ({
     container: '#editor',
     fromElement: true,
-    storageManager: false,
+    storageManager: {
+        type: 'remote',
+        stepsBeforeSave: 1,
+        contentTypeJson: true,
+        storeComponents: true,
+        storeStyles: true,
+        storeHtml: true,
+        storeCss: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-XSRF-TOKEN': cookies.read('XSRF-TOKEN'),
+        },
+        id: 'my-',
+        urlStore: `${process.env.API_URL}/resumes/${resume.uuid}/save-content`,
+        urlLoad: `${process.env.API_URL}/resumes/${resume.uuid}/load-content`,
+    },
     blockManager: {
         appendTo: '#blocks-container',
     },
@@ -59,6 +76,6 @@ const editorConfig = {
     pluginsOpts: {
         'gjs-preset-newsletter': {},
     },
-};
+});
 
 export default editorConfig;

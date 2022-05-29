@@ -20,7 +20,6 @@
             <div class="gjs-navbar flex justify-end items-center">
                 <div class="panel__basic-actions" />
                 <span class="text-primary cursor-pointer text-3xl material-icons-outlined">file_download</span>
-                <span class="text-primary cursor-pointer text-2xl ml-2 material-icons-outlined">save</span>
             </div>
             <CVTemplate1 />
         </div>
