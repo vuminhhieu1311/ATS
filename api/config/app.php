@@ -169,6 +169,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
         /*
          * Application Service Providers...

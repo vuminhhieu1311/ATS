@@ -11,6 +11,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
 use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Stage\GetCandidatesByStageAndJobController;
@@ -28,12 +29,21 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::resources([
+    'resumes' => ResumeController::class,
+]);
+
 Route::prefix('jobs')->group(function () {
     Route::get('/published', GetAllPublishedJobController::class);
     Route::get('/published/{job}', GetPublishedJobController::class);
     Route::get('/locations', GetAllLocationController::class);
     Route::get('/tags', GetAllTagController::class);
     Route::post('/{job}/candidates', CreateCandidateController::class);
+});
+
+Route::prefix('resumes')->group(function () {
+    Route::post('/{resume}/save-content', [ResumeController::class, 'saveContent']);
+    Route::get('/{resume}/load-content', [ResumeController::class, 'loadContent']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {

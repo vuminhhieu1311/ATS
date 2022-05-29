@@ -26,6 +26,7 @@ class CandidateResource extends ShareResource
             'experiences' => ExperienceResource::collection($this->whenLoaded('experiences')),
             'education' => EducationResource::collection($this->whenLoaded('education')),
             'socialProfiles' => SocialProfileResource::collection($this->whenLoaded('socialProfiles')),
+            'resumes' => ResumeResource::collection($this->whenLoaded('resumes')),
             'jobs' => JobResource::collection($this->whenLoaded('jobs')),
             'user' => new UserResource($this->whenLoaded('user')),
         ];

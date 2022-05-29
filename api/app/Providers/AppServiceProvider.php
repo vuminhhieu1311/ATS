@@ -14,6 +14,8 @@ use App\Repositories\MailTemplate\MailTemplateRepository;
 use App\Repositories\MailTemplate\MailTemplateRepositoryInterface;
 use App\Repositories\Pipeline\PipelineRepository;
 use App\Repositories\Pipeline\PipelineRepositoryInterface;
+use App\Repositories\Resume\ResumeRepository;
+use App\Repositories\Resume\ResumeRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
 use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\Staff\StaffRepository;
@@ -40,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CandidateJobRepositoryInterface::class, CandidateJobRepository::class);
         $this->app->singleton(InterviewRepositoryInterface::class, InterviewRepository::class);
         $this->app->singleton(TagRepositoryInterface::class, TagRepository::class);
+        $this->app->singleton(ResumeRepositoryInterface::class, ResumeRepository::class);
     }
 
     /**

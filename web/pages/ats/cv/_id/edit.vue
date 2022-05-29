@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CVBuilder />
+        <CVBuilder :resume="resume" />
     </div>
 </template>
 
@@ -15,6 +15,12 @@
         },
 
         layout: 'candidate',
+
+        async asyncData({ $axios, params }) {
+            const { data: resume } = await $axios.$get(`/resumes/${params.id}`);
+
+            return { resume };
+        },
 
         methods: {
         },
