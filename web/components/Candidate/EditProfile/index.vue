@@ -2,7 +2,7 @@
     <el-tabs
         type="card"
         tab-position="left"
-        class="w-full m-8 rounded-lg border-0"
+        class="w-full m-8 rounded-lg border-0 pr-20"
     >
         <el-tab-pane>
             <div slot="label" class="text-lg flex items-center pt-2 capitalize">
@@ -20,18 +20,10 @@
         </el-tab-pane>
         <el-tab-pane>
             <div slot="label" class="text-lg flex items-center pt-2 capitalize">
-                <span class="material-icons mr-2">account_box</span>
-                <span>{{ $t("resume") }}</span>
-            </div>
-            <div>
-                Hello
-            </div>
-        </el-tab-pane>
-        <el-tab-pane>
-            <div slot="label" class="text-lg flex items-center pt-2 capitalize">
                 <span class="material-icons mr-2">work</span>
                 <span>{{ $t("experience") }}</span>
             </div>
+            <Experience />
         </el-tab-pane>
     </el-tabs>
 </template>
@@ -39,6 +31,7 @@
 <script>
     import PersonalInfo from './PersonalInfo.vue';
     import Education from './Education.vue';
+    import Experience from './Experience.vue';
 
     export default {
         name: 'EditProfile',
@@ -46,6 +39,7 @@
         components: {
             PersonalInfo,
             Education,
+            Experience,
         },
 
         props: {

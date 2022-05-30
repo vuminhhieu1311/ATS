@@ -2,7 +2,7 @@
     <el-dialog
         :visible.sync="show"
         width="50%"
-        :title="$t('education')"
+        :title="$t('working experience')"
         @close="close"
     >
         <el-form
@@ -11,14 +11,11 @@
             :rules="formRules"
             label-position="top"
         >
-            <el-form-item :label="$t('school name')" prop="schoolName">
-                <el-input v-model="form.schoolName" />
+            <el-form-item :label="$t('company name')" prop="companyName">
+                <el-input v-model="form.companyName" />
             </el-form-item>
-            <el-form-item :label="$t('field of study')" prop="fieldOfStudy">
-                <el-input v-model="form.fieldOfStudy" />
-            </el-form-item>
-            <el-form-item :label="$t('degree')">
-                <el-input v-model="form.degree" />
+            <el-form-item :label="$t('position')" prop="position">
+                <el-input v-model="form.position" />
             </el-form-item>
             <el-row :gutter="20">
                 <el-col :span="12">
@@ -42,8 +39,12 @@
                     </el-form-item>
                 </el-col>
             </el-row>
-            <el-form-item :label="$t('grade')">
-                <el-input v-model="form.grade" />
+            <el-form-item :label="$t('summary')">
+                <el-input
+                    v-model="form.summary"
+                    type="textarea"
+                    :rows="5"
+                />
             </el-form-item>
             <div class="flex justify-start pt-3">
                 <el-button type="primary" class="capitalize" @click="submit($refs.form, submitForm)">
@@ -68,7 +69,7 @@
     import formMixin from '~/mixins/form';
 
     export default {
-        name: 'EducationForm',
+        name: 'ExperienceForm',
 
         mixins: [formMixin],
 
@@ -76,31 +77,29 @@
             return {
                 show: false,
                 form: {
-                    schoolName: null,
-                    fieldOfStudy: null,
-                    degree: null,
+                    companyName: null,
+                    position: null,
+                    summary: null,
                     startDate: null,
                     endDate: null,
-                    grade: null,
-                    educationId: null,
+                    experienceId: null,
                 },
                 rules: {
-                    schoolName: 'name:school name|required|type:string',
-                    fieldOfStudy: 'name: field of study|required|type:string',
+                    companyName: 'name:company name|required|type:string',
+                    position: 'required|type:string',
                 },
             };
         },
 
         methods: {
-            async open(education) {
+            async open(experience) {
                 this.show = true;
-                this.form.schoolName = this.$get(education, 'school_name', null);
-                this.form.fieldOfStudy = this.$get(education, 'field_of_study', null);
-                this.form.degree = this.$get(education, 'degree', null);
-                this.form.startDate = this.$get(education, 'start_date', null);
-                this.form.endDate = this.$get(education, 'end_date', null);
-                this.form.grade = this.$get(education, 'grade', null);
-                this.form.educationId = this.$get(education, 'id', null);
+                this.form.companyName = this.$get(experience, 'company_name', null);
+                this.form.position = this.$get(experience, 'position', null);
+                this.form.summary = this.$get(experience, 'summary', null);
+                this.form.startDate = this.$get(experience, 'start_date', null);
+                this.form.endDate = this.$get(experience, 'end_date', null);
+                this.form.experienceId = this.$get(experience, 'id', null);
             },
             close() {
                 this.show = false;
@@ -110,14 +109,14 @@
                 this.$refs.form.resetFields();
             },
             async submitForm(formData) {
-                if (formData.educationId) {
-                    const user = await this.$axios.$put(`education/${formData.educationId}`, {
+                if (formData.experienceId) {
+                    const user = await this.$axios.$put(`experiences/${formData.experienceId}`, {
                         ...formData,
                     });
                     this.$auth.setUser(user);
                     this.$message.success(this.$t('update successfully'));
                 } else {
-                    const user = await this.$axios.$post('education', {
+                    const user = await this.$axios.$post('experiences', {
                         ...formData,
                     });
                     this.$auth.setUser(user);

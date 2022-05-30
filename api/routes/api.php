@@ -3,6 +3,7 @@
 use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\Job\CreateCandidateController;
 use App\Http\Controllers\Job\GetAllLocationController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Stage\GetCandidatesByStageAndJobController;
+use App\Http\Controllers\User\UpdateAvatarController;
 use App\Http\Controllers\VideoCall\GenerateAgoraToken;
 use App\Http\Controllers\WebInitController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::prefix('users')->group(function () {
+    Route::post('/{user}/upload-avatar', UpdateAvatarController::class);
+});
 
 Route::prefix('jobs')->group(function () {
     Route::get('/published', GetAllPublishedJobController::class);
@@ -82,5 +88,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'interviews' => InterviewController::class,
         'resumes' => ResumeController::class,
         'education' => EducationController::class,
+        'experiences' => ExperienceController::class,
     ]);
 });

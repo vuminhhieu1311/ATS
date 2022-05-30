@@ -27,7 +27,11 @@ class EducationController extends Controller
             'candidate_id' => Auth::user()->candidate->id,
         ]);
 
-        return optional(Auth::user())->load('candidate.education', 'staff');
+        return optional(Auth::user())->load([
+            'candidate.education',
+            'candidate.experiences',
+            'staff',
+        ]);
     }
 
     public function update(Request $request, Education $education)
@@ -41,13 +45,21 @@ class EducationController extends Controller
             'end_date' => $request->input('endDate'),
         ]);
 
-        return optional(Auth::user())->load('candidate.education', 'staff');
+        return optional(Auth::user())->load([
+            'candidate.education',
+            'candidate.experiences',
+            'staff',
+        ]);
     }
 
     public function destroy(Education $education)
     {
         $education->delete();
 
-        return optional(Auth::user())->load('candidate.education', 'staff');
+        return optional(Auth::user())->load([
+            'candidate.education',
+            'candidate.experiences',
+            'staff',
+        ]);
     }
 }

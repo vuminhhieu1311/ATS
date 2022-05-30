@@ -27,6 +27,10 @@ class UpdateProfileController extends Controller
             ]);
         }
 
-        return $authUser->load('candidate', 'staff');
+        return $authUser->load([
+            'candidate.education',
+            'candidate.experiences',
+            'staff',
+        ]);
     }
 }

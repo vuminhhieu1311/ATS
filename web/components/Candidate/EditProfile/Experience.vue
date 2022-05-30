@@ -1,20 +1,20 @@
 <template>
     <div class="flex-auto px-4 lg:px-10 py-10">
         <div class="flex justify-between items-center mb-8">
-            <h5 class="text-xl font-semibold uppercase">{{ $t("education") }}</h5>
+            <h5 class="text-xl font-semibold uppercase">{{ $t("working experience") }}</h5>
             <el-button
                 type="primary"
                 size="mini"
                 class="capitalize"
-                @click="openEducationForm(null)"
+                @click="openExperienceForm(null)"
             >
                 <span class="material-icons-outlined">add</span>
-                {{ $t("education") }}
+                {{ $t("experience") }}
             </el-button>
         </div>
         <el-row :gutter="40">
             <el-col
-                v-for="item in $get($auth.user, 'candidate.education')"
+                v-for="item in $get($auth.user, 'candidate.experiences')"
                 :key="$get(item, 'id')"
                 :span="12"
                 :xl="8"
@@ -22,13 +22,12 @@
             >
                 <el-card :body-style="{ padding: '0px' }">
                     <div class="flex justify-center">
-                        <img class="h-40 mt-5" :src="require('~/assets/images/education.png')">
+                        <img class="h-40 mt-5" :src="require('~/assets/images/suitcase.png')">
                     </div>
-
                     <div class="p-5">
-                        <div class="text-lg text-text font-semibold">{{ $get(item, 'school_name') }}</div>
+                        <div class="text-lg text-text font-semibold">{{ $get(item, 'company_name') }}</div>
                         <div class="text-base">{{ getDate(item) }}</div>
-                        <div class="text-base">{{ $get(item, 'field_of_study') }}</div>
+                        <div class="text-base">{{ $get(item, 'location') }}</div>
                     </div>
                     <div class="flex justify-between">
                         <el-button
@@ -36,7 +35,7 @@
                             size="small"
                             icon="el-icon-edit"
                             class="editBtn"
-                            @click="openEducationForm(item)"
+                            @click="openExperienceForm(item)"
                         >
                             {{ $t('edit') }}
                         </el-button>
@@ -45,7 +44,7 @@
                             size="small"
                             icon="el-icon-delete"
                             class="deleteBtn"
-                            @click="deleteEducation($get(item, 'id'))"
+                            @click="deleteExperience($get(item, 'id'))"
                         >
                             {{ $t('delete') }}
                         </el-button>
@@ -53,39 +52,39 @@
                 </el-card>
             </el-col>
         </el-row>
-        <EducationForm ref="educationForm" />
+        <ExperienceForm ref="experienceForm" />
     </div>
 </template>
 
 <script>
     import moment from 'moment';
-    import EducationForm from './EducationForm.vue';
+    import ExperienceForm from './ExperienceForm.vue';
 
     export default {
-        name: 'EducationList',
+        name: 'ExperienceList',
 
         components: {
-            EducationForm,
+            ExperienceForm,
         },
 
         methods: {
-            openEducationForm(education) {
-                this.$refs.educationForm.open(education);
+            openExperienceForm(experience) {
+                this.$refs.experienceForm.open(experience);
             },
-            getDate(education) {
-                const startDate = moment(this.$get(education, 'start_date')).format('DD/MM/YYYY');
-                const endDate = education.end_date ? moment(education.end_date).format('DD/MM/YYYY') : 'now';
+            getDate(experience) {
+                const startDate = moment(this.$get(experience, 'start_date')).format('DD/MM/YYYY');
+                const endDate = experience.end_date ? moment(experience.end_date).format('DD/MM/YYYY') : 'now';
 
                 return `${startDate} - ${endDate}`;
             },
-            async deleteEducation(educationId) {
+            async deleteExperience(experienceId) {
                 try {
-                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete education'), {
+                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete experience'), {
                         confirmButtonText: this.$t('confirm'),
                         cancelButtonText: this.$t('cancel'),
                         type: 'warning',
                     }).then(async () => {
-                        const user = await this.$axios.$delete(`education/${educationId}`);
+                        const user = await this.$axios.$delete(`experiences/${experienceId}`);
                         this.$auth.setUser(user);
                         this.$message.success(this.$t('delete successfully'));
                     });

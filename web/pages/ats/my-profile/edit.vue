@@ -2,10 +2,10 @@
     <div class="w-full">
         <div class="flex flex-wrap">
             <div class="w-full lg:w-9/12">
-                <EditProfile :user="user" />
+                <EditProfile />
             </div>
             <div class="w-full lg:w-3/12">
-                <!-- <CardSummary :candidate="candidate" /> -->
+                <UploadAvatar />
             </div>
         </div>
     </div>
@@ -13,20 +13,16 @@
 
 <script>
     import EditProfile from '~/components/Candidate/EditProfile/index.vue';
-    // import CardSummary from '~/components/Candidate/Detail/CardSummary/index.vue';
+    import UploadAvatar from '~/components/Candidate/UploadAvatar/index.vue';
 
     export default {
         name: 'EditProfilePage',
 
         components: {
             EditProfile,
-            // CardSummary,
+            UploadAvatar,
         },
 
         layout: 'candidate',
-
-        mounted() {
-            console.log(this.$auth.user);
-        },
     };
 </script>
