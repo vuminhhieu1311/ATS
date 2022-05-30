@@ -6,6 +6,8 @@ use App\Repositories\Candidate\CandidateRepository;
 use App\Repositories\Candidate\CandidateRepositoryInterface;
 use App\Repositories\CandidateJob\CandidateJobRepository;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
+use App\Repositories\Education\EducationRepository;
+use App\Repositories\Education\EducationRepositoryInterface;
 use App\Repositories\Interview\InterviewRepository;
 use App\Repositories\Interview\InterviewRepositoryInterface;
 use App\Repositories\Job\JobRepository;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(InterviewRepositoryInterface::class, InterviewRepository::class);
         $this->app->singleton(TagRepositoryInterface::class, TagRepository::class);
         $this->app->singleton(ResumeRepositoryInterface::class, ResumeRepository::class);
+        $this->app->singleton(EducationRepositoryInterface::class, EducationRepository::class);
     }
 
     /**

@@ -18,7 +18,7 @@ class Education extends Model
         'school_name',
         'field_of_study',
         'degree',
-        'is_current',
+        'grade',
         'start_date',
         'end_date',
         'candidate_id',

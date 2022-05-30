@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\Job\CreateCandidateController;
 use App\Http\Controllers\Job\GetAllLocationController;
@@ -58,6 +60,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('interviews/{interview}/token', GenerateAgoraToken::class);
     });
 
+    Route::prefix('candidates')->group(function () {
+        Route::put('/update-profile', UpdateProfileController::class);
+    });
+
 //    Route::prefix('jobs')->group(function () {
 //        Route::get('/published', GetAllPublishedJobController::class);
 //        Route::get('/published/{job}', GetPublishedJobController::class);
@@ -75,5 +81,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'rooms' => RoomController::class,
         'interviews' => InterviewController::class,
         'resumes' => ResumeController::class,
+        'education' => EducationController::class,
     ]);
 });

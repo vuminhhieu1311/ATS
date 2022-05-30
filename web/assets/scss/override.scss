@@ -88,15 +88,41 @@
     width: 100% !important;
 }
 
+// .el-tabs {
+//     &__item {
+//         font-size: theme('fontSize.base') !important;
+//         &.is-active {
+//             background-color: $light-primary !important;
+//             border-bottom: 2px solid $primary !important;
+//         }
+//     }
+//     &__content {
+//         padding: theme('spacing.8') !important;
+//     }
+// }
+
 .el-tabs {
-    &__item {
-        font-size: theme('fontSize.base') !important;
-        &.is-active {
-            background-color: $light-primary !important;
-            border-bottom: 2px solid $primary !important;
-        }
+    &__header {
+        margin: 20px !important;
+        border: none !important;
+    }
+    &__nav {
+        border: none !important;
+        // background-color: transparent;
     }
     &__content {
-        padding: theme('spacing.8') !important;
+        background-color: $white;
+    }
+    &__item {
+        border: none !important;
+        color: $text !important;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 4px 25px 4px 25px !important;
+        height: 50px !important;
+        &.is-active {
+            color: $white !important;
+            background: linear-gradient(118deg, rgba(115, 103, 240, 1), rgba(115, 103, 240, .7));
+        }
     }
 }

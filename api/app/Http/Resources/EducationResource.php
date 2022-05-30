@@ -20,7 +20,7 @@ class EducationResource extends ShareResource
             'schoolName' => $this->school_name,
             'fieldOfStudy' => $this->field_of_study,
             'degree' => $this->degree,
-            'isCurrent' => $this->is_current,
+            'grade' => $this->grade,
             'startDate' => $this->start_date,
             'endDate' => $this->end_date,
             'candidate' => new CandidateResource($this->whenLoaded('candidate')),

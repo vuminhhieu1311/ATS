@@ -8,6 +8,6 @@ class WebInitController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return $request->user();
+        return $request->user()->load('candidate.education', 'staff');
     }
 }
