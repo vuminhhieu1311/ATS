@@ -33,7 +33,7 @@ class CreateCandidateController extends Controller
             $authUser->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'phone_number' => $request->input('phone_number'),
+                'phone_number' => $request->input('phoneNumber'),
             ]);
 
             if (!$authUser->candidate) {

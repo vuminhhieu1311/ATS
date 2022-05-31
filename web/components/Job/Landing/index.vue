@@ -30,7 +30,7 @@
                 v-for="(job, index) in jobs"
                 :key="index"
                 :job="job"
-                @click.native="$router.push(`landing/${$get(job, 'id')}`)"
+                @click.native="$router.push(`/ats/jobs/${$get(job, 'id')}`)"
             />
         </div>
     </div>

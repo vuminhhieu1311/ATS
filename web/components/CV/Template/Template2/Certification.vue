@@ -7,9 +7,12 @@
         </div>
         <ul>
             <li>
-                <div class="info">
+                <div class="info" style="margin-bottom: 10px;">
                     <p class="semi-bold">
                         TOEIC 350
+                    </p>
+                    <p class="semi-bold">
+                        AWS Certification
                     </p>
                 </div>
             </li>

@@ -3,7 +3,7 @@
         <div class="title">
             <p class="bold">About me</p>
         </div>
-        <p>Hello</p>
+        <p>{{ $get($auth.user, 'candidate.description') }}</p>
     </div>
 </template>
 

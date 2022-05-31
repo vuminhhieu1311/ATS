@@ -1,7 +1,7 @@
 <template>
     <div class="flex-auto px-4 lg:px-10 py-10">
         <h5 class="text-xl mb-8 font-semibold uppercase">
-            {{ $t("candidate information") }}
+            {{ $t("personal information") }}
         </h5>
         <el-form
             ref="form"

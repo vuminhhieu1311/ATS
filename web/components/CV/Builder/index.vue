@@ -3,14 +3,6 @@
         <div class="col-span-1 border-r">
             <el-tabs type="card">
                 <el-tab-pane>
-                    <span slot="label" class="text-text material-icons-outlined">grid_view</span>
-                    <div id="blocks-container" />
-                </el-tab-pane>
-                <el-tab-pane>
-                    <span slot="label" class="text-text material-icons-outlined">brush</span>
-                    <div id="styles-container" />
-                </el-tab-pane>
-                <el-tab-pane>
                     <span slot="label" class="text-text material-icons-outlined">list</span>
                     <div class="p-5">
                         <h4 class="font-semibold text-lg capitalize mb-2">{{ $t('contents of CV') }}</h4>
@@ -30,6 +22,14 @@
                         </el-select>
                         <Outline :outline="outline" :delete-outline="deleteOutline" />
                     </div>
+                </el-tab-pane>
+                <el-tab-pane>
+                    <span slot="label" class="text-text material-icons-outlined">grid_view</span>
+                    <div id="blocks-container" />
+                </el-tab-pane>
+                <el-tab-pane>
+                    <span slot="label" class="text-text material-icons-outlined">brush</span>
+                    <div id="styles-container" />
                 </el-tab-pane>
             </el-tabs>
         </div>

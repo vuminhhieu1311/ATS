@@ -12,7 +12,7 @@
             JobDetail,
         },
 
-        layout: 'guest',
+        layout: 'candidate',
 
         async asyncData({ $axios, params }) {
             const { data: job } = await $axios.$get(`/jobs/published/${params.id}`);

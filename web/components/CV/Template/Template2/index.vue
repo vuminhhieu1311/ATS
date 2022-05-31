@@ -16,40 +16,31 @@
                 <div class="resume">
                     <div class="resume_left">
                         <div class="resume_profile">
-                            <img src="">
+                            <img :src="`http://localhost:8000${$auth.user.profile_photo_url}`">
                         </div>
                         <div class="resume_content">
                             <div class="resume_item resume_info">
                                 <div class="title">
-                                    <p class="bold">Hieu</p>
-                                    <p class="regular">
-                                        Dev
-                                    </p>
+                                    <p class="bold">{{ $get($auth.user, 'name') }}</p>
                                 </div>
                                 <ul>
                                     <li>
                                         <div class="icon">
                                             <span class="material-icons-outlined">location_on</span>
                                         </div>
-                                        <div class="data">
-                                            Ha Noi
-                                        </div>
+                                        <div class="data">{{ $get($auth.user, 'address') }}</div>
                                     </li>
                                     <li>
                                         <div class="icon">
                                             <span class="material-icons-outlined">call</span>
                                         </div>
-                                        <div class="data">
-                                            023432523543
-                                        </div>
+                                        <div class="data">{{ $get($auth.user, 'phone_number') }}</div>
                                     </li>
                                     <li>
                                         <div class="icon">
                                             <span class="material-icons-outlined">email</span>
                                         </div>
-                                        <div class="data">
-                                            gsertgh@gmail.com
-                                        </div>
+                                        <div class="data">{{ $get($auth.user, 'email') }}</div>
                                     </li>
                                 </ul>
                             </div>
@@ -61,9 +52,10 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <div class="skill_name">
-                                            English
-                                        </div>
+                                        <div class="skill_name">English</div>
+                                    </li>
+                                    <li>
+                                        <div class="skill_name">Time management</div>
                                     </li>
                                 </ul>
                             </div>
@@ -78,7 +70,7 @@
                                         </div>
                                         <div class="data">
                                             <p class="semi-bold">Facebook</p>
-                                            <p>hieu</p>
+                                            <p>https://www.fb.com/</p>
                                         </div>
                                     </li>
                                     <li>
@@ -87,7 +79,7 @@
                                         </div>
                                         <div class="data">
                                             <p class="semi-bold">Linkedin</p>
-                                            <p>Hieu</p>
+                                            <p>https://www.link.com/</p>
                                         </div>
                                     </li>
                                 </ul>

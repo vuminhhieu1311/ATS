@@ -8,7 +8,7 @@ export default {
         },
     },
 
-    data() {
+    data({ $auth, $get }) {
         const validateResume = (rule, value, callback) => {
             if (value) {
                 if (!ALLOWED_MINE_TYPES.includes(value.type)) {
@@ -23,9 +23,9 @@ export default {
 
         return {
             form: {
-                name: null,
-                email: null,
-                phoneNumber: null,
+                name: $get($auth.user, 'name', null),
+                email: $get($auth.user, 'email', null),
+                phoneNumber: $get($auth.user, 'phone_number', null),
                 resume: null,
             },
             fileList: [],
