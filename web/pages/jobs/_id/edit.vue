@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="capitalize text-xl font-medium mb-8">
+        <h3 class="title mb-8">
             {{ $t('edit job') }}
         </h3>
         <EditForm

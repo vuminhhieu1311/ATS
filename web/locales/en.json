@@ -60,7 +60,7 @@
     "delete": "Delete",
     "schedule interview": "Schedule interview",
     "add candidate": "Add candidate",
-    "candidate": "Ứng viên",
+    "candidate": "Candidate",
     "all jobs": "All jobs",
     "create pipeline": "Create pipeline",
     "edit pipeline": "Edit pipeline",
@@ -138,5 +138,12 @@
     "manage profile": "Manage profile",
     "manage CV": "Manage CV",
     "apply_successfully": "You have successfully applied for the job. The recruitment department will contact you for the next recruitment plan. Sincerely thank you!",
-    "congratulations": "Congratulation"
+    "congratulations": "Congratulation",
+    "pipeline name": "Pipeline name",
+    "pipeline jobs": "Pipeline jobs",
+    "pipeline stages": "Pipeline stages",
+    "job name": "Job name",
+    "new stage": "New stage",
+    "available stages": "Available stages",
+    "stages added to pipeline": "Stages added to pipeline"
 }

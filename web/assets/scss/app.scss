@@ -20,3 +20,9 @@ html {
 .search-filter {
     padding: 7px 15px !important;
 }
+
+.title {
+    text-transform: capitalize;
+    font-size: theme('fontSize.xl');
+    font-weight: 500;
+}

@@ -18,6 +18,7 @@ use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Stage\GetCandidatesByStageAndJobController;
+use App\Http\Controllers\StageController;
 use App\Http\Controllers\User\UpdateAvatarController;
 use App\Http\Controllers\VideoCall\GenerateAgoraToken;
 use App\Http\Controllers\WebInitController;
@@ -89,5 +90,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'resumes' => ResumeController::class,
         'education' => EducationController::class,
         'experiences' => ExperienceController::class,
+        'stages' => StageController::class,
     ]);
 });

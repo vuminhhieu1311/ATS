@@ -60,7 +60,7 @@
     "delete": "Xóa",
     "schedule interview": "Đặt lịch phỏng vấn",
     "add candidate": "Thêm ứng viên",
-    "candidate": "Candidate",
+    "candidate": "Ứng viên",
     "all jobs": "Tất cả việc làm",
     "create pipeline": "Tạo pipeline",
     "edit pipeline": "Chỉnh sửa pipeline",
@@ -138,5 +138,12 @@
     "manage profile": "Quẩn lý hồ sơ",
     "manage CV": "Quản lý CV",
     "apply_successfully": "Bạn đã ứng tuyển thành công. Bộ phận tuyển dụng sẽ thông báo kế hoạch tuyển dụng tiếp theo đến bạn. Trân trọng cảm ơn bạn!",
-    "congratulations": "Chúc mừng"
+    "congratulations": "Chúc mừng",
+    "pipeline name": "Tên pipeline",
+    "pipeline jobs": "Pipeline jobs",
+    "pipeline stages": "Pipeline stages",
+    "job name": "Tên job",
+    "new stage": "Stage mới",
+    "available stages": "Stage có sẵn",
+    "stages added to pipeline": "Stage thêm vào pipeline"
 }
