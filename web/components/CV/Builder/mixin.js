@@ -37,7 +37,7 @@ export default {
             const source = this.editor.runCommand('gjs-get-inlined-html');
 
             const opt = {
-                margin: 0.5,
+                margin: 0.2,
                 filename: 'mycv.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },

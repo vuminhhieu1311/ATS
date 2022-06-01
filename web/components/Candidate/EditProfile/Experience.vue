@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-auto px-4 lg:px-10 py-10">
+    <div class="flex-auto">
         <div class="flex justify-between items-center mb-8">
             <h5 class="text-xl font-semibold uppercase">{{ $t("working experience") }}</h5>
             <el-button

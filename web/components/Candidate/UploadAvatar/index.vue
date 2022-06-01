@@ -1,7 +1,7 @@
 <template>
     <div class="pr-10 mt-8">
         <div class="flex justify-center">
-            <el-avatar :size="250" :src="`http://localhost:8000${$auth.user.profile_photo_url}`" />
+            <el-avatar :size="220" :src="`http://localhost:8000${$auth.user.profile_photo_url}`" />
         </div>
         <div class="flex justify-center mt-8">
             <el-button

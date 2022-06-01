@@ -27,7 +27,7 @@ body {
 
 .resume {
     display: flex;
-    margin: 0 2%;
+    margin: 0;
 }
 
 .resume .resume_left {

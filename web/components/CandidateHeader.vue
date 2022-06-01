@@ -36,10 +36,6 @@
             <el-dropdown trigger="click">
                 <el-avatar size="medium" :src="`http://localhost:8000${$auth.user.profile_photo_url}`" />
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item class="flex items-center" @click.native="logout">
-                        <span class="material-icons-outlined text-lg mr-1">logout</span>
-                        {{ $t('sign out') }}
-                    </el-dropdown-item>
                     <nuxt-link to="/ats/my-profile/edit">
                         <el-dropdown-item class="flex items-center">
                             <span class="material-icons-outlined text-lg mr-1">person</span>
@@ -52,6 +48,10 @@
                             {{ $t('manage CV') }}
                         </el-dropdown-item>
                     </nuxt-link>
+                    <el-dropdown-item class="flex items-center" @click.native="logout">
+                        <span class="material-icons-outlined text-lg mr-1">logout</span>
+                        {{ $t('sign out') }}
+                    </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>

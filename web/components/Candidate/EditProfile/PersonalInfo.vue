@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-auto px-4 lg:px-10 py-10">
+    <div class="flex-auto">
         <h5 class="text-xl mb-8 font-semibold uppercase">
             {{ $t("personal information") }}
         </h5>

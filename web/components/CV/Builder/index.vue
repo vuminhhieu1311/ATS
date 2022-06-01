@@ -1,6 +1,6 @@
 <template>
-    <div class="cv-builder grid grid-cols-5 h-screen">
-        <div class="col-span-1 border-r">
+    <div class="cv-builder grid grid-cols-7 h-screen">
+        <div class="col-span-2 border-r">
             <el-tabs type="card">
                 <el-tab-pane>
                     <span slot="label" class="text-text material-icons-outlined">list</span>
@@ -33,7 +33,7 @@
                 </el-tab-pane>
             </el-tabs>
         </div>
-        <div class="col-span-4 mx-5">
+        <div class="col-span-5 mx-5">
             <div class="gjs-navbar flex justify-end items-center">
                 <div class="panel__basic-actions" />
                 <span
