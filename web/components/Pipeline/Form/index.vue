@@ -6,8 +6,7 @@
                 ref="form"
                 :model="form"
                 :rules="formRules"
-                label-width="18%"
-                label-position="left"
+                label-position="top"
             >
                 <el-form-item :label="$t('pipeline name')" prop="name" :error="serverErrors.name">
                     <el-input
@@ -15,11 +14,12 @@
                         :placeholder="$t('pipeline name')"
                     />
                 </el-form-item>
-                <el-form-item :label="$t('pipeline jobs')" prop="jobs">
+                <el-form-item :label="$t('pipeline jobs')" prop="jobIds" :error="serverErrors.jobIds">
                     <el-select
                         v-model="form.jobIds"
                         multiple
                         filterable
+                        collapse-tags
                         remote
                         :remote-method="onSearchJobs"
                         :placeholder="$t('job name')"
@@ -27,12 +27,41 @@
                     >
                         <el-option
                             v-for="job in jobs"
-                            :key="$_get(job, 'id')"
-                            :label="$_get(job, 'name')"
-                            :value="$_get(job, 'id')"
+                            :key="$get(job, 'id')"
+                            :label="$get(job, 'name')"
+                            :value="$get(job, 'id')"
                         />
                     </el-select>
                 </el-form-item>
+                <el-row :gutter="20">
+                    <el-col
+                        v-for="job in addedJobs"
+                        :key="$get(job, 'id')"
+                        :xl="8"
+                        :lg="8"
+                        :md="12"
+                        :sm="24"
+                        :xs="24"
+                    >
+                        <div class="staff-card shadow-md border flex justify-between mb-8 p-3 rounded-md">
+                            <div class="flex justify-start">
+                                <div>
+                                    <el-avatar size="large" :src="require('~/assets/images/logo-icon.png')" />
+                                </div>
+                                <div class="info ml-2">
+                                    <p class="text font-semibold text-lg">{{ $get(job, 'name') }}</p>
+                                    <p class="text">{{ $get(job, 'city') }}</p>
+                                </div>
+                            </div>
+                            <span
+                                class="cursor-pointer px-1 text-base material-icons-outlined"
+                                @click="deleteJob($get(job, 'id'))"
+                            >
+                                close
+                            </span>
+                        </div>
+                    </el-col>
+                </el-row>
                 <div class="flex justify-between items-center mb-2">
                     <p class="mb-8 mt-3">{{ $t("pipeline stages") }}</p>
                     <el-button
@@ -63,8 +92,8 @@
                     <el-button
                         type="primary"
                         class="capitalize"
-                        :loading="loading"
-                        @click="onCreatePipeline"
+                        :loading="processing"
+                        @click="onSubmitForm"
                     >
                         {{ $t('save changes') }}
                     </el-button>
@@ -79,14 +108,14 @@
     import formMixin from '~/mixins/form';
     import mixin from './mixin';
     import DraggableList from '../../Stage/DraggableList.vue';
-    // import CreateStageForm from '../../Stage/Basic/index.vue';
+    import CreateStageForm from '../../Stage/Form/index.vue';
 
     export default {
         name: 'CreateForm',
 
         components: {
             DraggableList,
-            // CreateStageForm,
+            CreateStageForm,
         },
 
         mixins: [formMixin, mixin],

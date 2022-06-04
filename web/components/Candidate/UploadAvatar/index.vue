@@ -13,8 +13,8 @@
             </el-button>
         </div>
         <Upload
-            v-model="show"
             :key="imageCropperKey"
+            v-model="show"
             field="img"
             :width="300"
             :height="300"

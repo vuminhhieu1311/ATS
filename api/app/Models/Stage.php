@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Stage extends Model
 {
@@ -19,6 +20,12 @@ class Stage extends Model
         'type',
         'is_active',
     ];
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['type'] = Str::slug($value);
+    }
 
     public function pipelines()
     {

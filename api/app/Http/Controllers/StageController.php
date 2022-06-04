@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Stage\StageRequest;
 use App\Http\Resources\StageResource;
 use App\Models\Stage;
 use App\Repositories\Stage\StageRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StageController extends Controller
 {
@@ -21,67 +23,25 @@ class StageController extends Controller
         return StageResource::collection($this->stageRepository->getAll());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StageRequest $request)
     {
-        //
+        $existed = $this->stageRepository->findByConditions([
+            'type' => Str::slug($request->input('name')),
+        ])->exists();
+        abort_if($existed, 500, 'This stage has already existed!');
+
+        $stage = $this->stageRepository->create([
+            'name' => $request->input('name'),
+        ]);
+
+        return StageResource::make($stage);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Stage  $stage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Stage $stage)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Stage  $stage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Stage $stage)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Stage  $stage
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Stage $stage)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Stage  $stage
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Stage $stage)
     {
         //

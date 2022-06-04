@@ -145,5 +145,7 @@
     "job name": "Job name",
     "new stage": "New stage",
     "available stages": "Available stages",
-    "stages added to pipeline": "Stages added to pipeline"
+    "stages added to pipeline": "Stages added to pipeline",
+    "add new stage": "Add new stage",
+    "stage name": "Stage name"
 }

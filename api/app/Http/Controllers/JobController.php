@@ -19,9 +19,10 @@ class JobController extends Controller
         $this->jobRepository = $jobRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = $this->jobRepository->queryAllByConditions([], [
+        $queries = $request->query();
+        $jobs = $this->jobRepository->queryAllByConditions($queries, [
             'pipeline',
             'tags',
         ]);

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import CreatePipeline from '~/components/Pipeline/CreateForm/index.vue';
+    import CreatePipeline from '~/components/Pipeline/Form/index.vue';
 
     export default {
         name: 'CreatePipelinePage',
@@ -24,18 +24,11 @@
 
         methods: {
             async submit(formData) {
-                console.log(formData);
-                // try {
-                //     const pipelineResponse = await createPipeline({
-                //         name: formData.name,
-                //         stage_ids: formData.stageIds,
-                //         job_ids: formData.jobIds,
-                //     });
-                //     this.$message.success(this.$t('messages.create_pipeline'));
-                //     this.$router.push(`/pipelines?id=${pipelineResponse.data.data.id}`);
-                // } catch (error) {
-                //     this.$handleError(error);
-                // }
+                const { data: pipeline } = await this.$axios.$post('pipelines', {
+                    ...formData,
+                });
+                this.$message.success(this.$t('create successfully'));
+                this.$router.push(`/pipelines?id=${this.$get(pipeline, 'id')}`);
             },
         },
     };

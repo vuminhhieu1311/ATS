@@ -145,5 +145,7 @@
     "job name": "Tên job",
     "new stage": "Stage mới",
     "available stages": "Stage có sẵn",
-    "stages added to pipeline": "Stage thêm vào pipeline"
+    "stages added to pipeline": "Stage thêm vào pipeline",
+    "add new stage": "Thêm stage mới",
+    "stage name": "Tên stage"
 }
