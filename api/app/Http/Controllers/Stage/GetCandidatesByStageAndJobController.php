@@ -14,7 +14,10 @@ class GetCandidatesByStageAndJobController extends Controller
     {
         $candidates = $stage->candidates()
             ->wherePivot('is_active', true)
-            ->with('user');
+            ->with([
+                'user',
+                'currentCandidateJob.interviews',
+            ]);
 
         if ($jobId) {
             $candidates = $candidates->wherePivot('job_id', $jobId);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Candidate\UpdateCandidateStar;
 use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EducationController;
@@ -69,6 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('candidates')->group(function () {
         Route::put('/update-profile', UpdateProfileController::class);
+        Route::get('{candidate}/star', UpdateCandidateStar::class);
     });
 
 //    Route::prefix('jobs')->group(function () {

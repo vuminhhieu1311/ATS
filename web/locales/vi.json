@@ -147,5 +147,6 @@
     "available stages": "Stage có sẵn",
     "stages added to pipeline": "Stage thêm vào pipeline",
     "add new stage": "Thêm stage mới",
-    "stage name": "Tên stage"
+    "stage name": "Tên stage",
+    "last updated at": "Cập nhật lần cuối"
 }

@@ -21,6 +21,8 @@ class CandidateResource extends ShareResource
             'description' => $this->description,
             'resumeUrl' => $this->sume_url,
             'status' => $this->status,
+            'updatedAt' => $this->updated_at,
+            'isStar' => $this->is_star,
             'currentJob' => $this->current_job ?? new MissingValue(),
             'application' => new CandidateJobResource($this->whenLoaded('application')),
             'experiences' => ExperienceResource::collection($this->whenLoaded('experiences')),
@@ -29,6 +31,7 @@ class CandidateResource extends ShareResource
             'resumes' => ResumeResource::collection($this->whenLoaded('resumes')),
             'jobs' => JobResource::collection($this->whenLoaded('jobs')),
             'user' => new UserResource($this->whenLoaded('user')),
+            'currentCandidateJob' => new CandidateJobResource($this->whenLoaded('currentCandidateJob')),
         ];
     }
 }

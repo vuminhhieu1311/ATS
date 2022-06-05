@@ -147,5 +147,6 @@
     "available stages": "Available stages",
     "stages added to pipeline": "Stages added to pipeline",
     "add new stage": "Add new stage",
-    "stage name": "Stage name"
+    "stage name": "Stage name",
+    "last updated at": "Last updated at"
 }

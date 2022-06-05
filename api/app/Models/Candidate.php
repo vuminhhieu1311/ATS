@@ -21,6 +21,7 @@ class Candidate extends Model
         'resume_url',
         'status',
         'user_id',
+        'is_star',
     ];
 
     /**
@@ -92,5 +93,11 @@ class Candidate extends Model
         return $this->belongsToMany(Stage::class, 'candidate_jobs')
             ->as('application')
             ->withPivot('id', 'job_id', 'rejection_id');
+    }
+
+    public function currentCandidateJob()
+    {
+        return $this->hasOne(CandidateJob::class)
+            ->where('is_active', true);
     }
 }

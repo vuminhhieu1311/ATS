@@ -28,6 +28,7 @@
                 <CandidateCard
                     :candidate="candidate"
                     :open-interview-form="openInterviewForm"
+                    :star-candidate="starCandidate"
                 />
             </div>
         </draggable>

@@ -1,3 +1,5 @@
+import _map from 'lodash/map';
+
 export default {
     props: {
         stage: {
@@ -110,6 +112,22 @@ export default {
                 ...formData,
             });
             this.$refs.createInterviewForm.next(interview);
+        },
+        async starCandidate(candidateId) {
+            try {
+                const { data: candidate } = await this.$axios.$get(`candidates/${candidateId}/star`);
+
+                this.candidates = _map(this.candidates, (item) => {
+                    if (item.id === candidateId) {
+                        item.isStar = candidate.isStar;
+                    }
+
+                    return item;
+                });
+            } catch (error) {
+                console.log(error);
+                this.$handleError(error);
+            }
         },
     },
 };
