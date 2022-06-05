@@ -125,7 +125,6 @@ export default {
                     return item;
                 });
             } catch (error) {
-                console.log(error);
                 this.$handleError(error);
             }
         },

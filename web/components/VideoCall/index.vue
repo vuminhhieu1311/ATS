@@ -21,8 +21,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-1">
-                Instructions
+            <div class="col-span-1 bg-white">
+                <el-tabs
+                    type="card"
+                    class="w-full mb-6 border-0"
+                >
+                    <el-tab-pane>
+                        <div slot="label" class="text-base flex items-center pt-2 capitalize">
+                            <span class="material-icons mr-2">person</span>
+                            <span>{{ $t("candidate info") }}</span>
+                        </div>
+                        <h1>Candidate Info</h1>
+                    </el-tab-pane>
+                    <el-tab-pane>
+                        <div slot="label" class="text-base flex items-center pt-2 capitalize">
+                            <span class="material-icons mr-2">assessment</span>
+                            <span>{{ $t("assessment") }}</span>
+                        </div>
+                        <Assessment />
+                    </el-tab-pane>
+                </el-tabs>
             </div>
         </div>
         <el-button v-else type="primary" @click="joinAndDisplayLocalStream">Join Stream</el-button>
@@ -31,9 +49,14 @@
 
 <script>
     import mixin from './mixin';
+    import Assessment from './Assessment/index.vue';
 
     export default {
         name: 'VideoCall',
+
+        components: {
+            Assessment,
+        },
 
         mixins: [mixin],
 

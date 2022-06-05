@@ -95,6 +95,7 @@
 .el-tabs {
     &__item {
         font-size: theme('fontSize.base') !important;
+        color: $text !important;
         &.is-active {
             background-color: $light-primary !important;
             border-bottom: 2px solid $primary !important;
