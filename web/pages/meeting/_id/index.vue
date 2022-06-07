@@ -5,6 +5,7 @@
             :token="token"
             :channel-name="`interview-${interview.id}`"
             :interview="interview"
+            :update-interview="updateInterview"
         />
         <div v-else class="h-screen flex items-center justify-center">
             <el-result
@@ -56,6 +57,12 @@
                     token: null,
                 };
             }
+        },
+
+        methods: {
+            updateInterview(interview) {
+                this.interview = interview;
+            },
         },
     };
 </script>

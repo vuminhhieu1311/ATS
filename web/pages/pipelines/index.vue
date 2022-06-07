@@ -37,6 +37,7 @@
                 :staffs="staffs"
                 :rooms="rooms"
                 :mail-templates="mailTemplates"
+                :assessment-forms="assessmentForms"
             />
         </div>
         <div v-else class="mt-6 text-center">
@@ -90,6 +91,7 @@
                 staffs: [],
                 rooms: [],
                 mailTemplates: [],
+                assessmentForms: [],
             };
         },
 
@@ -98,15 +100,18 @@
                 { data: staffs },
                 { data: rooms },
                 { data: mailTemplates },
+                { data: assessmentForms },
             ] = await Promise.all([
                 await this.$axios.$get('staffs'),
                 await this.$axios.$get('rooms'),
                 await this.$axios.$get('mail-templates'),
+                await this.$axios.$get('assessment-forms'),
             ]);
 
             this.staffs = staffs;
             this.rooms = rooms;
             this.mailTemplates = mailTemplates;
+            this.assessmentForms = assessmentForms;
         },
 
         methods: {

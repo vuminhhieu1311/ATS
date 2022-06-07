@@ -44,8 +44,8 @@ class SubmitAssessmentForm extends Controller
                             'criterion_id' => $value->id,
                         ],
                         [
-                            'score' => $rates[$key],
-                            'note' => $notes[$key],
+                            'score' => $rates[$key] ?? 0,
+                            'note' => $notes[$key] ?? '',
                         ]
                     );
                     $assessmentCriterion = $assessmentForm->assessmentCriteria()->where([

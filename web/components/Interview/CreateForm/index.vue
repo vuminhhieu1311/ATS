@@ -56,11 +56,27 @@
                 </el-form-item>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-1">
+                        <el-form-item prop="room" class="w-full" :error="serverErrors.roomId">
+                            <el-select
+                                v-model="form.roomId"
+                                class="w-full"
+                                filterable
+                                clearable
+                                :placeholder="$t('meeting room')"
+                            >
+                                <el-option
+                                    v-for="room in rooms"
+                                    :key="$get(room, 'id')"
+                                    :label="$get(room, 'name')"
+                                    :value="$get(room, 'id')"
+                                />
+                            </el-select>
+                        </el-form-item>
                         <el-form-item prop="note" :error="serverErrors.note">
                             <el-input
                                 v-model="form.note"
                                 type="textarea"
-                                :rows="7"
+                                :rows="4"
                                 :placeholder="$t('note')"
                             />
                         </el-form-item>
@@ -82,19 +98,19 @@
                                 />
                             </el-select>
                         </el-form-item>
-                        <el-form-item prop="room" class="w-full" :error="serverErrors.roomId">
+                        <el-form-item prop="assessmentFormId" class="w-full" :error="serverErrors.assessmentFormId">
                             <el-select
-                                v-model="form.roomId"
+                                v-model="form.assessmentFormId"
                                 class="w-full"
                                 filterable
                                 clearable
-                                :placeholder="$t('meeting room')"
+                                :placeholder="$t('assessment form')"
                             >
                                 <el-option
-                                    v-for="room in rooms"
-                                    :key="$get(room, 'id')"
-                                    :label="$get(room, 'name')"
-                                    :value="$get(room, 'id')"
+                                    v-for="item in assessmentForms"
+                                    :key="$get(item, 'id')"
+                                    :label="$get(item, 'name')"
+                                    :value="$get(item, 'id')"
                                 />
                             </el-select>
                         </el-form-item>

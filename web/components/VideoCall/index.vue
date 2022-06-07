@@ -29,16 +29,16 @@
                     <el-tab-pane>
                         <div slot="label" class="text-base flex items-center pt-2 capitalize">
                             <span class="material-icons mr-2">person</span>
-                            <span>{{ $t("candidate info") }}</span>
+                            <span>{{ $t("interview info") }}</span>
                         </div>
-                        <h1>Candidate Info</h1>
+                        <InterviewInfo :interview="interview" />
                     </el-tab-pane>
                     <el-tab-pane>
                         <div slot="label" class="text-base flex items-center pt-2 capitalize">
                             <span class="material-icons mr-2">assessment</span>
                             <span>{{ $t("assessment") }}</span>
                         </div>
-                        <Assessment :interview="interview" />
+                        <AssessmentForm :interview="interview" @updateInterview="updateInterview" />
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -48,14 +48,16 @@
 </template>
 
 <script>
-    import Assessment from '~/components/Assessment/index.vue';
+    import AssessmentForm from '~/components/Assessment/index.vue';
+    import InterviewInfo from './InterviewInfo.vue';
     import mixin from './mixin';
 
     export default {
         name: 'VideoCall',
 
         components: {
-            Assessment,
+            AssessmentForm,
+            InterviewInfo,
         },
 
         mixins: [mixin],

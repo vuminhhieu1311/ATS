@@ -14,6 +14,10 @@ export default {
             type: Array,
             required: true,
         },
+        assessmentForms: {
+            type: Array,
+            required: true,
+        },
         submitForm: {
             type: Function,
             required: true,
@@ -35,6 +39,7 @@ export default {
                 staffs: [],
                 roomId: null,
                 isOnline: false,
+                assessmentFormId: null,
                 candidateId: 0,
                 candidateJobId: 0,
             },

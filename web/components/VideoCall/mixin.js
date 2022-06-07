@@ -14,6 +14,10 @@ export default {
             type: Object,
             required: true,
         },
+        updateInterview: {
+            type: Function,
+            required: true,
+        },
     },
 
     data() {
@@ -29,6 +33,10 @@ export default {
             microMuted: false,
             cameraMuted: false,
         };
+    },
+
+    mounted() {
+        this.joinAndDisplayLocalStream();
     },
 
     methods: {

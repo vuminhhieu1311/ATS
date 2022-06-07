@@ -30,6 +30,7 @@ class Interview extends Model
         'mail_content',
         'room_id',
         'staff_id',
+        'assessment_form_id',
     ];
 
     public function candidateJob()

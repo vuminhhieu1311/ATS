@@ -60,6 +60,7 @@ class InterviewController extends Controller
                 'mail_content' => $request->input('mailContent'),
                 'room_id' => $request->input('roomId'),
                 'staff_id' => optional(Auth::user())->staff->id,
+                'assessment_form_id' => $request->input('assessmentFormId'),
             ]);
 
             if ($interview->is_online) {
@@ -104,7 +105,10 @@ class InterviewController extends Controller
             $scores = $criterion->criterionResults()
                 ->whereIn('interview_staff_id', $interviewStaffIds)
                 ->pluck('score')->toArray();
-            $criterion->average_score = array_sum($scores) / count($scores);
+
+            if (!empty($scores)) {
+                $criterion->average_score = array_sum($scores) / count($scores);
+            }
         }
 
         return InterviewResource::make($interview);

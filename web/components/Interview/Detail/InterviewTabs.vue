@@ -9,17 +9,17 @@
                     <span class="material-icons mr-2">event_available</span>
                     <span>{{ $t("interview info") }}</span>
                 </div>
-                <el-descriptions class="margin-top" :column="1" border>
+                <el-descriptions :column="1" border>
                     <el-descriptions-item>
                         <template slot="label">
-                            <i class="el-icon-tickets"></i>
+                            <i class="el-icon-tickets" />
                             {{ $t('interview name') }}
                         </template>
                         {{ $get(interview, 'name') }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template slot="label">
-                            <i class="el-icon-mobile-phone"></i>
+                            <i class="el-icon-mobile-phone" />
                             {{ $t('interview type') }}
                         </template>
                         <el-tag type="primary">
@@ -28,21 +28,21 @@
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template slot="label">
-                            <i class="el-icon-alarm-clock"></i>
+                            <i class="el-icon-alarm-clock" />
                             {{ $t('start time') }}
                         </template>
                         {{ time($get(interview, 'startTime')) }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template slot="label">
-                            <i class="el-icon-alarm-clock"></i>
+                            <i class="el-icon-alarm-clock" />
                             {{ $t('end time') }}
                         </template>
                         {{ time($get(interview, 'endTime')) }}
                     </el-descriptions-item>
                     <el-descriptions-item>
                         <template slot="label">
-                            <i class="el-icon-suitcase"></i>
+                            <i class="el-icon-suitcase" />
                             {{ $t('position') }}
                         </template>
                         {{ $get(interview, 'candidateJob.job.name') }}

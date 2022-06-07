@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssessmentFormController;
 use App\Http\Controllers\Candidate\UpdateCandidateStar;
 use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
@@ -98,5 +99,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'education' => EducationController::class,
         'experiences' => ExperienceController::class,
         'stages' => StageController::class,
+        'assessment-forms' => AssessmentFormController::class,
     ]);
 });

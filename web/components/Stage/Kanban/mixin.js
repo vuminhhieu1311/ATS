@@ -26,6 +26,10 @@ export default {
             type: Array,
             required: true,
         },
+        assessmentForms: {
+            type: Array,
+            required: true,
+        },
     },
 
     data: () => ({
@@ -102,16 +106,16 @@ export default {
             this.$refs.createInterviewForm.open(candidate);
         },
         async createInterviewSchedule(formData) {
-            // this.candidates = _map(this.candidates, (candidate) => {
-            //     if (candidate.id === formData.candidate_id) {
-            //         candidate.interviews.push(interviewResponse.data.data);
-            //     }
-            //     return candidate;
-            // });
             const { data: interview } = await this.$axios.$post('interviews', {
                 ...formData,
             });
             this.$refs.createInterviewForm.next(interview);
+            this.candidates = _map(this.candidates, (candidate) => {
+                if (candidate.id === formData.candidateId) {
+                    candidate.currentCandidateJob.interviews.push(interview);
+                }
+                return candidate;
+            });
         },
         async starCandidate(candidateId) {
             try {

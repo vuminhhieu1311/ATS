@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\AssessmentForm\AssessmentFormRepository;
+use App\Repositories\AssessmentForm\AssessmentFormRepositoryInterface;
 use App\Repositories\Candidate\CandidateRepository;
 use App\Repositories\Candidate\CandidateRepositoryInterface;
 use App\Repositories\CandidateJob\CandidateJobRepository;
@@ -52,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(EducationRepositoryInterface::class, EducationRepository::class);
         $this->app->singleton(StageRepositoryInterface::class, StageRepository::class);
         $this->app->singleton(CriterionResultRepositoryInterface::class, CriterionResultRepository::class);
+        $this->app->singleton(AssessmentFormRepositoryInterface::class, AssessmentFormRepository::class);
     }
 
     /**
