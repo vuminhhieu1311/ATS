@@ -25,6 +25,7 @@ class InterviewStaff extends Model
         'type',
         'interview_id',
         'staff_id',
+        'score',
     ];
 
     public function interview()
@@ -35,5 +36,10 @@ class InterviewStaff extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class);
+    }
+
+    public function criterionResults()
+    {
+        return $this->hasMany(CriterionResult::class);
     }
 }

@@ -133,3 +133,29 @@
         }
     }
 }
+
+.interview-tabs {
+    .el-tabs {
+        &__header {
+            margin: unset !important;
+        }
+        &__nav {
+            border: none !important;
+            background-color: transparent;
+        }
+        &__content {
+            background-color: $white;
+        }
+        &__item {
+            color: $text !important;
+            background-color: #E2E8F0;
+            border-radius: 15px 15px 0 0;
+            margin-right: 3px;
+            &.is-active {
+                color: $white !important;
+                background: linear-gradient(118deg, rgba(115, 103, 240, 1), rgba(115, 103, 240, .7));
+                border: none !important;
+            }
+        }
+    }
+}

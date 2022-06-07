@@ -5,6 +5,7 @@ use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\Interview\SubmitAssessmentForm;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\Job\CreateCandidateController;
 use App\Http\Controllers\Job\GetAllLocationController;
@@ -71,6 +72,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('candidates')->group(function () {
         Route::put('/update-profile', UpdateProfileController::class);
         Route::get('{candidate}/star', UpdateCandidateStar::class);
+    });
+
+    Route::prefix('interviews')->group(function () {
+        Route::post('{interview}/submit-assessment-form', SubmitAssessmentForm::class);
     });
 
 //    Route::prefix('jobs')->group(function () {

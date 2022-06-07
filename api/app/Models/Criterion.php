@@ -22,4 +22,9 @@ class Criterion extends Model
     {
         return $this->belongsToMany(Question::class, 'criterion_questions');
     }
+
+    public function criterionResults()
+    {
+        return $this->hasMany(CriterionResult::class);
+    }
 }

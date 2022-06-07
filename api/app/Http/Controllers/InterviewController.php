@@ -95,7 +95,17 @@ class InterviewController extends Controller
             'candidateJob.job',
             'candidateJob.candidate.user',
             'interviewers.user',
+            'assessmentForm.criteria',
+            'interviewStaffs.criterionResults',
         ]);
+
+        $interviewStaffIds = $interview->interviewStaffs->pluck('id')->toArray();
+        foreach ($interview->assessmentForm->criteria as $criterion) {
+            $scores = $criterion->criterionResults()
+                ->whereIn('interview_staff_id', $interviewStaffIds)
+                ->pluck('score')->toArray();
+            $criterion->average_score = array_sum($scores) / count($scores);
+        }
 
         return InterviewResource::make($interview);
     }

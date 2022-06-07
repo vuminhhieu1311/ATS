@@ -1,7 +1,7 @@
 <template>
-    <div id="stream-wrapper h-screen">
-        <div v-if="joined" class="grid grid-cols-4">
-            <div class="col-span-3 bg-slate-800 h-screen">
+    <div id="stream-wrapper">
+        <div v-if="joined">
+            <div class="bg-slate-800 h-screen fixed w-2/3">
                 <div ref="videoStream" class="video-stream" />
                 <div v-if="joined" class="control-btn flex justify-center items-center">
                     <div class="mr-5">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-1 bg-white">
+            <div class="bg-white w-1/3 float-right">
                 <el-tabs
                     type="card"
                     class="w-full mb-6 border-0"
@@ -38,7 +38,7 @@
                             <span class="material-icons mr-2">assessment</span>
                             <span>{{ $t("assessment") }}</span>
                         </div>
-                        <Assessment />
+                        <Assessment :interview="interview" />
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -48,8 +48,8 @@
 </template>
 
 <script>
+    import Assessment from '~/components/Assessment/index.vue';
     import mixin from './mixin';
-    import Assessment from './Assessment/index.vue';
 
     export default {
         name: 'VideoCall',

@@ -19,7 +19,7 @@ class CandidateResource extends ShareResource
         return [
             'id' => $this->id,
             'description' => $this->description,
-            'resumeUrl' => $this->sume_url,
+            'resumeUrl' => $this->resume_url,
             'status' => $this->status,
             'updatedAt' => $this->updated_at,
             'isStar' => $this->is_star,

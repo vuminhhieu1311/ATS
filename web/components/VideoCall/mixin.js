@@ -10,6 +10,10 @@ export default {
             type: String,
             required: true,
         },
+        interview: {
+            type: Object,
+            required: true,
+        },
     },
 
     data() {

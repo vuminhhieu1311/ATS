@@ -23,6 +23,7 @@ class Interview extends Model
         'is_online',
         'link',
         'status',
+        'score',
         'candidate_job_id',
         'mail_template_id',
         'mail_title',
@@ -59,5 +60,10 @@ class Interview extends Model
     public function scheduler()
     {
         return $this->belongsTo(Staff::class, 'staff_id');
+    }
+
+    public function assessmentForm()
+    {
+        return $this->belongsTo(AssessmentForm::class);
     }
 }
