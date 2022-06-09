@@ -26,7 +26,7 @@
                     text-color="#ff9900"
                     :score-template="`${$get(interview, 'score', 0)}/5`"
                 />
-                <nuxt-link class="view-detail" target="_blank" :to="`/interviews/${$get(interview, 'id')}`">
+                <a class="view-detail" target="_blank" :href="`/interviews/${$get(interview, 'id')}`">
                     <el-button
                         type="primary"
                         size="mini"
@@ -34,7 +34,7 @@
                     >
                         <span class="text-base">{{ $t("view detail") }}</span>
                     </el-button>
-                </nuxt-link>
+                </a>
             </div>
         </div>
         <el-descriptions class="mt-5" :column="1" border>

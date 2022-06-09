@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Calendar :interviews="interviews" :open-interview-form="openInterviewForm" />
+        <Calendar
+            :interviews="interviews"
+            :open-interview-form="openInterviewForm"
+            :search-interviews="searchInterviews"
+        />
         <InterviewForm
             ref="interviewForm"
             :staffs="staffs"
@@ -72,6 +76,11 @@
 
                 this.$message.success(this.$t('update successfully'));
                 this.$refs.interviewForm.close();
+            },
+            async searchInterviews(query) {
+                const { data: interviews } = await this.$axios.$get('interviews', { params: query });
+
+                this.interviews = interviews;
             },
         },
     };

@@ -148,5 +148,22 @@
     "stages added to pipeline": "Stage thêm vào pipeline",
     "add new stage": "Thêm stage mới",
     "stage name": "Tên stage",
-    "last updated at": "Cập nhật lần cuối"
+    "last updated at": "Cập nhật lần cuối",
+    "assessment form": "Bảng đánh giá",
+    "interview info": "Thông tin phỏng vấn",
+    "assessment": "Đánh giá",
+    "interview type": "Loại phỏng vấn",
+    "poor": "Không đạt",
+    "fair": "Cần xem xét thêm",
+    "good": "Đạt",
+    "very good": "Trên mức yêu câu",
+    "excellent": "Xuất sắc",
+    "comment": "Nhận xét",
+    "all assessments": "Tất cả đánh giá",
+    "filtering options": "Filtering options",
+    "new events": "Được thêm mới",
+    "updated events": "Được cập nhật",
+    "finished events": "Đã kết thúc",
+    "canceled events": "Bị hủy",
+    "interviewer": "Người phỏng vấn"
 }

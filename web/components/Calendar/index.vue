@@ -1,8 +1,13 @@
 <template>
-    <div>
-        <FullCalendar
-            :options="calendarOptions"
-        />
+    <div class="grid grid-cols-10 gap-5">
+        <div class="col-span-2">
+            <FilterCalendar :search-interviews="searchInterviews" />
+        </div>
+        <div class="col-span-8">
+            <FullCalendar
+                :options="calendarOptions"
+            />
+        </div>
     </div>
 </template>
 
@@ -14,12 +19,14 @@
     import timeGridPlugin from '@fullcalendar/timegrid';
     import interactionPlugin from '@fullcalendar/interaction';
     import listPlugin from '@fullcalendar/list';
+    import FilterCalendar from './Filter.vue';
 
     export default {
         name: 'AppCalendar',
 
         components: {
             FullCalendar,
+            FilterCalendar,
         },
 
         props: {
@@ -28,6 +35,10 @@
                 required: true,
             },
             openInterviewForm: {
+                type: Function,
+                required: true,
+            },
+            searchInterviews: {
                 type: Function,
                 required: true,
             },
@@ -105,6 +116,9 @@
         background-color: theme('colors.primary') !important;
         border-color: theme('colors.primary') !important;
         color: theme('colors.white') !important;
+    }
+    .fc-toolbar-title {
+        font-size: 1.25em !important;
     }
     .pointer {
         cursor: pointer;

@@ -5,7 +5,7 @@
             ref="form"
             :model="form"
         >
-            <el-collapse v-model="activeNames" @change="handleChange">
+            <el-collapse v-model="activeNames">
                 <el-collapse-item
                     v-for="(criterion, index) in $get(interview, 'assessmentForm.criteria', [])"
                     :key="$get(criterion, 'id')"

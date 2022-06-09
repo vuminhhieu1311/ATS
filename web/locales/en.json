@@ -148,5 +148,22 @@
     "stages added to pipeline": "Stages added to pipeline",
     "add new stage": "Add new stage",
     "stage name": "Stage name",
-    "last updated at": "Last updated at"
+    "last updated at": "Last updated at",
+    "assessment form": "Assessment form",
+    "interview info": "Interview info",
+    "assessment": "Assessment",
+    "interview type": "Interview type",
+    "poor": "Poor",
+    "fair": "Fair",
+    "good": "Good",
+    "very good": "Very good",
+    "excellent": "Excellent",
+    "comment": "Comment",
+    "all assessments": "All assessments",
+    "filtering options": "Filtering options",
+    "new events": "New events",
+    "updated events": "Updated events",
+    "finished events": "Finished events",
+    "canceled events": "Canceled events",
+    "interviewer": "Interviewer"
 }

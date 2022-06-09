@@ -10,8 +10,6 @@
             :model="form"
             :rules="formRules"
             size="medium"
-            label-width="18%"
-            label-position="left"
         >
             <el-form-item :label="$t('stage name')" prop="name" :error="serverErrors.name">
                 <el-input

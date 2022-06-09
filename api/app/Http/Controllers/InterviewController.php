@@ -10,6 +10,7 @@ use App\Notifications\AddInterviewSchedule;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
 use App\Repositories\Interview\InterviewRepositoryInterface;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,9 +25,10 @@ class InterviewController extends Controller
         $this->interviewRepository = $interviewRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $interviews = $this->interviewRepository->queryAllByConditions([], [
+        $queries = $request->query();
+        $interviews = $this->interviewRepository->queryAllByConditions($queries, [
             'candidateJob.job',
             'candidateJob.candidate.user',
             'interviewers.user',
