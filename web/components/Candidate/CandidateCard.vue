@@ -96,7 +96,7 @@
 
         computed: {
             candidateName() {
-                const name = this.$get(this.candidate, 'name', null);
+                const name = this.$get(this.candidate, 'user.name', null);
                 return name ? name.slice(0, 1) : null;
             },
             updatedAt() {

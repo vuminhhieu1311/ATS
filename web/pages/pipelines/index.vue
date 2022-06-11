@@ -1,25 +1,23 @@
 <template>
     <div class="w-full">
         <div class="flex justify-between">
-            <div>
+            <CandidateFilter
+                :jobs="$get(pipeline, 'jobs', [])"
+                :job-id="jobId"
+                :on-change-job="onChangeJob"
+                :pipeline="pipeline"
+                :pipelines="pipelines"
+                :on-change-pipeline="onChangePipeline"
+                :query="query"
+                :update-query="updateQuery"
+            />
+            <div class="flex justify-end items-center">
                 <nuxt-link to="/candidates/create">
                     <el-button type="primary" class="capitalize">
                         <span class="material-icons mr-1">add</span>
                         {{ $t('candidate') }}
                     </el-button>
                 </nuxt-link>
-            </div>
-            <div class="flex justify-end items-center">
-                <JobSelect
-                    :jobs="$get(pipeline, 'jobs', [])"
-                    :job-id="jobId"
-                    :on-change-job="onChangeJob"
-                />
-                <PipelineSelect
-                    :pipeline="pipeline"
-                    :pipelines="pipelines"
-                    :on-change-pipeline="onChangePipeline"
-                />
                 <PipelineSetting
                     :pipeline="pipeline"
                 />
@@ -38,20 +36,12 @@
                 :rooms="rooms"
                 :mail-templates="mailTemplates"
                 :assessment-forms="assessmentForms"
+                :query="query"
             />
         </div>
         <div v-else class="mt-6 text-center">
             <p>{{ $t('no data') }}</p>
         </div>
-        <!-- <InterviewList
-            ref="list"
-            :interviewers="interviewers"
-            :mail-templates="mailTemplates"
-            :notification-templates="notificationTemplates"
-            :notice-services="noticeServices"
-            :interview-services="interviewServices"
-            :get-services-form-interview="getServicesFormInterview"
-        /> -->
     </div>
 </template>
 
@@ -59,20 +49,16 @@
     import _each from 'lodash/each';
     import _find from 'lodash/find';
     import StageKanban from '~/components/Stage/Kanban/index.vue';
-    import PipelineSelect from '~/components/Pipeline/List/PipelineSelect.vue';
-    import JobSelect from '~/components/Pipeline/List/JobSelect.vue';
     import PipelineSetting from '~/components/Pipeline/List/PipelineSetting.vue';
-    // import InterviewList from '~/components/Interview/Modal/InterviewList/index.vue';
+    import CandidateFilter from '~/components/Pipeline/List/Filter/index.vue';
 
     export default {
         name: 'PipelinesPage',
 
         components: {
             StageKanban,
-            JobSelect,
-            PipelineSelect,
             PipelineSetting,
-            // InterviewList,
+            CandidateFilter,
         },
 
         async asyncData({ $axios, query }) {
@@ -92,6 +78,7 @@
                 rooms: [],
                 mailTemplates: [],
                 assessmentForms: [],
+                query: {},
             };
         },
 
@@ -120,6 +107,9 @@
                 this.pipeline = _find(this.pipelines, ['id', value]);
                 this.jobId = 0;
             },
+            updateQuery(value) {
+                this.query = value;
+            },
             handleStageChanged(data) {
                 _each(this.$get(this.pipeline, 'stages'), (item) => {
                     if (item.id === this.$get(data, 'stage.id')) {
@@ -143,14 +133,6 @@
                     }
                 });
             },
-            // async showCandidateInterviews(stageId, candidateId) {
-            //     try {
-            //         const { data: { data: interviews } } = await getCandidateInterviewsByStage(stageId, candidateId);
-            //         this.$refs.list.open(interviews);
-            //     } catch (error) {
-            //         this.$handleError(error);
-            //     }
-            // },
             onChangeJob(value) {
                 this.jobId = value;
             },

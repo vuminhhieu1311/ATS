@@ -30,6 +30,10 @@ export default {
             type: Array,
             required: true,
         },
+        query: {
+            type: Object,
+            required: true,
+        },
     },
 
     data: () => ({
@@ -52,6 +56,12 @@ export default {
             this.fetch();
             this.page += 1;
         },
+        query() {
+            this.page = 1;
+            this.candidates = [];
+            this.fetch();
+            this.page += 1;
+        },
     },
 
     methods: {
@@ -62,7 +72,12 @@ export default {
             try {
                 this.candidateLoading = true;
                 const { data: candidates, meta } = await
-                    this.$axios.$get(`stages/${this.stage.id}/pipelines/${this.pipeline.id}/jobs/${this.jobId}/candidates?page=${this.page}`);
+                    this.$axios.$get(`stages/${this.stage.id}/pipelines/${this.pipeline.id}/jobs/${this.jobId}/candidates`, {
+                        params: {
+                            ...this.query,
+                            page: this.page,
+                        },
+                    });
                 candidates.forEach((candidate) => {
                     this.candidates.push(candidate);
                 });

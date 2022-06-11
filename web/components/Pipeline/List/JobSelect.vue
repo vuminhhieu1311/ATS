@@ -1,7 +1,7 @@
 <template>
     <el-select
         v-model="id"
-        class="mr-4"
+        class="mx-4"
         filterable
         @change="onChangeJob"
     >
