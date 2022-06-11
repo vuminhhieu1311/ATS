@@ -1,7 +1,7 @@
 <template>
     <div>
-        <JobFilter />
-        <div class="flex justify-end">
+        <div class="flex justify-between">
+            <h1 class="title">{{ $t('job list') }}</h1>
             <nuxt-link to="/jobs/create">
                 <el-button type="primary" class="capitalize">
                     <span class="material-icons mr-1">add</span>
@@ -9,6 +9,7 @@
                 </el-button>
             </nuxt-link>
         </div>
+        <JobFilter />
         <JobList
             :jobs="jobs"
             :meta="meta"

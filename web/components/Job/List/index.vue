@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-5">
+    <div>
         <div class="border">
             <el-table
                 :data="jobs"

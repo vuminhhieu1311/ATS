@@ -34,6 +34,7 @@ export default {
             this.query = value
                 ? { ...this.query, [key]: value }
                 : _omit(this.query, key);
+            this.$router.push({ query: this.query });
         },
         onClearFilter() {
             this.pipelineName = null;
@@ -52,12 +53,6 @@ export default {
             } catch (error) {
                 this.$handleError(error);
             }
-        },
-        onSearchJobs() {
-            this.$router.push({
-                path: '/jobs',
-                query: this.query,
-            });
         },
     },
 };

@@ -1,27 +1,8 @@
 <template>
-    <div class="bg-white border rounded p-5 pb-0 mb-5">
-        <div class="flex justify-between items-center mb-5">
-            <h1 class="title">{{ $t('filter jobs') }}</h1>
-            <div class="flex justify-start">
-                <div>
-                    <el-button
-                        type="primary"
-                        class="capitalize"
-                        @click="onSearchJobs"
-                    >
-                        {{ $t("search") }}
-                    </el-button>
-                </div>
-                <div class="ml-4">
-                    <el-button class="capitalize" type="info" @click="onClearFilter">
-                        {{ $t("clear") }}
-                    </el-button>
-                </div>
-            </div>
-        </div>
+    <div class="mt-3">
         <el-form>
             <div class="flex">
-                <el-form-item class="w-1/3">
+                <el-form-item class="w-1/6">
                     <el-select
                         v-model="pipelineId"
                         class="w-full"
@@ -39,27 +20,25 @@
                         />
                     </el-select>
                 </el-form-item>
-                <el-form-item class="w-1/3 mx-5">
+                <el-form-item class="w-1/6 mx-5">
                     <el-input
                         v-model="name"
                         size="small"
                         clearable
                         :placeholder="$t('job name')"
-                        @change="(val) => onChangeValue('name', val)"
+                        @input="(val) => onChangeValue('name', val)"
                     />
                 </el-form-item>
-                <el-form-item class="w-1/3">
+                <el-form-item class="w-1/6">
                     <el-input
                         v-model="location"
                         size="small"
                         clearable
                         :placeholder="$t('location')"
-                        @change="(val) => onChangeValue('location', val)"
+                        @input="(val) => onChangeValue('location', val)"
                     />
                 </el-form-item>
-            </div>
-            <div class="flex">
-                <el-form-item class="w-1/3">
+                <el-form-item class="w-1/6 mx-5">
                     <el-select
                         v-model="tag"
                         size="small"
@@ -79,7 +58,7 @@
                         />
                     </el-select>
                 </el-form-item>
-                <el-form-item class="w-1/3 mx-5">
+                <el-form-item class="w-1/6 mr-5">
                     <el-select
                         v-model="type"
                         size="small"
@@ -97,7 +76,7 @@
                         />
                     </el-select>
                 </el-form-item>
-                <el-form-item class="w-1/3">
+                <el-form-item class="w-1/6">
                     <el-select
                         v-model="status"
                         size="small"

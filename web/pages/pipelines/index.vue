@@ -1,27 +1,19 @@
 <template>
     <div class="w-full">
-        <div class="flex justify-between">
-            <nuxt-link to="/candidates/create">
-                <el-button type="primary" class="capitalize">
-                    <span class="material-icons mr-1">add</span>
-                    {{ $t('candidate') }}
-                </el-button>
-            </nuxt-link>
-            <div class="flex justify-end items-center">
-                <CandidateFilter
-                    :jobs="$get(pipeline, 'jobs', [])"
-                    :job-id="jobId"
-                    :on-change-job="onChangeJob"
-                    :pipeline="pipeline"
-                    :pipelines="pipelines"
-                    :on-change-pipeline="onChangePipeline"
-                    :query="query"
-                    :update-query="updateQuery"
-                />
-                <PipelineSetting
-                    :pipeline="pipeline"
-                />
-            </div>
+        <div class="flex justify-end items-center">
+            <CandidateFilter
+                :jobs="$get(pipeline, 'jobs', [])"
+                :job-id="jobId"
+                :on-change-job="onChangeJob"
+                :pipeline="pipeline"
+                :pipelines="pipelines"
+                :on-change-pipeline="onChangePipeline"
+                :query="query"
+                :update-query="updateQuery"
+            />
+            <PipelineSetting
+                :pipeline="pipeline"
+            />
         </div>
         <div v-if="pipeline" class="mt-5 w-full flex flex-row overflow-x-auto">
             <StageKanban
