@@ -3,6 +3,7 @@
         v-model="id"
         class="mx-4"
         filterable
+        size="small"
         @change="onChangeJob"
     >
         <el-option

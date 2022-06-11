@@ -1,23 +1,23 @@
 <template>
     <div class="w-full">
         <div class="flex justify-between">
-            <CandidateFilter
-                :jobs="$get(pipeline, 'jobs', [])"
-                :job-id="jobId"
-                :on-change-job="onChangeJob"
-                :pipeline="pipeline"
-                :pipelines="pipelines"
-                :on-change-pipeline="onChangePipeline"
-                :query="query"
-                :update-query="updateQuery"
-            />
+            <nuxt-link to="/candidates/create">
+                <el-button type="primary" class="capitalize">
+                    <span class="material-icons mr-1">add</span>
+                    {{ $t('candidate') }}
+                </el-button>
+            </nuxt-link>
             <div class="flex justify-end items-center">
-                <nuxt-link to="/candidates/create">
-                    <el-button type="primary" class="capitalize">
-                        <span class="material-icons mr-1">add</span>
-                        {{ $t('candidate') }}
-                    </el-button>
-                </nuxt-link>
+                <CandidateFilter
+                    :jobs="$get(pipeline, 'jobs', [])"
+                    :job-id="jobId"
+                    :on-change-job="onChangeJob"
+                    :pipeline="pipeline"
+                    :pipelines="pipelines"
+                    :on-change-pipeline="onChangePipeline"
+                    :query="query"
+                    :update-query="updateQuery"
+                />
                 <PipelineSetting
                     :pipeline="pipeline"
                 />

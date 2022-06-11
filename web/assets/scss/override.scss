@@ -38,8 +38,8 @@
 }
 
 .el-button {
-    font-size: theme("fontSize.lg") !important;
-    padding: 12px 20px !important;
+    font-size: theme("fontSize.base") !important;
+    padding: 8px 15px !important;
     span {
         line-height: 1;
         &:first-child {

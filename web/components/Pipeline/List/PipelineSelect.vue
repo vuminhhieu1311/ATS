@@ -1,6 +1,7 @@
 <template>
     <el-select
         v-model="pipelineId"
+        size="small"
         @change="onChangePipeline"
     >
         <el-option

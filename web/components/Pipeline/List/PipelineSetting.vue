@@ -1,6 +1,6 @@
 <template>
     <el-dropdown trigger="click" :hide-on-click="false">
-        <span class="ml-5 material-icons-outlined">settings</span>
+        <span class="ml-4 material-icons-outlined">settings</span>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item icon="el-icon-plus" @click.native="onCreatePipeline">
                 {{ $t('create pipeline') }}
