@@ -165,5 +165,11 @@
     "updated events": "Được cập nhật",
     "finished events": "Đã kết thúc",
     "canceled events": "Bị hủy",
-    "interviewer": "Người phỏng vấn"
+    "interviewer": "Người phỏng vấn",
+    "name/email/phone": "Tên/Email/SDT",
+    "starred candidates": "Ứng viên nổi bật",
+    "filter jobs": "Lọc job",
+    "clear": "Xóa",
+    "job status": "Trạng thái",
+    "no data": "Không có dữ liệu"
 }

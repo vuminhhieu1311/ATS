@@ -33,16 +33,15 @@ class JobRepository extends BaseRepository implements JobRepositoryInterface
             ->when(array_key_exists('types', $conditions), function ($query) use ($conditions) {
                 return $query->whereIn('employment_type', $conditions['types']);
             })
-
-            ->when(array_key_exists('pipelineName', $conditions), function ($query) use ($conditions) {
+            ->when(array_key_exists('pipelineId', $conditions), function ($query) use ($conditions) {
                 return $query->whereHas('pipeline', function ($q) use ($conditions) {
-                    return $q->where('name', $conditions['pipelineName']);
+                    return $q->where('pipelines.id', $conditions['pipelineId']);
                 });
             })
             ->when(array_key_exists('location', $conditions), function ($query) use ($conditions) {
                 return $query->where(function ($q) use ($conditions) {
-                    return $q->where('city', '~*', $conditions['location'])
-                        ->orWhere('country', '~*', $conditions['location']);
+                    return $q->where('city', 'LIKE', '%' . $conditions['location'] . '%')
+                        ->orWhere('country', 'LIKE', '%' . $conditions['location'] . '%');
                 });
             })
             ->when(array_key_exists('tag', $conditions), function ($query) use ($conditions) {

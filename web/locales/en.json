@@ -165,5 +165,11 @@
     "updated events": "Updated events",
     "finished events": "Finished events",
     "canceled events": "Canceled events",
-    "interviewer": "Interviewer"
+    "interviewer": "Interviewer",
+    "name/email/phone": "Name/Email/Phone",
+    "starred candidates": "Starred candidates",
+    "filter jobs": "Filter jobs",
+    "clear": "Clear",
+    "job status": "Job status",
+    "no data": "No data"
 }

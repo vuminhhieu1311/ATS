@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div>
+        <JobFilter />
+        <div class="flex justify-end">
             <nuxt-link to="/jobs/create">
                 <el-button type="primary" class="capitalize">
                     <span class="material-icons mr-1">add</span>
@@ -18,12 +19,14 @@
 
 <script>
     import JobList from '~/components/Job/List/index.vue';
+    import JobFilter from '~/components/Job/List/Filter/index.vue';
 
     export default {
         name: 'JobsPage',
 
         components: {
             JobList,
+            JobFilter,
         },
 
         async asyncData({ $axios, query }) {
