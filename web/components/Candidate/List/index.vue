@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-5">
+    <div>
         <div class="border">
             <el-table
                 :data="candidates"
@@ -57,21 +57,23 @@
                         </span>
                     </template>
                 </el-table-column>
-                <el-table-column :label="$t('action')" align="center" width="120">
-                    <template slot-scope="{ row }">
-                        <nuxt-link :to="`/candidates/${$get(row, 'id')}/edit`">
-                            <el-button
-                                type="primary"
-                                icon="el-icon-edit"
-                                circle
-                            />
-                        </nuxt-link>
+                <el-table-column :label="$t('action')" align="center" width="100">
+                    <div slot-scope="{ row }" class="flex items-center">
                         <el-button
-                            type="danger"
-                            icon="el-icon-delete"
+                            type="primary"
+                            icon="el-icon-edit"
                             circle
+                            class="mr-1"
                         />
-                    </template>
+                        <el-button circle @click="starCandidate($get(row, 'id'))">
+                            <span
+                                class="material-icons-outlined text-base"
+                                :class="`${$get(row, 'isStar') ? 'text-yellow-400' : 'text-gray-500' }`"
+                            >
+                                {{ $get(row, 'isStar') ? 'star' : 'star_outline' }}
+                            </span>
+                        </el-button>
+                    </div>
                 </el-table-column>
             </el-table>
         </div>
@@ -98,6 +100,10 @@
             },
             meta: {
                 type: Object,
+                required: true,
+            },
+            starCandidate: {
+                type: Function,
                 required: true,
             },
         },

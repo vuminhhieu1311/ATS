@@ -16,9 +16,10 @@ class CandidateController extends Controller
         $this->candidateRepository = $candidateRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $candidates = $this->candidateRepository->queryAllByConditions([], [
+        $queries = $request->query();
+        $candidates = $this->candidateRepository->queryAllByConditions($queries, [
             'user',
         ]);
 

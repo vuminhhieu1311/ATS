@@ -20,11 +20,7 @@ export default {
     },
 
     async fetch() {
-        const [
-            { data: pipelines },
-        ] = await Promise.all([
-            await this.$axios.$get('pipelines'),
-        ]);
+        const { data: pipelines } = await this.$axios.$get('pipelines');
 
         this.pipelines = pipelines;
     },
@@ -35,16 +31,6 @@ export default {
                 ? { ...this.query, [key]: value }
                 : _omit(this.query, key);
             this.$router.push({ query: this.query });
-        },
-        onClearFilter() {
-            this.pipelineName = null;
-            this.name = null;
-            this.location = null;
-            this.tag = null;
-            this.type = null;
-            this.status = null;
-            this.query = {};
-            this.$router.push({ path: '/jobs' });
         },
         async onSearchJobTag(keyword) {
             try {
