@@ -176,5 +176,10 @@
     "candidate list": "Candidate list",
     "job": "Job",
     "stage": "Stage",
-    "new": "New"
+    "new": "New",
+    "edit interview": "Edit interview",
+    "cancel schedule": "Cancel schedule",
+    "meeting": "Meeting",
+    "join meeting": "Join meeting",
+    "scheduler": "Scheduler"
 }

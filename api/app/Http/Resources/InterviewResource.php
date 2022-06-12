@@ -36,6 +36,7 @@ class InterviewResource extends ShareResource
             'interviewers' => StaffResource::collection($this->whenLoaded('interviewers')),
             'assessmentForm' => new AssessmentFormResource($this->whenLoaded('assessmentForm')),
             'interviewStaffs' => InterviewStaffResource::collection($this->whenLoaded('interviewStaffs')),
+            'scheduler' => new StaffResource($this->whenLoaded('scheduler')),
         ];
     }
 }

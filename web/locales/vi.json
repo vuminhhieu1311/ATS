@@ -172,5 +172,14 @@
     "clear": "Xóa",
     "job status": "Trạng thái",
     "no data": "Không có dữ liệu",
-    "job list": "Danh sách việc làm"
+    "job list": "Danh sách việc làm",
+    "candidate list": "Danh sách ứng viên",
+    "job": "Việc làm",
+    "stage": "Stage",
+    "new": "Mới",
+    "edit interview": "Chỉnh sửa",
+    "cancel schedule": "Hủy lịch",
+    "meeting": "Meeting",
+    "join meeting": "Tham gia phỏng vấn",
+    "scheduler": "Người tạo"
 }

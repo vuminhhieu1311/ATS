@@ -8,6 +8,10 @@
                 :options="calendarOptions"
             />
         </div>
+        <InterviewDetailModal
+            ref="interviewDetailModal"
+            :open-interview-form="openInterviewForm"
+        />
     </div>
 </template>
 
@@ -19,6 +23,7 @@
     import timeGridPlugin from '@fullcalendar/timegrid';
     import interactionPlugin from '@fullcalendar/interaction';
     import listPlugin from '@fullcalendar/list';
+    import InterviewDetailModal from '~/components/Interview/DetailModal.vue';
     import FilterCalendar from './Filter.vue';
 
     export default {
@@ -27,6 +32,7 @@
         components: {
             FullCalendar,
             FilterCalendar,
+            InterviewDetailModal,
         },
 
         props: {
@@ -81,7 +87,7 @@
                     eventClick(info) {
                         // eslint-disable-next-line
                         const interview = instance.interviews.find((item) => item.id == info.event.id);
-                        instance.openInterviewForm(interview);
+                        instance.$refs.interviewDetailModal.open(interview);
                     },
                 },
             };

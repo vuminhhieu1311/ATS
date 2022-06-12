@@ -32,6 +32,7 @@ class InterviewController extends Controller
             'candidateJob.job',
             'candidateJob.candidate.user',
             'interviewers.user',
+            'scheduler.user',
         ]);
 
         return InterviewResource::collection($interviews);
@@ -84,6 +85,7 @@ class InterviewController extends Controller
                 'candidateJob.job',
                 'candidateJob.candidate.user',
                 'interviewers.user',
+                'scheduler.user',
             ]));
         } catch (Exception $e) {
             DB::rollback();
@@ -100,6 +102,7 @@ class InterviewController extends Controller
             'interviewers.user',
             'assessmentForm.criteria',
             'interviewStaffs.criterionResults',
+            'scheduler.user',
         ]);
 
         $interviewStaffIds = $interview->interviewStaffs->pluck('id')->toArray();
@@ -159,6 +162,7 @@ class InterviewController extends Controller
                 'candidateJob.job',
                 'candidateJob.candidate.user',
                 'interviewers.user',
+                'scheduler.user',
             ]));
         } catch (Exception $e) {
             DB::rollback();
@@ -169,6 +173,17 @@ class InterviewController extends Controller
 
     public function destroy(Interview $interview)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $interview->interviewStaffs()->delete();
+            $interview->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 }
