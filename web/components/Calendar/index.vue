@@ -11,6 +11,7 @@
         <InterviewDetailModal
             ref="interviewDetailModal"
             :open-interview-form="openInterviewForm"
+            :delete-interview="deleteInterview"
         />
     </div>
 </template>
@@ -45,6 +46,10 @@
                 required: true,
             },
             searchInterviews: {
+                type: Function,
+                required: true,
+            },
+            deleteInterview: {
                 type: Function,
                 required: true,
             },

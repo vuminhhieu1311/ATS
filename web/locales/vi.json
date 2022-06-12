@@ -181,5 +181,6 @@
     "cancel schedule": "Hủy lịch",
     "meeting": "Meeting",
     "join meeting": "Tham gia phỏng vấn",
-    "scheduler": "Người tạo"
+    "scheduler": "Người tạo",
+    "delete interview schedule": "Xóa lịch phỏng vấn"
 }

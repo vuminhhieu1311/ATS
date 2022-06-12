@@ -181,5 +181,6 @@
     "cancel schedule": "Cancel schedule",
     "meeting": "Meeting",
     "join meeting": "Join meeting",
-    "scheduler": "Scheduler"
+    "scheduler": "Scheduler",
+    "delete interview schedule": "Delete interview schedule"
 }

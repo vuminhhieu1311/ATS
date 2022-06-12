@@ -4,6 +4,7 @@
             :interviews="interviews"
             :open-interview-form="openInterviewForm"
             :search-interviews="searchInterviews"
+            :delete-interview="deleteInterview"
         />
         <InterviewForm
             ref="interviewForm"
@@ -81,6 +82,9 @@
                 const { data: interviews } = await this.$axios.$get('interviews', { params: query });
 
                 this.interviews = interviews;
+            },
+            deleteInterview(interviewId) {
+                this.interviews = this.interviews.filter((item) => item.id !== interviewId);
             },
         },
     };

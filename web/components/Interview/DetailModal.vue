@@ -17,7 +17,7 @@
                     {{ $t('edit interview') }}
                 </el-button>
                 <el-button
-                    @click="submit($refs.form, submitForm)"
+                    @click="handleDeleteInterview($get(interview, 'id'))"
                 >
                     <span class="material-icons-outlined mr-2">event_busy</span>
                     {{ $t('cancel schedule') }}
@@ -41,6 +41,10 @@
                 type: Function,
                 required: true,
             },
+            deleteInterview: {
+                type: Function,
+                required: true,
+            },
         },
 
         data() {
@@ -54,6 +58,22 @@
             open(interview) {
                 this.show = true;
                 this.interview = interview;
+            },
+            async handleDeleteInterview(interviewId) {
+                try {
+                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete interview schedule'), {
+                        confirmButtonText: this.$t('confirm'),
+                        cancelButtonText: this.$t('cancel'),
+                        type: 'warning',
+                    }).then(async () => {
+                        await this.$axios.$delete(`interviews/${interviewId}`);
+                        this.show = false;
+                        this.deleteInterview(interviewId);
+                        this.$message.success(this.$t('delete successfully'));
+                    });
+                } catch (error) {
+                    this.$handleError(error);
+                }
             },
         },
     };
