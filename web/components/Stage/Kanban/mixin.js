@@ -1,4 +1,6 @@
 import _map from 'lodash/map';
+import moment from 'moment';
+import { ADDED, REMOVE } from '~/enums/draggable-type';
 
 export default {
     props: {
@@ -40,6 +42,7 @@ export default {
         candidates: [],
         page: 1,
         totalPage: 1,
+        total: 0,
         candidateLoading: false,
     }),
 
@@ -78,10 +81,9 @@ export default {
                             page: this.page,
                         },
                     });
-                candidates.forEach((candidate) => {
-                    this.candidates.push(candidate);
-                });
+                this.candidates.push(...candidates);
                 this.totalPage = meta.lastPage;
+                this.total = meta.total;
             } catch (error) {
                 //
             } finally {
@@ -99,23 +101,29 @@ export default {
                 this.page += 1;
             }
         },
-        updateStage() {
-            // const candidateAdded = this.$get(val, `${ADDED}.element`, null);
-            // const candidateRemoved = this.$get(val, `${REMOVE}.element`, null);
+        async updateStage(val) {
+            const candidateAdded = this.$get(val, `${ADDED}.element`, null);
+            const candidateRemoved = this.$get(val, `${REMOVE}.element`, null);
 
-            // if (candidateAdded) {
-            //     this.$emit('stageChanged', {
-            //         candidate: candidateAdded,
-            //         stage: this.stage,
-            //     });
-            // }
+            if (candidateAdded) {
+                try {
+                    this.total += 1;
+                    await this.$axios.$get(`candidates/${candidateAdded.id}/stages/${this.stage.id}/move`);
 
-            // if (candidateRemoved) {
-            //     this.$emit('candidateRemoved', {
-            //         candidateRemoved,
-            //         stage: this.stage,
-            //     });
-            // }
+                    this.candidates = _map(this.candidates, (candidate) => {
+                        if (candidate.id === candidateAdded.id) {
+                            candidate.updatedAt = moment();
+                        }
+                        return candidate;
+                    });
+                } catch (error) {
+                    this.$handleError(error);
+                }
+            }
+
+            if (candidateRemoved) {
+                this.total -= 1;
+            }
         },
         openInterviewForm(candidate) {
             this.$refs.createInterviewForm.open(candidate);

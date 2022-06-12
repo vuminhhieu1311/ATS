@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UpdateCandidate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CandidateJob extends Model
 {
-    use HasFactory;
+    use HasFactory, UpdateCandidate;
 
     /**
      * The attributes that are mass assignable.

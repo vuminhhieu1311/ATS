@@ -38,7 +38,6 @@
 </template>
 
 <script>
-    import _each from 'lodash/each';
     import _find from 'lodash/find';
     import StageKanban from '~/components/Stage/Kanban/index.vue';
     import PipelineSetting from '~/components/Pipeline/List/PipelineSetting.vue';
@@ -101,29 +100,6 @@
             },
             updateQuery(value) {
                 this.query = value;
-            },
-            handleStageChanged(data) {
-                _each(this.$get(this.pipeline, 'stages'), (item) => {
-                    if (item.id === this.$get(data, 'stage.id')) {
-                        item.candidatesCount += 1;
-                    }
-                });
-
-                try {
-                    // updateStageCandidate(
-                    //     this.$get(data, 'candidate.id'),
-                    //     this.$get(data, 'stage.id'),
-                    // );
-                } catch (error) {
-                    this.$handleError(error);
-                }
-            },
-            handleCandidateRemovedFromStage(data) {
-                _each(this.$get(this.pipeline, 'stages'), (item) => {
-                    if (item.id === this.$get(data, 'stage.id')) {
-                        item.candidatesCount -= 1;
-                    }
-                });
             },
             onChangeJob(value) {
                 this.jobId = value;

@@ -18,6 +18,8 @@
         <draggable
             v-infinite-scroll="load"
             v-loading="candidateLoading"
+            :scroll-sensitivity="350"
+            :force-fallback="true"
             :list="candidates"
             v-bind="$attrs"
             class="board-column-content pt-3 overflow-y-auto flex flex-col justify-start items-center"

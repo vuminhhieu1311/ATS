@@ -22,6 +22,7 @@ class Candidate extends Model
         'status',
         'user_id',
         'is_star',
+        'updated_at',
     ];
 
     /**
