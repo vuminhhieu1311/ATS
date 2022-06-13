@@ -104,6 +104,7 @@
             <el-tooltip
                 v-for="interviewer in $get(interview, 'interviewers')"
                 :key="$get(interviewer, 'id')"
+                class="mr-3"
             >
                 <div slot="content">
                     {{ $get(interviewer, 'user.name') }}<br>{{ $get(interviewer, 'user.email') }}

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import _map from 'lodash/map';
+import { UPDATED } from '~/enums/interview/interview-status';
 
 export default {
     props: {
@@ -42,6 +43,7 @@ export default {
                 candidateId: 0,
                 candidateJobId: 0,
                 interviewId: 0,
+                status: UPDATED,
             },
             rules: {
                 name: 'required|max:255',

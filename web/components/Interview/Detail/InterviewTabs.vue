@@ -1,5 +1,5 @@
 <template>
-    <div class="interview-tabs mt-5">
+    <div class="horizontal-tabs mt-5">
         <el-tabs
             type="card"
             class="w-full mb-6 shadow-lg rounded-lg border-0"
