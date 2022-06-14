@@ -16,15 +16,19 @@
                     <span class="material-icons mr-2">account_box</span>
                     <span>{{ $t("resume") }}</span>
                 </div>
-                <div>
-                    <CvEmbed :resume="resume" />
-                </div>
+                <CvEmbed :candidate="candidate" />
             </el-tab-pane>
             <el-tab-pane>
                 <div slot="label" class="text-base flex items-center pt-2 capitalize">
                     <span class="material-icons mr-2">school</span>
                     <span>{{ $t("education") }}</span>
                 </div>
+                <Education
+                    ref="education"
+                    :candidate="candidate"
+                    :submit-form="submitEducationForm"
+                    :delete-education="deleteEducation"
+                />
             </el-tab-pane>
             <el-tab-pane>
                 <div slot="label" class="text-base flex items-center pt-2 capitalize">
@@ -39,6 +43,7 @@
 <script>
     import BasicInfo from './BasicInfo/index.vue';
     import CvEmbed from '../CvEmbed/index.vue';
+    import Education from './Education/index.vue';
 
     export default {
         name: 'CardDetail',
@@ -46,6 +51,7 @@
         components: {
             BasicInfo,
             CvEmbed,
+            Education,
         },
 
         props: {
@@ -57,6 +63,14 @@
                 type: Function,
                 required: true,
             },
+            submitEducationForm: {
+                type: Function,
+                required: true,
+            },
+            deleteEducation: {
+                type: Function,
+                required: true,
+            },
         },
 
         data() {
@@ -65,13 +79,10 @@
             };
         },
 
-        async created() {
-            try {
-                // const { data: content } = await getCvPreview(this.$get(this.candidate, 'resume.resumeId', -1));
-                // this.resume = content;
-            } catch (e) {
-                this.resume = null;
-            }
+        methods: {
+            closeEducationForm() {
+                this.$refs.education.closeEducationForm();
+            },
         },
     };
 </script>

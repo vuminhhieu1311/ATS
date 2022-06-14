@@ -1,6 +1,12 @@
 <template>
     <div>
-        <embed v-if="resume" class="resume-viewer" :src="`data:application/pdf;base64,${resume}`">
+        <embed
+            v-if="$get(candidate, 'resumeUrl')"
+            width="100%"
+            height="800"
+            :src="resumeUrl"
+            type="application/pdf"
+        >
         <el-empty v-else :description="$t('no data')" class="capitalize" />
     </div>
 </template>
@@ -10,14 +16,19 @@
         name: 'CvEmbed',
 
         props: {
-            resume: String,
+            candidate: {
+                type: Object,
+                required: true,
+            },
+        },
+
+        computed: {
+            resumeUrl() {
+                const baseUrl = process.env.BACKEND_URL;
+                const link = this.$get(this.candidate, 'resumeUrl');
+
+                return `${baseUrl}${link}`;
+            },
         },
     };
 </script>
-
-<style lang="scss" scoped>
-    .resume-viewer {
-        height: 100vh;
-        width: 100%;
-    }
-</style>

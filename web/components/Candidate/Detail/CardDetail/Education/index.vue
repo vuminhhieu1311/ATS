@@ -14,7 +14,7 @@
         </div>
         <el-row :gutter="40">
             <el-col
-                v-for="item in $get($auth.user, 'candidate.education')"
+                v-for="item in $get(candidate, 'education')"
                 :key="$get(item, 'id')"
                 :span="12"
                 :xl="8"
@@ -26,9 +26,9 @@
                     </div>
 
                     <div class="p-5">
-                        <div class="text-lg text-text font-semibold">{{ $get(item, 'school_name') }}</div>
+                        <div class="text-lg text-text font-semibold">{{ $get(item, 'schoolName') }}</div>
                         <div class="text-base">{{ getDate(item) }}</div>
-                        <div class="text-base">{{ $get(item, 'field_of_study') }}</div>
+                        <div class="text-base">{{ $get(item, 'fieldOfStudy') }}</div>
                     </div>
                     <div class="flex justify-between">
                         <el-button
@@ -53,7 +53,7 @@
                 </el-card>
             </el-col>
         </el-row>
-        <EducationForm ref="educationForm" />
+        <EducationForm ref="educationForm" :submit-form="submitForm" />
     </div>
 </template>
 
@@ -68,31 +68,33 @@
             EducationForm,
         },
 
+        props: {
+            candidate: {
+                type: Object,
+                required: true,
+            },
+            submitForm: {
+                type: Function,
+                required: true,
+            },
+            deleteEducation: {
+                type: Function,
+                required: true,
+            },
+        },
+
         methods: {
             openEducationForm(education) {
                 this.$refs.educationForm.open(education);
             },
             getDate(education) {
-                const startDate = moment(this.$get(education, 'start_date')).format('DD/MM/YYYY');
-                const endDate = education.end_date ? moment(education.end_date).format('DD/MM/YYYY') : 'now';
+                const startDate = moment(this.$get(education, 'startDate')).format('DD/MM/YYYY');
+                const endDate = education.endDate ? moment(education.endDate).format('DD/MM/YYYY') : 'now';
 
                 return `${startDate} - ${endDate}`;
             },
-            async deleteEducation(educationId) {
-                try {
-                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete education'), {
-                        confirmButtonText: this.$t('confirm'),
-                        cancelButtonText: this.$t('cancel'),
-                        type: 'warning',
-                    }).then(async () => {
-                        await this.$axios.$delete(`education/${educationId}`);
-                        const user = await this.$axios.$get('user');
-                        this.$auth.setUser(user);
-                        this.$message.success(this.$t('delete successfully'));
-                    });
-                } catch (error) {
-                    this.$handleError(error);
-                }
+            closeEducationForm() {
+                this.$refs.educationForm.close();
             },
         },
     };

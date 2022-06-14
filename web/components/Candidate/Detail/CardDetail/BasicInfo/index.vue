@@ -1,6 +1,6 @@
 <template>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-        <h5 class="my-5 font-bold uppercase">
+    <div class="flex-auto">
+        <h5 class="mb-5 font-bold uppercase">
             {{ $t("candidate information") }}
         </h5>
         <el-form

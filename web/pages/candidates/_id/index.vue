@@ -2,7 +2,13 @@
     <div class="w-full">
         <div class="flex flex-wrap">
             <div class="w-full lg:w-8/12 pr-8">
-                <CardDetail :candidate="candidate" :update-candidate="updateCandidate" />
+                <CardDetail
+                    ref="cardDetail"
+                    :candidate="candidate"
+                    :update-candidate="updateCandidate"
+                    :submit-education-form="submitEducationForm"
+                    :delete-education="deleteEducation"
+                />
             </div>
             <div class="w-full lg:w-4/12">
                 <CardSummary :candidate="candidate" />
@@ -12,6 +18,7 @@
 </template>
 
 <script>
+    import _findIndex from 'lodash/findIndex';
     import CardDetail from '~/components/Candidate/Detail/CardDetail/index.vue';
     import CardSummary from '~/components/Candidate/Detail/CardSummary/index.vue';
 
@@ -34,6 +41,40 @@
                 const { data: candidate } = await this.$axios.$put(`candidates/${this.$get(this.candidate, 'id')}`, formData);
                 this.candidate = candidate;
                 this.$message.success(this.$t('update successfully'));
+            },
+            async submitEducationForm(formData) {
+                if (formData.educationId) {
+                    const { data: education } = await this.$axios.$put(`education/${formData.educationId}`, {
+                        ...formData,
+                    });
+                    const index = _findIndex(this.candidate.education, ['id', formData.educationId]);
+                    if (index !== -1) {
+                        this.candidate.education.splice(index, 1, education);
+                    }
+                    this.$message.success(this.$t('update successfully'));
+                } else {
+                    const { data: education } = await this.$axios.$post('education', {
+                        ...formData,
+                    });
+                    this.candidate.education.unshift(education);
+                    this.$message.success(this.$t('create successfully'));
+                }
+                this.$refs.cardDetail.closeEducationForm();
+            },
+            async deleteEducation(educationId) {
+                try {
+                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete education'), {
+                        confirmButtonText: this.$t('confirm'),
+                        cancelButtonText: this.$t('cancel'),
+                        type: 'warning',
+                    }).then(async () => {
+                        await this.$axios.$delete(`education/${educationId}`);
+                        this.candidate.education = this.candidate.education.filter((item) => item.id !== educationId);
+                        this.$message.success(this.$t('delete successfully'));
+                    });
+                } catch (error) {
+                    this.$handleError(error);
+                }
             },
         },
     };

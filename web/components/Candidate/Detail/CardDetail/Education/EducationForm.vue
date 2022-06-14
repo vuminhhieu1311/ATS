@@ -51,8 +51,6 @@
                 </el-button>
                 <div class="ml-5">
                     <el-button
-                        type="info"
-                        plain
                         class="capitalize"
                         @click="resetForm"
                     >
@@ -71,6 +69,13 @@
         name: 'EducationForm',
 
         mixins: [formMixin],
+
+        props: {
+            submitForm: {
+                type: Function,
+                required: true,
+            },
+        },
 
         data() {
             return {
@@ -94,11 +99,11 @@
         methods: {
             async open(education) {
                 this.show = true;
-                this.form.schoolName = this.$get(education, 'school_name', null);
-                this.form.fieldOfStudy = this.$get(education, 'field_of_study', null);
+                this.form.schoolName = this.$get(education, 'schoolName', null);
+                this.form.fieldOfStudy = this.$get(education, 'fieldOfStudy', null);
                 this.form.degree = this.$get(education, 'degree', null);
-                this.form.startDate = this.$get(education, 'start_date', null);
-                this.form.endDate = this.$get(education, 'end_date', null);
+                this.form.startDate = this.$get(education, 'startDate', null);
+                this.form.endDate = this.$get(education, 'endDate', null);
                 this.form.grade = this.$get(education, 'grade', null);
                 this.form.educationId = this.$get(education, 'id', null);
             },
@@ -108,23 +113,6 @@
             },
             resetForm() {
                 this.$refs.form.resetFields();
-            },
-            async submitForm(formData) {
-                if (formData.educationId) {
-                    await this.$axios.$put(`education/${formData.educationId}`, {
-                        ...formData,
-                    });
-                    this.$message.success(this.$t('update successfully'));
-                } else {
-                    await this.$axios.$post('education', {
-                        ...formData,
-                    });
-                    this.$message.success(this.$t('create successfully'));
-                }
-
-                const user = await this.$axios.$get('user');
-                this.$auth.setUser(user);
-                this.close();
             },
         },
     };

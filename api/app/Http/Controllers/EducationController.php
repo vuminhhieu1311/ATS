@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EducationResource;
 use App\Models\Education;
 use App\Repositories\Education\EducationRepositoryInterface;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class EducationController extends Controller
 
     public function store(Request $request)
     {
-        $this->educationRepository->create([
+        $education = $this->educationRepository->create([
             'school_name' => $request->input('schoolName'),
             'field_of_study' => $request->input('fieldOfStudy'),
             'degree' => $request->input('degree'),
@@ -27,11 +28,7 @@ class EducationController extends Controller
             'candidate_id' => Auth::user()->candidate->id,
         ]);
 
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return EducationResource::make($education);
     }
 
     public function update(Request $request, Education $education)
@@ -45,21 +42,11 @@ class EducationController extends Controller
             'end_date' => $request->input('endDate'),
         ]);
 
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return EducationResource::make($education);
     }
 
     public function destroy(Education $education)
     {
-        $education->delete();
-
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return $education->delete();
     }
 }
