@@ -14,7 +14,7 @@
         </div>
         <el-row :gutter="40">
             <el-col
-                v-for="item in $get($auth.user, 'candidate.experiences')"
+                v-for="item in $get(candidate, 'experiences')"
                 :key="$get(item, 'id')"
                 :span="12"
                 :xl="8"
@@ -25,7 +25,7 @@
                         <img class="h-40 mt-5" :src="require('~/assets/images/suitcase.png')">
                     </div>
                     <div class="p-5">
-                        <div class="text-lg text-text font-semibold">{{ $get(item, 'company_name') }}</div>
+                        <div class="text-lg text-text font-semibold">{{ $get(item, 'companyName') }}</div>
                         <div class="text-base">{{ getDate(item) }}</div>
                         <div class="text-base">{{ $get(item, 'location') }}</div>
                     </div>
@@ -52,7 +52,7 @@
                 </el-card>
             </el-col>
         </el-row>
-        <ExperienceForm ref="experienceForm" />
+        <ExperienceForm ref="experienceForm" :submit-form="submitForm" />
     </div>
 </template>
 
@@ -67,31 +67,33 @@
             ExperienceForm,
         },
 
+        props: {
+            candidate: {
+                type: Object,
+                required: true,
+            },
+            submitForm: {
+                type: Function,
+                required: true,
+            },
+            deleteExperience: {
+                type: Function,
+                required: true,
+            },
+        },
+
         methods: {
             openExperienceForm(experience) {
                 this.$refs.experienceForm.open(experience);
             },
             getDate(experience) {
-                const startDate = moment(this.$get(experience, 'start_date')).format('DD/MM/YYYY');
-                const endDate = experience.end_date ? moment(experience.end_date).format('DD/MM/YYYY') : 'now';
+                const startDate = moment(this.$get(experience, 'startDate')).format('DD/MM/YYYY');
+                const endDate = experience.endDate ? moment(experience.endDate).format('DD/MM/YYYY') : 'now';
 
                 return `${startDate} - ${endDate}`;
             },
-            async deleteExperience(experienceId) {
-                try {
-                    this.$confirm(this.$t('do you want to delete?'), this.$t('delete experience'), {
-                        confirmButtonText: this.$t('confirm'),
-                        cancelButtonText: this.$t('cancel'),
-                        type: 'warning',
-                    }).then(async () => {
-                        await this.$axios.$delete(`experiences/${experienceId}`);
-                        const user = await this.$axios.$get('user');
-                        this.$auth.setUser(user);
-                        this.$message.success(this.$t('delete successfully'));
-                    });
-                } catch (error) {
-                    this.$handleError(error);
-                }
+            closeExperienceForm() {
+                this.$refs.experienceForm.close();
             },
         },
     };

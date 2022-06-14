@@ -35,6 +35,12 @@
                     <span class="material-icons mr-2">work</span>
                     <span>{{ $t("experience") }}</span>
                 </div>
+                <Experience
+                    ref="experience"
+                    :candidate="candidate"
+                    :submit-form="submitExperienceForm"
+                    :delete-experience="deleteExperience"
+                />
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -44,6 +50,7 @@
     import BasicInfo from './BasicInfo/index.vue';
     import CvEmbed from '../CvEmbed/index.vue';
     import Education from './Education/index.vue';
+    import Experience from './Experience/index.vue';
 
     export default {
         name: 'CardDetail',
@@ -52,6 +59,7 @@
             BasicInfo,
             CvEmbed,
             Education,
+            Experience,
         },
 
         props: {
@@ -71,6 +79,14 @@
                 type: Function,
                 required: true,
             },
+            submitExperienceForm: {
+                type: Function,
+                required: true,
+            },
+            deleteExperience: {
+                type: Function,
+                required: true,
+            },
         },
 
         data() {
@@ -82,6 +98,9 @@
         methods: {
             closeEducationForm() {
                 this.$refs.education.closeEducationForm();
+            },
+            closeExperienceForm() {
+                this.$refs.experience.closeExperienceForm();
             },
         },
     };

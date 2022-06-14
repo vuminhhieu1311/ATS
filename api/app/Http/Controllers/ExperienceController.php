@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ExperienceResource;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class ExperienceController extends Controller
     {
         $candidate = Auth::user()->candidate;
 
-        $candidate->experiences()->create([
+        $experience = $candidate->experiences()->create([
             'company_name' => $request->input('companyName'),
             'position' => $request->input('position'),
             'summary' => $request->input('summary'),
@@ -20,11 +21,7 @@ class ExperienceController extends Controller
             'end_date' => $request->input('endDate'),
         ]);
 
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return ExperienceResource::make($experience);
     }
 
     public function update(Request $request, Experience $experience)
@@ -37,27 +34,11 @@ class ExperienceController extends Controller
             'end_date' => $request->input('endDate'),
         ]);
 
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return ExperienceResource::make($experience);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Experience  $experience
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Experience $experience)
     {
-        $experience->delete();
-
-        return optional(Auth::user())->load([
-            'candidate.education',
-            'candidate.experiences',
-            'staff',
-        ]);
+        return $experience->delete();
     }
 }

@@ -73,6 +73,13 @@
 
         mixins: [formMixin],
 
+        props: {
+            submitForm: {
+                type: Function,
+                required: true,
+            },
+        },
+
         data() {
             return {
                 show: false,
@@ -94,11 +101,11 @@
         methods: {
             async open(experience) {
                 this.show = true;
-                this.form.companyName = this.$get(experience, 'company_name', null);
+                this.form.companyName = this.$get(experience, 'companyName', null);
                 this.form.position = this.$get(experience, 'position', null);
                 this.form.summary = this.$get(experience, 'summary', null);
-                this.form.startDate = this.$get(experience, 'start_date', null);
-                this.form.endDate = this.$get(experience, 'end_date', null);
+                this.form.startDate = this.$get(experience, 'startDate', null);
+                this.form.endDate = this.$get(experience, 'endDate', null);
                 this.form.experienceId = this.$get(experience, 'id', null);
             },
             close() {
@@ -107,23 +114,6 @@
             },
             resetForm() {
                 this.$refs.form.resetFields();
-            },
-            async submitForm(formData) {
-                if (formData.experienceId) {
-                    await this.$axios.$put(`experiences/${formData.experienceId}`, {
-                        ...formData,
-                    });
-                    this.$message.success(this.$t('update successfully'));
-                } else {
-                    await this.$axios.$post('experiences', {
-                        ...formData,
-                    });
-                    this.$message.success(this.$t('create successfully'));
-                }
-
-                const user = await this.$axios.$get('user');
-                this.$auth.setUser(user);
-                this.close();
             },
         },
     };
