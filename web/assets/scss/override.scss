@@ -109,12 +109,11 @@
 .vertical-tabs {
     .el-tabs {
         &__header {
-            margin: 20px !important;
+            margin-right: 20px !important;
             border: none !important;
         }
         &__nav {
             border: none !important;
-            // background-color: transparent;
         }
         &__content {
             background-color: $white;
@@ -124,8 +123,8 @@
             color: $text !important;
             border-radius: 10px;
             margin-bottom: 10px;
-            padding: 4px 25px 4px 25px !important;
-            height: 50px !important;
+            padding: 3px 25px !important;
+            height: 45px !important;
             &.is-active {
                 color: $white !important;
                 background: linear-gradient(118deg, rgba(115, 103, 240, 1), rgba(115, 103, 240, .7));
@@ -157,5 +156,45 @@
                 border: none !important;
             }
         }
+    }
+}
+
+.el-step {
+    &__head {
+        opacity: 0.4;
+        &.is-success {
+            color: $primary;
+            border-color: $primary;
+        }
+    }
+    &__title {
+        opacity: 0.4;
+        &.is-success {
+            opacity: 1;
+            color: $primary !important;
+        }
+        &.is-wait {
+            opacity: 0.5;
+            color: $text !important;
+        }
+    }
+    &__icon {
+        color: $white;
+        background: $primary !important;
+        border-color: $primary !important;
+    }
+
+    &__line-inner {
+        width: 100% !important;
+        border-width: 1px !important;
+    }
+    &.active .el-step__head {
+        opacity: 1;
+        & .el-step__line-inner {
+            opacity: 0.3;
+        }
+    }
+    &.active.actived .el-step__line-inner {
+        opacity: 1;
     }
 }

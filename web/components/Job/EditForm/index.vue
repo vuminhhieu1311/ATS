@@ -1,13 +1,16 @@
 <template>
-    <div>
+    <div class="vertical-tabs">
         <el-form
             ref="form"
             :model="form"
             :rules="formRules"
-            label-width="20%"
-            label-position="left"
+            label-position="top"
         >
-            <el-tabs type="border-card">
+            <el-tabs
+                type="card"
+                tab-position="left"
+                class="w-full rounded-lg border-0"
+            >
                 <el-tab-pane :label="$t('details')">
                     <el-form-item :label="$t('name')" prop="name" :error="serverErrors.name">
                         <el-input v-model="form.name" :placeholder="$t('name')" />
@@ -91,7 +94,7 @@
                             :placeholder="$t('deadline')"
                         />
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex">
                         <SaveAsButton :handle-command="handleCommand" />
                     </div>
                 </el-tab-pane>
@@ -118,7 +121,7 @@
                             @onChangeText="(val) => onChangeValue('benefit', val)"
                         />
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex">
                         <SaveAsButton :handle-command="handleCommand" />
                     </div>
                 </el-tab-pane>
@@ -140,7 +143,7 @@
                             />
                         </el-select>
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex">
                         <SaveAsButton :handle-command="handleCommand" />
                     </div>
                 </el-tab-pane>

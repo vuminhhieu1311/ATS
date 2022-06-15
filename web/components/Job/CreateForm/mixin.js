@@ -4,12 +4,14 @@ import { ALL_STATUS } from '~/enums/job/job-status';
 import { VND, ALL_CURRENCY } from '~/enums/job/offer-currency';
 import NextButton from './NextButton.vue';
 import PrevButton from './PrevButton.vue';
+import Step from './Step.vue';
 
 export default {
     components: {
         TextEditor,
         NextButton,
         PrevButton,
+        Step,
     },
 
     props: {

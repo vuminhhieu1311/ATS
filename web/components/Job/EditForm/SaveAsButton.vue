@@ -1,5 +1,5 @@
 <template>
-    <el-dropdown class="ml-3" @command="handleCommand">
+    <el-dropdown @command="handleCommand">
         <el-button type="primary" class="capitalize el-dropdown-link">
             {{ $t('save as') }} <i class="el-icon-arrow-down el-icon--right" />
         </el-button>

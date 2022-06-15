@@ -1,17 +1,14 @@
 <template>
-    <div>
-        <el-steps :active="active" align-center>
-            <el-step :title="$t('details')" />
-            <el-step :title="$t('description')" />
-            <el-step :title="$t('pipeline')" />
-        </el-steps>
-        <div class="bg-white p-8 mt-8 rounded-md">
+    <div class="grid grid-cols-5">
+        <div class="col-span-1 h-80">
+            <Step :step-active="active" />
+        </div>
+        <div class="col-span-4 bg-white border rounded shadow-md p-8">
             <el-form
                 ref="form"
                 :model="form"
                 :rules="formRules"
-                label-width="20%"
-                label-position="left"
+                label-position="top"
             >
                 <div v-show="active === 0">
                     <el-form-item :label="$t('name')" prop="name" :error="serverErrors.name">
@@ -96,7 +93,7 @@
                             :placeholder="$t('deadline')"
                         />
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex justify-start">
                         <NextButton :next="next" />
                     </div>
                 </div>
@@ -123,7 +120,7 @@
                             @onChangeText="(val) => onChangeValue('benefit', val)"
                         />
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex justify-start">
                         <PrevButton :prev="prev" />
                         <NextButton :next="next" />
                     </div>
@@ -146,7 +143,7 @@
                             />
                         </el-select>
                     </el-form-item>
-                    <div class="flex justify-end">
+                    <div class="flex justify-start">
                         <PrevButton :prev="prev" />
                         <el-dropdown class="ml-3" @command="handleCommand">
                             <el-button type="primary" class="capitalize el-dropdown-link">
