@@ -24,6 +24,7 @@ class CandidateJobResource extends ShareResource
             'rejectionId' => $this->rejection_id,
             'job' => new JobResource($this->whenLoaded('job')),
             'candidate' => new CandidateResource($this->whenLoaded('candidate')),
+            'stage' => new StageResource($this->whenLoaded('stage')),
             'interviews' => InterviewResource::collection($this->whenLoaded('interviews')),
         ];
     }

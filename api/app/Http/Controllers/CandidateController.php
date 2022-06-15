@@ -35,7 +35,7 @@ class CandidateController extends Controller
 
     public function show(Candidate $candidate)
     {
-        $candidate->load('user', 'education', 'experiences');
+        $candidate->load('user', 'education', 'experiences', 'currentCandidateJob.stage', 'currentCandidateJob.job');
 
         return CandidateResource::make($candidate);
     }
