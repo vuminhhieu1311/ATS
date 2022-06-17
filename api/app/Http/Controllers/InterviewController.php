@@ -100,7 +100,7 @@ class InterviewController extends Controller
             'candidateJob.job',
             'candidateJob.candidate.user',
             'interviewers.user',
-            'assessmentForm.criteria',
+            'assessmentForm.criteria.questions',
             'interviewStaffs.criterionResults',
             'scheduler.user',
         ]);

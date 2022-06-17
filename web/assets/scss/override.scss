@@ -198,3 +198,9 @@
         opacity: 1;
     }
 }
+
+.el-popover {
+    &__title {
+        font-weight: 500;
+    }
+}

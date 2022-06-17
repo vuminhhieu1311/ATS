@@ -182,5 +182,6 @@
     "meeting": "Meeting",
     "join meeting": "Tham gia phỏng vấn",
     "scheduler": "Người tạo",
-    "delete interview schedule": "Xóa lịch phỏng vấn"
+    "delete interview schedule": "Xóa lịch phỏng vấn",
+    "suggested questions": "Các câu hỏi phỏng vấn"
 }

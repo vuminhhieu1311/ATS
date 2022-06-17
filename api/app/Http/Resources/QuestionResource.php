@@ -3,10 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\Custom\ShareResource;
-use App\Models\Question;
-use Illuminate\Http\Resources\MissingValue;
 
-class CriterionResource extends ShareResource
+class QuestionResource extends ShareResource
 {
     /**
      * Transform the resource into an array.
@@ -20,8 +18,6 @@ class CriterionResource extends ShareResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'averageScore' => $this->average_score ?? new MissingValue(),
-            'questions' => QuestionResource::collection($this->whenLoaded('questions')),
         ];
     }
 }
