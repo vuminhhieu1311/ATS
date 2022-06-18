@@ -127,22 +127,11 @@
                 </div>
 
                 <div v-show="active === 2">
-                    <el-form-item :label="$t('pipeline')" prop="pipelineId">
-                        <el-select
-                            v-model="form.pipelineId"
-                            class="w-full"
-                            filterable
-                            clearable
-                            :placeholder="$t('pipeline')"
-                        >
-                            <el-option
-                                v-for="(pipeline, index) in pipelines"
-                                :key="index"
-                                :label="$get(pipeline, 'name')"
-                                :value="$get(pipeline, 'id')"
-                            />
-                        </el-select>
-                    </el-form-item>
+                    <PipelineStage
+                        :form="form"
+                        :pipelines="pipelines"
+                        :on-change-value="onChangeValue"
+                    />
                     <div class="flex justify-start">
                         <PrevButton :prev="prev" />
                         <el-dropdown class="ml-3" @command="handleCommand">

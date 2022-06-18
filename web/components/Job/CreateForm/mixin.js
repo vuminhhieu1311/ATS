@@ -5,6 +5,7 @@ import { VND, ALL_CURRENCY } from '~/enums/job/offer-currency';
 import NextButton from './NextButton.vue';
 import PrevButton from './PrevButton.vue';
 import Step from './Step.vue';
+import PipelineStage from '../PipelineStage/index.vue';
 
 export default {
     components: {
@@ -12,6 +13,7 @@ export default {
         NextButton,
         PrevButton,
         Step,
+        PipelineStage,
     },
 
     props: {

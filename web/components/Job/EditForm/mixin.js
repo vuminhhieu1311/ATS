@@ -5,11 +5,13 @@ import { ALL_TYPE } from '~/enums/job/employment-type';
 import { ALL_STATUS } from '~/enums/job/job-status';
 import { VND, ALL_CURRENCY } from '~/enums/job/offer-currency';
 import SaveAsButton from './SaveAsButton.vue';
+import PipelineStage from '../PipelineStage/index.vue';
 
 export default {
     components: {
         TextEditor,
         SaveAsButton,
+        PipelineStage,
     },
 
     props: {
@@ -53,9 +55,10 @@ export default {
                 name: 'required|max:255|type:string',
                 country: 'required|max:255|type:string',
                 city: 'required|max:255|type:string',
-                employmentType: 'name: employment type|required|type:string',
-                minOffer: 'name: min offer',
-                maxOffer: 'name: max offer',
+                employmentType: 'name:employment type|required|type:string',
+                minOffer: 'name:min offer',
+                maxOffer: 'name:max offer',
+                pipelineId: 'name:pipeline|required|type:integer',
                 status: 'required|type:string',
 
             },

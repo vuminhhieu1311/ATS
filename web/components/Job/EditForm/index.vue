@@ -127,22 +127,11 @@
                 </el-tab-pane>
 
                 <el-tab-pane :label="$t('pipeline')">
-                    <el-form-item :label="$t('pipeline')" prop="pipelineId">
-                        <el-select
-                            v-model="form.pipelineId"
-                            class="w-full"
-                            filterable
-                            clearable
-                            :placeholder="$t('pipeline')"
-                        >
-                            <el-option
-                                v-for="(pipeline, index) in pipelines"
-                                :key="index"
-                                :label="$get(pipeline, 'name')"
-                                :value="$get(pipeline, 'id')"
-                            />
-                        </el-select>
-                    </el-form-item>
+                    <PipelineStage
+                        :form="form"
+                        :pipelines="pipelines"
+                        :on-change-value="onChangeValue"
+                    />
                     <div class="flex">
                         <SaveAsButton :handle-command="handleCommand" />
                     </div>
