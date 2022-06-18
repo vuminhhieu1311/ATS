@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AssessmentFormResource;
+use App\Http\Resources\InterviewResource;
 use App\Models\AssessmentForm;
+use App\Notifications\AddInterviewSchedule;
 use App\Repositories\AssessmentForm\AssessmentFormRepositoryInterface;
-use App\Repositories\Candidate\CandidateRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssessmentFormController extends Controller
 {
@@ -17,34 +19,43 @@ class AssessmentFormController extends Controller
         $this->assessmentFormRepo = $assessmentFormRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $assessmentForms = $this->assessmentFormRepo->getAll([
+        $queries = $request->query();
+        $assessmentForms = $this->assessmentFormRepo->queryAllByConditions($queries, [
             'criteria',
         ]);
 
         return AssessmentFormResource::collection($assessmentForms);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $assessmentForm = $this->assessmentFormRepo->create([
+                'name' => $request->input('name'),
+            ]);
+
+            $weights = $request->input('weights', []);
+            foreach ($request->input('criterionIds', []) as $key => $value) {
+                $assessmentForm->assessmentCriteria()->create([
+                    'weight' => $weights[$key],
+                    'criterion_id' => $value,
+                ]);
+            }
+
+            DB::commit();
+
+            return AssessmentFormResource::make($assessmentForm->load([
+                'criteria',
+            ]));
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     /**

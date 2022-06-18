@@ -7,6 +7,7 @@ use App\Http\Controllers\Candidate\MoveStageController;
 use App\Http\Controllers\Candidate\UpdateCandidateStar;
 use App\Http\Controllers\Candidate\UpdateProfileController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\CriterionController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\Interview\SubmitAssessmentForm;
@@ -106,5 +107,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'experiences' => ExperienceController::class,
         'stages' => StageController::class,
         'assessment-forms' => AssessmentFormController::class,
+        'criteria' => CriterionController::class,
     ]);
 });

@@ -8,6 +8,8 @@ use App\Repositories\Candidate\CandidateRepository;
 use App\Repositories\Candidate\CandidateRepositoryInterface;
 use App\Repositories\CandidateJob\CandidateJobRepository;
 use App\Repositories\CandidateJob\CandidateJobRepositoryInterface;
+use App\Repositories\Criterion\CriterionRepository;
+use App\Repositories\Criterion\CriterionRepositoryInterface;
 use App\Repositories\CriterionResult\CriterionResultRepository;
 use App\Repositories\CriterionResult\CriterionResultRepositoryInterface;
 use App\Repositories\Education\EducationRepository;
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(StageRepositoryInterface::class, StageRepository::class);
         $this->app->singleton(CriterionResultRepositoryInterface::class, CriterionResultRepository::class);
         $this->app->singleton(AssessmentFormRepositoryInterface::class, AssessmentFormRepository::class);
+        $this->app->singleton(CriterionRepositoryInterface::class, CriterionRepository::class);
     }
 
     /**

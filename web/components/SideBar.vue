@@ -70,6 +70,11 @@
                         icon: 'business_center',
                         label: 'jobs',
                     },
+                    {
+                        url: '/assessment-forms',
+                        icon: 'assessment',
+                        label: 'assessment forms',
+                    },
                 ],
             };
         },
