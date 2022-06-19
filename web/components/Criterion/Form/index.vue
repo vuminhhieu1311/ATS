@@ -22,7 +22,6 @@
                     v-model="form.questionIds"
                     class="w-full"
                     multiple
-                    collapse-tags
                     filterable
                     :placeholder="$t('suggested questions')"
                 >

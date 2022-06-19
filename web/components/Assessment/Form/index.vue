@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="title mb-8">{{ $t("create assessment form") }}</h3>
+        <h3 class="title mb-8">{{ assessmentForm ? $t("edit assessment form") : $t("create assessment form") }}</h3>
         <div class="bg-white p-8 mt-8 rounded-md">
             <el-form
                 ref="form"
@@ -55,7 +55,7 @@
                                     <el-avatar size="small" class="uppercase font-semibold">{{ index + 1 }}</el-avatar>
                                 </div>
                                 <div class="info ml-2">
-                                    <p class="text font-semibold">{{ $get(criterion, 'name') }}</p>
+                                    <p class="text font-semibold mr-2">{{ $get(criterion, 'name') }}</p>
                                     <div class="flex mt-2">
                                         <p class="mr-5">{{ $t('weight') }}:</p>
                                         <el-input-number
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="flex">
                                 <span
                                     class="cursor-pointer px-1 text-lg material-icons-outlined"
                                     @click="openEditCriterionForm(criterion)"
@@ -118,7 +118,7 @@
     import mixin from './mixin';
 
     export default {
-        name: 'CreateAssessmentForm',
+        name: 'AssessmentForm',
 
         components: {
             CriterionForm,

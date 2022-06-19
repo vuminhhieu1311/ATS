@@ -21,6 +21,7 @@ class CriterionResource extends ShareResource
             'id' => $this->id,
             'name' => $this->name,
             'averageScore' => $this->average_score ?? new MissingValue(),
+            'weight' => $this->pivot->weight ?? new MissingValue(),
             'questions' => QuestionResource::collection($this->whenLoaded('questions')),
         ];
     }

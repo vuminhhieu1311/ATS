@@ -20,7 +20,8 @@ class AssessmentForm extends Model
 
     public function criteria()
     {
-        return $this->belongsToMany(Criterion::class, 'assessment_criteria');
+        return $this->belongsToMany(Criterion::class, 'assessment_criteria')
+            ->withPivot('weight');
     }
 
     public function assessmentCriteria()

@@ -43,15 +43,19 @@
                         {{ index + 1 }}. {{ $get(criterion, 'name') }}
                     </el-tag>
                     <div class="flex justify-end mt-2">
-                        <el-button
-                            plain
-                            size="small"
-                            icon="el-icon-edit"
-                            class="editBtn"
-                            @click="openEditForm(assessmentForm)"
+                        <nuxt-link
+                            :to="`/assessment-forms/${$get(assessmentForm, 'id')}/edit`"
+                            class="mr-5"
                         >
-                            {{ $t('edit') }}
-                        </el-button>
+                            <el-button
+                                plain
+                                size="small"
+                                icon="el-icon-edit"
+                                class="editBtn"
+                            >
+                                {{ $t('edit') }}
+                            </el-button>
+                        </nuxt-link>
                         <el-button
                             type="primary"
                             size="small"

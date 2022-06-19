@@ -184,5 +184,13 @@
     "scheduler": "Scheduler",
     "delete interview schedule": "Delete interview schedule",
     "suggested questions": "Suggested questions",
-    "stages": "Stages"
+    "stages": "Stages",
+    "assessment forms": "Assessment forms",
+    "create assessment form": "Create assessment form",
+    "criteria": "Criteria",
+    "new criterion": "New criterion",
+    "edit criterion": "Edit criterion",
+    "create new criterion": "Create new criterion",
+    "edit assessment form": "Edit assessment form",
+    "weight": "Weight"
 }

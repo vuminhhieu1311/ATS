@@ -2,9 +2,11 @@ import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
+import _map from 'lodash/map';
 
 export default {
     props: {
+        assessmentForm: Object,
         criteria: {
             type: Array,
             required: true,
@@ -16,13 +18,20 @@ export default {
     },
 
     data() {
+        const addedCriteria = [];
+        const criterionIds = _map(this.$get(this.assessmentForm, 'criteria', []), ({ id }) => id);
+        criterionIds.forEach((id) => {
+            addedCriteria.push(_find(this.criteria, (item) => item.id === id));
+        });
+
         return {
             show: false,
-            addedCriteria: [],
+            addedCriteria,
             form: {
-                name: null,
-                criterionIds: [],
-                weights: [],
+                name: this.$get(this.assessmentForm, 'name', null),
+                criterionIds,
+                weights: _map(this.$get(this.assessmentForm, 'criteria', []), ({ weight }) => weight),
+                assessmentFormId: this.$get(this.assessmentForm, 'id', null),
             },
             rules: {
                 name: 'required|type:string',
@@ -84,6 +93,12 @@ export default {
         },
         openEditCriterionForm(criterion) {
             this.$refs.editCriterionForm.open(criterion);
+        },
+        deleteCriterion(id) {
+            const index = this.form.criterionIds.indexOf(id);
+            if (index > -1) {
+                this.form.criterionIds.splice(index, 1);
+            }
         },
     },
 };

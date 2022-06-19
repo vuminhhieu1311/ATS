@@ -184,5 +184,13 @@
     "scheduler": "Người tạo",
     "delete interview schedule": "Xóa lịch phỏng vấn",
     "suggested questions": "Các câu hỏi phỏng vấn",
-    "stages": "Stages"
+    "stages": "Stages",
+    "assessment forms": "Form đánh giá",
+    "create assessment form": "Tạo form đánh giá",
+    "criteria": "Tiêu chí",
+    "new criterion": "Tiêu chí mới",
+    "edit criterion": "Chỉnh sửa tiêu chí",
+    "create new criterion": "Tạo tiêu chi mới",
+    "edit assessment form": "Chỉnh sửa form đánh giá",
+    "weight": "Trọng số"
 }

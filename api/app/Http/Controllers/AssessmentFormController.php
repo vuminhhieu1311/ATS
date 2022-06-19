@@ -58,46 +58,45 @@ class AssessmentFormController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
     public function show(AssessmentForm $assessmentForm)
     {
-        //
+        $assessmentForm->load('criteria.questions');
+
+        return AssessmentFormResource::make($assessmentForm);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AssessmentForm $assessmentForm)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, AssessmentForm $assessmentForm)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $assessmentForm->update([
+                'name' => $request->input('name'),
+            ]);
+
+            $weights = $request->input('weights', []);
+            $assessmentForm->criteria()->syncWithPivotValues($request->input('criterionIds', []), [
+                'created_at' => now(),
+                'updated_at' => now(),
+                'weight' => 1,
+            ]);
+
+            foreach ($assessmentForm->assessmentCriteria as $key => $assessmentCriterion) {
+                $assessmentCriterion->update([
+                    'weight' => $weights[$key],
+                ]);
+            }
+
+            DB::commit();
+
+            return AssessmentFormResource::make($assessmentForm->load('criteria'));
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(AssessmentForm $assessmentForm)
     {
         //
