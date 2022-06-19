@@ -73,6 +73,7 @@ export default {
                 ...formData,
             });
             this.criteria.unshift(criterion);
+            this.form.criterionIds.push(criterion.id);
             this.$message.success(this.$t('create successfully'));
             this.$refs.createCriterionForm.close();
         },

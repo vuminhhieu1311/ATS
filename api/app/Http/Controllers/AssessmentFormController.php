@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AssessmentFormResource;
-use App\Http\Resources\InterviewResource;
 use App\Models\AssessmentForm;
-use App\Notifications\AddInterviewSchedule;
 use App\Repositories\AssessmentForm\AssessmentFormRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -99,6 +97,8 @@ class AssessmentFormController extends Controller
 
     public function destroy(AssessmentForm $assessmentForm)
     {
-        //
+        $assessmentForm->assessmentCriteria()->delete();
+
+        return $assessmentForm->delete();
     }
 }

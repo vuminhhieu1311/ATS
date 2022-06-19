@@ -10,6 +10,10 @@ export default {
             type: Function,
             required: true,
         },
+        deleteAssessmentForm: {
+            type: Function,
+            required: true,
+        },
     },
 
     data() {

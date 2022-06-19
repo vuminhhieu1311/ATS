@@ -192,5 +192,7 @@
     "edit criterion": "Edit criterion",
     "create new criterion": "Create new criterion",
     "edit assessment form": "Edit assessment form",
-    "weight": "Weight"
+    "weight": "Weight",
+    "delete assessment form": "Delete assessment form",
+    "creation date": "Creation date"
 }
