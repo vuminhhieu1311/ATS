@@ -1,6 +1,7 @@
 import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _filter from 'lodash/filter';
+import _findIndex from 'lodash/findIndex';
 
 export default {
     props: {
@@ -54,6 +55,35 @@ export default {
             this.$refs.form.resetFields();
             this.form.criterionIds = [];
             this.form.weights = [];
+        },
+        openCreateCriterionForm() {
+            this.$refs.createCriterionForm.open(null);
+        },
+        async createCriterion(formData) {
+            const { data: criterion } = await this.$axios.$post('criteria', {
+                ...formData,
+            });
+            this.criteria.unshift(criterion);
+            this.$message.success(this.$t('create successfully'));
+            this.$refs.createCriterionForm.close();
+        },
+        async updateCriterion(formData) {
+            const { data: criterion } = await this.$axios.$put(`criteria/${formData.criterionId}`, {
+                ...formData,
+            });
+            let index = _findIndex(this.criteria, ['id', formData.criterionId]);
+            if (index !== -1) {
+                this.criteria.splice(index, 1, criterion);
+            }
+            index = _findIndex(this.addedCriteria, ['id', formData.criterionId]);
+            if (index !== -1) {
+                this.addedCriteria.splice(index, 1, criterion);
+            }
+            this.$message.success(this.$t('update successfully'));
+            this.$refs.editCriterionForm.close();
+        },
+        openEditCriterionForm(criterion) {
+            this.$refs.editCriterionForm.open(criterion);
         },
     },
 };

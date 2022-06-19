@@ -22,6 +22,8 @@ use App\Repositories\MailTemplate\MailTemplateRepository;
 use App\Repositories\MailTemplate\MailTemplateRepositoryInterface;
 use App\Repositories\Pipeline\PipelineRepository;
 use App\Repositories\Pipeline\PipelineRepositoryInterface;
+use App\Repositories\Question\QuestionRepository;
+use App\Repositories\Question\QuestionRepositoryInterface;
 use App\Repositories\Resume\ResumeRepository;
 use App\Repositories\Resume\ResumeRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
@@ -58,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CriterionResultRepositoryInterface::class, CriterionResultRepository::class);
         $this->app->singleton(AssessmentFormRepositoryInterface::class, AssessmentFormRepository::class);
         $this->app->singleton(CriterionRepositoryInterface::class, CriterionRepository::class);
+        $this->app->singleton(QuestionRepositoryInterface::class, QuestionRepository::class);
     }
 
     /**

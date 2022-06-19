@@ -27,4 +27,9 @@ class Criterion extends Model
     {
         return $this->hasMany(CriterionResult::class);
     }
+
+    public function criterionQuestions()
+    {
+        return $this->hasMany(CriterionQuestion::class);
+    }
 }

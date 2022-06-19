@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AssessmentFormResource;
 use App\Http\Resources\CriterionResource;
 use App\Models\AssessmentForm;
-use App\Repositories\AssessmentForm\AssessmentFormRepositoryInterface;
+use App\Models\Criterion;
 use App\Repositories\Criterion\CriterionRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CriterionController extends Controller
 {
@@ -20,64 +21,61 @@ class CriterionController extends Controller
 
     public function index()
     {
-        $criteria = $this->criterionRepository->getAll();
+        $criteria = $this->criterionRepository->getAll([
+            'questions',
+        ]);
 
         return CriterionResource::collection($criteria);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $criterion = $this->criterionRepository->create([
+                'name' => $request->input('name'),
+            ]);
+
+            foreach ($request->input('questionIds', []) as $id) {
+                $criterion->criterionQuestions()->create([
+                    'question_id' => $id,
+                ]);
+            }
+            $criterion->questions()->sync($request->input('questionIds', []));
+
+            DB::commit();
+
+            return CriterionResource::make($criterion->load('questions'));
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AssessmentForm $assessmentForm)
+    public function update(Request $request, Criterion $criterion)
     {
-        //
-    }
+        try {
+            DB::beginTransaction();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AssessmentForm $assessmentForm)
-    {
-        //
-    }
+            $criterion->update([
+                'name' => $request->input('name'),
+            ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AssessmentForm  $assessmentForm
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AssessmentForm $assessmentForm)
-    {
-        //
+            $criterion->questions()->syncWithPivotValues($request->input('questionIds', []), [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            DB::commit();
+
+            return CriterionResource::make($criterion->load('questions'));
+        } catch (Exception $e) {
+            DB::rollback();
+
+            throw $e;
+        }
     }
 
     /**

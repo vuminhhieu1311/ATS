@@ -11,7 +11,18 @@
                 <el-form-item :label="$t('name')" prop="name">
                     <el-input v-model="form.name" />
                 </el-form-item>
-                <el-form-item :label="$t('criteria')">
+                <div class="flex justify-between items-center mb-5">
+                    <p>{{ $t("criteria") }}</p>
+                    <el-button
+                        type="primary"
+                        class="capitalize criterion-btn"
+                        @click="openCreateCriterionForm"
+                    >
+                        <span class="text-base material-icons mr-1">add_circle</span>
+                        {{ $t('new criterion') }}
+                    </el-button>
+                </div>
+                <el-form-item>
                     <el-select
                         v-model="form.criterionIds"
                         class="w-full"
@@ -30,8 +41,8 @@
                 </el-form-item>
                 <el-row :gutter="20">
                     <el-col
-                        v-for="(criteria, index) in addedCriteria"
-                        :key="$get(criteria, 'id')"
+                        v-for="(criterion, index) in addedCriteria"
+                        :key="$get(criterion, 'id')"
                         :xl="8"
                         :lg="8"
                         :md="12"
@@ -44,7 +55,7 @@
                                     <el-avatar size="small" class="uppercase font-semibold">{{ index + 1 }}</el-avatar>
                                 </div>
                                 <div class="info ml-2">
-                                    <p class="text font-semibold">{{ $get(criteria, 'name') }}</p>
+                                    <p class="text font-semibold">{{ $get(criterion, 'name') }}</p>
                                     <div class="flex mt-2">
                                         <p class="mr-5">{{ $t('weight') }}:</p>
                                         <el-input-number
@@ -59,13 +70,13 @@
                             <div>
                                 <span
                                     class="cursor-pointer px-1 text-lg material-icons-outlined"
-                                    @click="deleteCriterion($get(criteria, 'id'))"
+                                    @click="openEditCriterionForm(criterion)"
                                 >
                                     edit
                                 </span>
                                 <span
                                     class="cursor-pointer px-1 text-lg material-icons-outlined"
-                                    @click="deleteCriterion($get(criteria, 'id'))"
+                                    @click="deleteCriterion($get(criterion, 'id'))"
                                 >
                                     close
                                 </span>
@@ -90,16 +101,35 @@
                 </div>
             </el-form>
         </div>
+        <CriterionForm
+            ref="createCriterionForm"
+            :submit-form="createCriterion"
+        />
+        <CriterionForm
+            ref="editCriterionForm"
+            :submit-form="updateCriterion"
+        />
     </div>
 </template>
 
 <script>
     import formMixin from '~/mixins/form';
+    import CriterionForm from '~/components/Criterion/Form/index.vue';
     import mixin from './mixin';
 
     export default {
         name: 'CreateAssessmentForm',
 
+        components: {
+            CriterionForm,
+        },
+
         mixins: [formMixin, mixin],
     };
 </script>
+
+<style lang="scss">
+    .criterion-btn {
+        padding: 8px 10px !important;
+    }
+</style>

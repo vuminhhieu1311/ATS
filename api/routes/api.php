@@ -21,6 +21,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
 use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
@@ -86,14 +87,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('{interview}/submit-assessment-form', SubmitAssessmentForm::class);
     });
 
-//    Route::prefix('jobs')->group(function () {
-//        Route::get('/published', GetAllPublishedJobController::class);
-//        Route::get('/published/{job}', GetPublishedJobController::class);
-//        Route::get('/locations', GetAllLocationController::class);
-//        Route::get('/tags', GetAllTagController::class);
-//        Route::post('/{job}/candidates', 'CreateCandidateController');
-//    });
-
     Route::resources([
         'jobs' => JobController::class,
         'candidates' => CandidateController::class,
@@ -108,5 +101,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'stages' => StageController::class,
         'assessment-forms' => AssessmentFormController::class,
         'criteria' => CriterionController::class,
+        'questions' => QuestionController::class,
     ]);
 });
