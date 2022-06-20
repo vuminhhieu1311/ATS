@@ -40,6 +40,7 @@
                 src="~/assets/images/google.png"
                 alt="google"
                 class="social-icon cursor-pointer mr-8"
+                @click="loginWithGoogle"
             >
             <img
                 src="~/assets/images/facebook.png"

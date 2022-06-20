@@ -39,7 +39,7 @@
                     ...formData,
                 });
                 this.$router.push('/assessment-forms');
-                this.$message.success(this.$t('create successfully'));
+                this.$message.success(this.$t('update successfully'));
             },
         },
     };
