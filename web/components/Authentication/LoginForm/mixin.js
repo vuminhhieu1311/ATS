@@ -21,5 +21,8 @@ export default {
         loginWithGoogle() {
             window.location.href = `${process.env.BACKEND_URL}/social/google/login`;
         },
+        loginWithFacebook() {
+            window.location.href = `${process.env.BACKEND_URL}/social/facebook/login`;
+        },
     },
 };

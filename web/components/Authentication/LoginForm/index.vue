@@ -46,6 +46,7 @@
                 src="~/assets/images/facebook.png"
                 alt="facebook"
                 class="social-icon cursor-pointer"
+                @click="loginWithFacebook"
             >
         </div>
     </div>

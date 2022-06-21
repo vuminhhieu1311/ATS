@@ -26,7 +26,8 @@ class SocialLoginController extends Controller
         $createdUser = User::firstOrCreate(
             ['email' => $user->email],
             [
-                'email' => $user->name,
+                'email' => $user->email,
+                'name' => $user->name,
                 'password' => Hash::make(Str::random(24)),
             ]
         );
