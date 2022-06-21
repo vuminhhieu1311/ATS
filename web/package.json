@@ -36,6 +36,7 @@
         "store": "^2.0.12",
         "vue": "^2.6.14",
         "vue-apexcharts": "^1.6.2",
+        "vue-avatar": "^2.3.3",
         "vue-image-crop-upload": "^3.0.3",
         "vue-quill-editor": "^3.0.6",
         "vue-server-renderer": "^2.6.14",

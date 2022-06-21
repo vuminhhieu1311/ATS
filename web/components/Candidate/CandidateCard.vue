@@ -2,13 +2,11 @@
     <el-card shadow="hover" class="board-item cursor-pointer">
         <div class="flex justify-start">
             <nuxt-link :to="`/candidates/${$get(candidate, 'id')}`">
-                <el-avatar
-                    size="medium"
-                    class=" uppercase"
-                    :src="$get(candidate, 'user.profilePhotoUrl')"
-                >
-                    {{ candidateName }}
-                </el-avatar>
+                <Avatar
+                    :username="$get(candidate, 'user.name')"
+                    :src="`http://localhost:8000${$get(candidate, 'user.profilePhotoUrl')}`"
+                    :size="35"
+                />
             </nuxt-link>
             <div class="ml-2">
                 <div class="flex justify-between">
@@ -72,11 +70,13 @@
 
 <script>
     import moment from 'moment';
+    import Avatar from 'vue-avatar';
     import CandidateStar from './CandidateStar.vue';
 
     export default {
         components: {
             CandidateStar,
+            Avatar,
         },
 
         props: {
@@ -95,10 +95,6 @@
         },
 
         computed: {
-            candidateName() {
-                const name = this.$get(this.candidate, 'user.name', null);
-                return name ? name.slice(0, 1) : null;
-            },
             updatedAt() {
                 return moment(this.$get(this.candidate, 'updatedAt')).format('DD/MM/YYYY LT');
             },
