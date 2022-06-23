@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="-mt-5 flex justify-start">
+        <div class="ml-5 flex justify-start">
             <div>
-                <el-avatar
-                    :size="100"
+                <vue-avatar
+                    :username="$get(interview, 'candidateJob.candidate.user.name')"
                     :src="`http://localhost:8000${$get(interview, 'candidateJob.candidate.user.profilePhotoUrl')}`"
-                    class="uppercase"
+                    :size="100"
                 />
             </div>
             <div class="ml-5">
@@ -87,10 +87,11 @@
                     <div slot="content">
                         {{ $get(interviewer, 'user.name') }}<br>{{ $get(interviewer, 'user.email') }}
                     </div>
-                    <el-avatar
+                    <vue-avatar
                         class="cursor-pointer"
-                        size="medium"
+                        :username="$get(interviewer, 'user.name')"
                         :src="`http://localhost:8000${$get(interviewer, 'user.profilePhotoUrl')}`"
+                        :size="40"
                     />
                 </el-tooltip>
             </el-descriptions-item>

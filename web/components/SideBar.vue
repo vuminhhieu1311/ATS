@@ -75,6 +75,11 @@
                         icon: 'assessment',
                         label: 'assessment forms',
                     },
+                    {
+                        url: '/permissions',
+                        icon: 'lock',
+                        label: 'permissions',
+                    },
                 ],
             };
         },

@@ -3,7 +3,7 @@
         <div class="cursor-pointer" @click="toggleSidebar">
             <span class="material-icons-outlined">menu</span>
         </div>
-        <div>
+        <div class="flex items-center">
             <el-dropdown trigger="click" class="mr-3">
                 <div class="flex items-center">
                     <img alt="language" :src="require(`~/assets/images/${$i18n.locale}.png`)">
@@ -27,10 +27,10 @@
                 </el-dropdown-menu>
             </el-dropdown>
             <el-dropdown trigger="click">
-                <Avatar
+                <vue-avatar
                     :username="$auth.user.name"
                     :src="`http://localhost:8000${$auth.user.profile_photo_url}`"
-                    :size="40"
+                    :size="35"
                 />
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item class="flex items-center" @click.native="logout">
@@ -46,14 +46,9 @@
 <script>
     import { mapActions } from 'vuex';
     import { LOCALES } from '~/enums/locales';
-    import Avatar from 'vue-avatar';
 
     export default {
         name: 'AppHeader',
-
-        components: {
-            Avatar,
-        },
 
         data() {
             return {

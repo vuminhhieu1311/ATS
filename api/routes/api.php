@@ -20,6 +20,7 @@ use App\Http\Controllers\Job\GetAllTagController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ResumeController;
@@ -102,5 +103,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'assessment-forms' => AssessmentFormController::class,
         'criteria' => CriterionController::class,
         'questions' => QuestionController::class,
+        'permissions' => PermissionController::class,
     ]);
 });

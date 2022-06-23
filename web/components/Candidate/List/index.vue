@@ -11,7 +11,7 @@
                     <template slot-scope="{ row }">
                         <nuxt-link :to="`/candidates/${$get(row, 'id')}`" class="flex justify-start items-center">
                             <div>
-                                <Avatar
+                                <vue-avatar
                                     :username="$get(row, 'user.name')"
                                     :src="`http://localhost:8000${$get(row, 'user.profile_photo_url')}`"
                                     :size="40"
@@ -89,7 +89,6 @@
 <script>
     import Pagination from '~/components/Shared/Pagination.vue';
     import CandidateStatus from '~/components/Shared/CandidateStatus.vue';
-    import Avatar from 'vue-avatar';
 
     export default {
         name: 'CandidateList',
@@ -97,7 +96,6 @@
         components: {
             Pagination,
             CandidateStatus,
-            Avatar,
         },
 
         props: {

@@ -27,6 +27,7 @@ export default {
         '@/plugins/nuxt-client-init',
         '@/plugins/lodash-get',
         '@/plugins/handle-error',
+        '@/plugins/vue-avatar',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

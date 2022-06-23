@@ -2,7 +2,7 @@
     <el-card shadow="hover" class="board-item cursor-pointer">
         <div class="flex justify-start">
             <nuxt-link :to="`/candidates/${$get(candidate, 'id')}`">
-                <Avatar
+                <vue-avatar
                     :username="$get(candidate, 'user.name')"
                     :src="`http://localhost:8000${$get(candidate, 'user.profilePhotoUrl')}`"
                     :size="35"
@@ -70,13 +70,11 @@
 
 <script>
     import moment from 'moment';
-    import Avatar from 'vue-avatar';
     import CandidateStar from './CandidateStar.vue';
 
     export default {
         components: {
             CandidateStar,
-            Avatar,
         },
 
         props: {

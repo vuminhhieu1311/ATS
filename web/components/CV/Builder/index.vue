@@ -1,6 +1,6 @@
 <template>
     <div class="cv-builder grid grid-cols-7 h-screen">
-        <div class="col-span-2 border-r">
+        <div class="cv-builder-tabs col-span-2 border-r">
             <el-tabs type="card">
                 <el-tab-pane>
                     <span slot="label" class="text-text material-icons-outlined">list</span>
