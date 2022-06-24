@@ -5,9 +5,9 @@
                 <el-card shadow="never">
                     <div class="flex justify-between mb-5">
                         <el-input
-                            v-model="permissionName"
+                            v-model="name"
                             class="max-w-sm w-full"
-                            :placeholder="$t('permission')"
+                            :placeholder="$t('permission name')"
                             size="small"
                             prefix-icon="el-icon-search"
                             clearable
@@ -28,7 +28,7 @@
                         >
                             <el-table-column
                                 prop="name"
-                                :label="$t('permission')"
+                                :label="$t('permission name')"
                             >
                                 <template slot-scope="{ row }">
                                     <span>{{ $get(row, 'name') }}</span>

@@ -19,7 +19,7 @@ class PermissionResource extends ShareResource
             'id' => $this->id,
             'name' => $this->name,
             'guardName' => $this->guard_name,
-            'users' => UserResource::collection($this->whenLoaded('users')),
+            'users' => UserResource::collection($this->users),
         ];
     }
 }

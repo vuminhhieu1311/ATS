@@ -36,6 +36,8 @@ use App\Repositories\Stage\StageRepository;
 use App\Repositories\Stage\StageRepositoryInterface;
 use App\Repositories\Tag\TagRepository;
 use App\Repositories\Tag\TagRepositoryInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -64,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CriterionRepositoryInterface::class, CriterionRepository::class);
         $this->app->singleton(QuestionRepositoryInterface::class, QuestionRepository::class);
         $this->app->singleton(PermissionRepositoryInterface::class, PermissionRepository::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**

@@ -7,10 +7,6 @@ export default {
             type: Array,
             required: true,
         },
-        meta: {
-            type: Object,
-            required: true,
-        },
         updatePermissions: {
             type: Function,
             required: true,
@@ -19,7 +15,7 @@ export default {
 
     data() {
         return {
-            permissionName: this.$get(this.$route, 'query.permissionName', null),
+            name: this.$get(this.$route, 'query.name', null),
             currentTab: 'Users',
             tabs: ['Users', 'Roles'],
             permission: {},
@@ -35,8 +31,8 @@ export default {
     methods: {
         onSearchPermissions(value) {
             const query = value
-                ? { ...this.query, permissionName: value }
-                : _omit(this.query, 'permissionName');
+                ? { ...this.query, name: value }
+                : _omit(this.query, 'name');
 
                 this.$router.push({ query });
         },
@@ -46,26 +42,19 @@ export default {
         },
         async addUsersToPermission(permissionId, userIds) {
             try {
-                console.log(permissionId);
-                console.log(userIds);
-                // const { data: { data: permission } } = await addUsersToPermission(permissionId, { userIds });
-                // this.updatePermissionList(permission);
-                // this.$refs.refUsers[0].reset();
-                // this.$message.success(this.$t('messages.update_successfully'));
+                const { data: permission } = await this.$axios.$post(`permissions/${permissionId}/add-users`, { userIds });
+                this.updatePermissionList(permission);
+                this.$refs.refUsers[0].reset();
+                this.$message.success(this.$t('update successfully'));
             } catch (error) {
                 this.$handleError(error);
             }
         },
         async removeUsersFromPermission(permissionId, userDeletedIds) {
             try {
-                console.log(permissionId);
-                console.log(userDeletedIds);
-                // const { data: { data: permission } } = await removeUsersFromPermission(
-                //     permissionId,
-                //     { userDeletedIds },
-                // );
-                // this.updatePermissionList(permission);
-                // this.$message.success(this.$t('messages.update_successfully'));
+                const { data: permission } = await this.$axios.$post(`permissions/${permissionId}/remove-users`, { userDeletedIds });
+                this.updatePermissionList(permission);
+                this.$message.success(this.$t('update successfully'));
             } catch (error) {
                 this.$handleError(error);
             }

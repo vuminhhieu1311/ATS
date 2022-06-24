@@ -194,5 +194,9 @@
     "edit assessment form": "Edit assessment form",
     "weight": "Weight",
     "delete assessment form": "Delete assessment form",
-    "creation date": "Creation date"
+    "creation date": "Creation date",
+    "permissions": "Permissions",
+    "permission name": "Permission name",
+    "Users": "Users",
+    "Roles": "Roles"
 }

@@ -47,20 +47,18 @@
                     width="70"
                 >
                     <template slot-scope="{ row }">
-                        <el-avatar
-                            size="large"
-                            class=" uppercase"
-                            :src="$get(row, 'avatarUrl')"
-                        >
-                            {{ row.name ? row.name.slice(0, 1) : null }}
-                        </el-avatar>
+                        <vue-avatar
+                            :username="row.name"
+                            :src="`http://localhost:8000${row.profilePhotoUrl}`"
+                            :size="40"
+                        />
                     </template>
                 </el-table-column>
                 <el-table-column
                     :label="$t('user')"
                 >
                     <template slot-scope="{ row }">
-                        <p class="font-semibold text-lg">{{ row.name }}</p>
+                        <p class="font-semibold">{{ row.name }}</p>
                         <p>{{ row.email }}</p>
                     </template>
                 </el-table-column>
@@ -114,11 +112,10 @@
         },
 
         methods: {
-            async onSearchUsers(userKeyword) {
+            async onSearchUsers(keyword) {
                 try {
-                    console.log(userKeyword);
-                    // const { data: { data: users } } = await getUsers({ userKeyword });
-                    // this.users = users;
+                    const { data: users } = await this.$axios.$get('users', { params: { keyword } });
+                    this.users = users;
                 } catch (error) {
                     this.$handleError(error);
                 }
