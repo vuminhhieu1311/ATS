@@ -198,5 +198,10 @@
     "permissions": "Permissions",
     "permission name": "Permission name",
     "Users": "Users",
-    "Roles": "Roles"
+    "Roles": "Roles",
+    "permission": "Permission",
+    "add": "Add",
+    "search users": "Search users",
+    "search roles": "Search roles",
+    "remove": "Remove"
 }

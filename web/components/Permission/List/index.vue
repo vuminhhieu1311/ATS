@@ -31,7 +31,7 @@
                                 :label="$t('permission name')"
                             >
                                 <template slot-scope="{ row }">
-                                    <span>{{ $get(row, 'name') }}</span>
+                                    <span class="capitalize">{{ $get(row, 'name') }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column
@@ -64,6 +64,8 @@
                             :permission="permission"
                             :add-users-to-permission="addUsersToPermission"
                             :remove-users-from-permission="removeUsersFromPermission"
+                            :add-roles-to-permission="addRolesToPermission"
+                            :remove-roles-from-permission="removeRolesFromPermission"
                         />
                     </el-tab-pane>
                 </el-tabs>
@@ -75,12 +77,14 @@
 <script>
     import mixin from './mixin';
     import UsersTab from './UsersTab.vue';
+    import RolesTab from './RolesTab.vue';
 
     export default {
         name: 'PermissionList',
 
         components: {
             UsersTab,
+            RolesTab,
         },
 
         mixins: [mixin],

@@ -20,12 +20,15 @@ use App\Http\Controllers\Job\GetAllTagController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MailTemplate\FillInterviewMailController;
 use App\Http\Controllers\MailTemplateController;
+use App\Http\Controllers\Permission\AddRolesToPermissionController;
 use App\Http\Controllers\Permission\AddUsersToPermissionController;
+use App\Http\Controllers\Permission\RemoveRolesFromPermissionController;
 use App\Http\Controllers\Permission\RemoveUsersFromPermissionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Stage\GetCandidatesByStageAndJobController;
@@ -90,9 +93,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('interviews')->group(function () {
         Route::post('{interview}/submit-assessment-form', SubmitAssessmentForm::class);
     });
+
     Route::prefix('permissions')->group(function () {
         Route::post('/{permission}/add-users', AddUsersToPermissionController::class);
         Route::post('/{permission}/remove-users', RemoveUsersFromPermissionController::class);
+        Route::post('/{permission}/add-roles', AddRolesToPermissionController::class);
+        Route::post('/{permission}/remove-roles', RemoveRolesFromPermissionController::class);
     });
 
     Route::resources([
@@ -112,5 +118,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'questions' => QuestionController::class,
         'permissions' => PermissionController::class,
         'users' => UserController::class,
+        'roles' => RoleController::class,
     ]);
 });

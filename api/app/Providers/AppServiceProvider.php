@@ -28,6 +28,8 @@ use App\Repositories\Question\QuestionRepository;
 use App\Repositories\Question\QuestionRepositoryInterface;
 use App\Repositories\Resume\ResumeRepository;
 use App\Repositories\Resume\ResumeRepositoryInterface;
+use App\Repositories\Role\RoleRepository;
+use App\Repositories\Role\RoleRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
 use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\Staff\StaffRepository;
@@ -67,6 +69,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(QuestionRepositoryInterface::class, QuestionRepository::class);
         $this->app->singleton(PermissionRepositoryInterface::class, PermissionRepository::class);
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(RoleRepositoryInterface::class, RoleRepository::class);
     }
 
     /**

@@ -194,5 +194,14 @@
     "edit assessment form": "Chỉnh sửa form đánh giá",
     "weight": "Trọng số",
     "delete assessment form": "Xóa form đánh giá",
-    "creation date": "Ngày tạo"
+    "creation date": "Ngày tạo",
+    "permissions": "Quyền",
+    "permission name": "Tên quyền",
+    "Users": "Người dùng",
+    "Roles": "Vai trò",
+    "permission": "Quyền",
+    "add": "Thêm",
+    "search users": "Tìm kiếm người dùng",
+    "search roles": "Tìm kiếm vai trò",
+    "remove": "Xóa"
 }

@@ -59,6 +59,24 @@ export default {
                 this.$handleError(error);
             }
         },
+        async addRolesToPermission(permissionId, roleIds) {
+            try {
+                const { data: permission } = await this.$axios.$post(`permissions/${permissionId}/add-roles`, { roleIds });
+                this.updatePermissionList(permission);
+                this.$message.success(this.$t('update successfully'));
+            } catch (error) {
+                this.$handleError(error);
+            }
+        },
+        async removeRolesFromPermission(permissionId, roleDeletedIds) {
+            try {
+                const { data: permission } = await this.$axios.$post(`permissions/${permissionId}/remove-roles`, { roleDeletedIds });
+                this.updatePermissionList(permission);
+                this.$message.success(this.$t('update successfully'));
+            } catch (error) {
+                this.$handleError(error);
+            }
+        },
         updatePermissionList(permission) {
             this.permission = permission;
             const permissions = this.permissions;

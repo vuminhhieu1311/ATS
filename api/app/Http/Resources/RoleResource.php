@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\Custom\ShareResource;
 
-class PermissionResource extends ShareResource
+class RoleResource extends ShareResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +19,6 @@ class PermissionResource extends ShareResource
             'id' => $this->id,
             'name' => $this->name,
             'guardName' => $this->guard_name,
-            'users' => UserResource::collection($this->users),
-            'roles' => RoleResource::collection($this->roles),
         ];
     }
 }
