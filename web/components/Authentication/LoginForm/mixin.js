@@ -1,3 +1,5 @@
+import { CANDIDATE } from '~/enums/roles';
+
 export default {
     data() {
         return {
@@ -17,6 +19,9 @@ export default {
             await this.$auth.loginWith('laravelSanctum', {
                 data: this.form,
             });
+            if (this.$get(this.$auth.user, 'roleNames[0]') === CANDIDATE) {
+                this.$router.push('/ats');
+            }
         },
         loginWithGoogle() {
             window.location.href = `${process.env.BACKEND_URL}/social/google/login`;

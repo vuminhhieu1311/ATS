@@ -128,6 +128,7 @@
         }
         &__content {
             background-color: $white;
+            padding: theme('spacing.8');
         }
         &__item {
             border: none !important;
@@ -155,6 +156,7 @@
         }
         &__content {
             background-color: $white;
+            padding: theme('spacing.8');
         }
         &__item {
             color: $text !important;

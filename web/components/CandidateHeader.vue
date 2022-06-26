@@ -35,8 +35,8 @@
             </el-dropdown>
             <el-dropdown trigger="click">
                 <vue-avatar
-                    :username="$auth.user.name"
-                    :src="`http://localhost:8000${$auth.user.profile_photo_url}`"
+                    :username="$get($auth.user, 'name')"
+                    :src="`http://localhost:8000${$get($auth.user, 'profile_photo_url')}`"
                     :size="35"
                 />
                 <el-dropdown-menu slot="dropdown">
