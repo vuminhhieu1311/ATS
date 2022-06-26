@@ -1,7 +1,11 @@
 <template>
     <div class="pr-10 mt-8">
         <div class="flex justify-center">
-            <el-avatar :size="220" :src="`http://localhost:8000${$auth.user.profile_photo_url}`" />
+            <vue-avatar
+                :username="$get($auth.user, 'name')"
+                :src="`http://localhost:8000${$get($auth.user, 'profile_photo_url')}`"
+                :size="220"
+            />
         </div>
         <div class="flex justify-center mt-8">
             <el-button

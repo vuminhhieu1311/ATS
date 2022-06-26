@@ -63,10 +63,11 @@
             </template>
             <a target="_blank" :href="`/candidates/${$get(interview, 'candidateJob.candidate.id')}`">
                 <div class="flex justify-start">
-                    <el-avatar
+                    <vue-avatar
                         class="mr-2"
-                        size="medium"
+                        :username="$get(interview, 'candidateJob.candidate.user.name')"
                         :src="`http://localhost:8000${$get(interview, 'candidateJob.candidate.user.profilePhotoUrl')}`"
+                        :size="35"
                     />
                     <div>
                         <p class="text font-medium text-base">
@@ -83,10 +84,11 @@
                 {{ $t('scheduler') }}
             </template>
             <div class="flex justify-start">
-                <el-avatar
+                <vue-avatar
                     class="mr-2"
-                    size="medium"
+                    :username="$get(interview, 'scheduler.user.name')"
                     :src="`http://localhost:8000${$get(interview, 'scheduler.user.profilePhotoUrl')}`"
+                    :size="35"
                 />
                 <div>
                     <p class="text font-medium text-base">
@@ -101,20 +103,23 @@
                 <i class="el-icon-user" />
                 {{ $t('interviewers') }}
             </template>
-            <el-tooltip
-                v-for="interviewer in $get(interview, 'interviewers')"
-                :key="$get(interviewer, 'id')"
-                class="mr-3"
-            >
-                <div slot="content">
-                    {{ $get(interviewer, 'user.name') }}<br>{{ $get(interviewer, 'user.email') }}
-                </div>
-                <el-avatar
-                    class="cursor-pointer"
-                    size="medium"
-                    :src="`http://localhost:8000${$get(interviewer, 'user.profilePhotoUrl')}`"
-                />
-            </el-tooltip>
+            <div class="flex">
+                <el-tooltip
+                    v-for="interviewer in $get(interview, 'interviewers')"
+                    :key="$get(interviewer, 'id')"
+                    class="mr-3"
+                >
+                    <div slot="content">
+                        {{ $get(interviewer, 'user.name') }}<br>{{ $get(interviewer, 'user.email') }}
+                    </div>
+                    <vue-avatar
+                        class="cursor-pointer"
+                        :username="$get(interviewer, 'user.name')"
+                        :src="`http://localhost:8000${$get(interviewer, 'user.profilePhotoUrl')}`"
+                        :size="35"
+                    />
+                </el-tooltip>
+            </div>
         </el-descriptions-item>
         <el-descriptions-item>
             <template slot="label">

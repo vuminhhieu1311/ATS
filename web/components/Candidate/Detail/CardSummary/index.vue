@@ -3,13 +3,12 @@
         class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 px-5 shadow-xl rounded-lg mt-16"
     >
         <div class="avatar flex flex-wrap justify-center w-full px-4">
-            <el-avatar
-                :size="140"
+            <vue-avatar
+                :username="$get(candidate, 'user.name')"
                 :src="profilePhotoUrl"
+                :size="140"
                 class="-mt-16 uppercase"
-            >
-                {{ candidateName }}
-            </el-avatar>
+            />
         </div>
         <div class="text-center mt-5">
             <p class="text font-medium text-xl">
@@ -69,10 +68,6 @@
         },
 
         computed: {
-            candidateName() {
-                const name = this.$get(this.candidate, 'user.name', null);
-                return name ? name.slice(0, 1) : null;
-            },
             profilePhotoUrl() {
                 const baseUrl = process.env.BACKEND_URL;
                 return `${baseUrl}${this.$get(this.candidate, 'user.profilePhotoUrl')}`;
@@ -82,11 +77,6 @@
 </script>
 
 <style lang="scss">
-    .avatar {
-        .el-avatar {
-            font-size: theme('fontSize.4xl');
-        }
-    }
     .add-btn {
         padding: 0 2px !important;
     }

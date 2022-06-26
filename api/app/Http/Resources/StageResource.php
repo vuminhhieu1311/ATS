@@ -20,6 +20,7 @@ class StageResource extends ShareResource
             'id' => $this->id,
             'name' => $this->name,
             'type' => $this->type,
+            'isActive' => $this->is_active,
             'order' => $this->pivot->order ?? new MissingValue(),
             'pipelines' => PipelineResource::collection($this->whenLoaded('pipelines')),
         ];

@@ -108,7 +108,7 @@
     import formMixin from '~/mixins/form';
     import mixin from './mixin';
     import DraggableList from '../../Stage/DraggableList.vue';
-    import CreateStageForm from '../../Stage/Form/index.vue';
+    import CreateStageForm from '../../Stage/CreateForm/index.vue';
 
     export default {
         name: 'CreateForm',

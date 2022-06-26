@@ -11,7 +11,7 @@
                     <template slot-scope="{ row }">
                         <nuxt-link :to="`/jobs/${$get(row, 'id')}`" class="flex justify-start items-center">
                             <div>
-                                <el-avatar :src="$get(row, 'photoUrl')" class="mr-3" />
+                                <el-avatar :src="require('~/assets/images/logo-icon.png')" class="mr-3" />
                             </div>
                             <span class="font-semibold">{{ $get(row, 'name') }}</span>
                         </nuxt-link>

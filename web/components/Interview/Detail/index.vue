@@ -3,10 +3,10 @@
         <div class="w-full lg:w-8/12 pr-8">
             <div class="bg-white p-8 flex justify-start">
                 <div>
-                    <el-avatar
-                        :size="120"
+                    <vue-avatar
+                        :username="$get(interview, 'candidateJob.candidate.user.name')"
                         :src="`http://localhost:8000${$get(interview, 'candidateJob.candidate.user.profilePhotoUrl')}`"
-                        class="uppercase"
+                        :size="120"
                     />
                 </div>
                 <div class="ml-5">

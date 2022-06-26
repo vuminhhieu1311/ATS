@@ -1,20 +1,11 @@
-import _cloneDeep from 'lodash/cloneDeep';
-import _assign from 'lodash/assign';
-
 export default {
-    props: {
-        stage: Object,
-    },
-
     data() {
-        const stage = _cloneDeep(this.stage);
-
         return {
             show: false,
             loading: false,
-            form: _assign({
+            form: {
                 name: null,
-            }, stage || {}),
+            },
             rules: {
                 name: 'required|max:255',
             },
@@ -27,7 +18,6 @@ export default {
         },
         close() {
             this.resetForm();
-            this.loading = false;
             this.show = false;
         },
         resetForm() {

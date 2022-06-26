@@ -56,19 +56,24 @@
                         label: 'calendar',
                     },
                     {
-                        url: '/candidates',
-                        icon: 'groups',
-                        label: 'candidates',
-                    },
-                    {
                         url: '/pipelines',
                         icon: 'view_week',
                         label: 'pipelines',
                     },
                     {
+                        url: '/candidates',
+                        icon: 'groups',
+                        label: 'candidates',
+                    },
+                    {
                         url: '/jobs',
                         icon: 'business_center',
                         label: 'jobs',
+                    },
+                    {
+                        url: '/stages',
+                        icon: 'view_week',
+                        label: 'stages',
                     },
                     {
                         url: '/assessment-forms',

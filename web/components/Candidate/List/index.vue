@@ -13,7 +13,7 @@
                             <div>
                                 <vue-avatar
                                     :username="$get(row, 'user.name')"
-                                    :src="`http://localhost:8000${$get(row, 'user.profile_photo_url')}`"
+                                    :src="`http://localhost:8000${$get(row, 'user.profilePhotoUrl')}`"
                                     :size="40"
                                     class="mr-3"
                                 />

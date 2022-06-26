@@ -32,6 +32,7 @@ class StageController extends Controller
 
         $stage = $this->stageRepository->create([
             'name' => $request->input('name'),
+            'is_active' => 1,
         ]);
 
         return StageResource::make($stage);
@@ -44,6 +45,8 @@ class StageController extends Controller
 
     public function destroy(Stage $stage)
     {
-        //
+        $stage->pipelineStages()->delete();
+
+        return $stage->delete();
     }
 }
