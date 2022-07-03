@@ -10,12 +10,19 @@
 
 <script>
     import EditPipeline from '~/components/Pipeline/Form/index.vue';
+    import { MANAGE_PIPELINE } from '~/enums/permission';
 
     export default {
         name: 'EditPipelinePage',
 
         components: {
             EditPipeline,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_PIPELINE],
         },
 
         async asyncData({ $axios, params }) {

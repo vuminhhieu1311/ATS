@@ -14,7 +14,7 @@ class WebInitController extends Controller
             'staff',
         ]);
 
-        $user->permissionNames = $user->getPermissionNames();
+        $user->permissionNames = $user->getAllPermissions()->pluck('name');
         $user->roleNames = $user->getRoleNames();
 
         return $user;

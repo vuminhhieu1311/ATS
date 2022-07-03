@@ -22,6 +22,7 @@
     import _map from 'lodash/map';
     import CandidateList from '~/components/Candidate/List/index.vue';
     import CandidateFilter from '~/components/Candidate/List/Filter/index.vue';
+    import { MANAGE_CANDIDATE } from '~/enums/permission';
 
     export default {
         name: 'CandidatesPage',
@@ -29,6 +30,12 @@
         components: {
             CandidateList,
             CandidateFilter,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_CANDIDATE],
         },
 
         async asyncData({ $axios, query }) {

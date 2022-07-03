@@ -9,12 +9,19 @@
 
 <script>
     import PermissionList from '~/components/Permission/List/index.vue';
+    import { MANAGE_PERMISSION } from '~/enums/permission';
 
     export default {
         name: 'PermissionPage',
 
         components: {
             PermissionList,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_PERMISSION],
         },
 
         async asyncData({ $axios, query }) {

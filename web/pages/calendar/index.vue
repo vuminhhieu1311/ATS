@@ -20,6 +20,7 @@
     import _findIndex from 'lodash/findIndex';
     import Calendar from '~/components/Calendar/index.vue';
     import InterviewForm from '~/components/Interview/InterviewForm/index.vue';
+    import { MANAGE_INTERVIEW_SCHEDULE, VIEW_INTERVIEW_SCHEDULE } from '~/enums/permission';
 
     export default {
         name: 'CalendarPage',
@@ -27,6 +28,12 @@
         components: {
             Calendar,
             InterviewForm,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_INTERVIEW_SCHEDULE, VIEW_INTERVIEW_SCHEDULE],
         },
 
         async asyncData({ $axios, query }) {

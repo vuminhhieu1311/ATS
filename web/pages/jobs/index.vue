@@ -21,6 +21,7 @@
 <script>
     import JobList from '~/components/Job/List/index.vue';
     import JobFilter from '~/components/Job/List/Filter/index.vue';
+    import { MANAGE_JOB } from '~/enums/permission';
 
     export default {
         name: 'JobsPage',
@@ -28,6 +29,12 @@
         components: {
             JobList,
             JobFilter,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_JOB],
         },
 
         async asyncData({ $axios, query }) {

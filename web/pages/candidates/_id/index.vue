@@ -23,6 +23,7 @@
     import _findIndex from 'lodash/findIndex';
     import CardDetail from '~/components/Candidate/Detail/CardDetail/index.vue';
     import CardSummary from '~/components/Candidate/Detail/CardSummary/index.vue';
+    import { MANAGE_CANDIDATE } from '~/enums/permission';
 
     export default {
         name: 'CandidateDetailPage',
@@ -30,6 +31,12 @@
         components: {
             CardDetail,
             CardSummary,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_CANDIDATE],
         },
 
         async asyncData({ $axios, params }) {

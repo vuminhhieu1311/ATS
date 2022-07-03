@@ -10,12 +10,19 @@
 
 <script>
     import AssessmentFormList from '~/components/Assessment/List/index.vue';
+    import { MANAGE_ASSESSMENT_FORM } from '~/enums/permission';
 
     export default {
         name: 'AssessmentFormPage',
 
         components: {
             AssessmentFormList,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_ASSESSMENT_FORM],
         },
 
         async asyncData({ $axios }) {

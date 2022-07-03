@@ -26,6 +26,7 @@
     // import _findIndex from 'lodash/findIndex';
     import StageList from '~/components/Stage/List/index.vue';
     import CreateStageForm from '~/components/Stage/CreateForm/index.vue';
+    import { MANAGE_STAGE } from '~/enums/permission';
 
     export default {
         name: 'StagePage',
@@ -35,6 +36,12 @@
             CreateStageForm,
         },
 
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_STAGE],
+        },
+
         async asyncData({ $axios, query }) {
             const { data: stages } = await $axios.$get('stages', { params: query });
 
@@ -42,6 +49,7 @@
                 stages,
             };
         },
+
         data() {
             return {
                 stageId: '',

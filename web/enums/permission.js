@@ -1,0 +1,9 @@
+export const MANAGE_INTERVIEW_SCHEDULE = 'manage interview schedule';
+export const VIEW_INTERVIEW_SCHEDULE = 'view interview schedule';
+export const MANAGE_PIPELINE = 'manage pipeline';
+export const VIEW_PIPELINE = 'view pipeline';
+export const MANAGE_CANDIDATE = 'manage candidate';
+export const MANAGE_JOB = 'manage job';
+export const MANAGE_STAGE = 'manage stage';
+export const MANAGE_ASSESSMENT_FORM = 'manage assessment form';
+export const MANAGE_PERMISSION = 'manage permission';

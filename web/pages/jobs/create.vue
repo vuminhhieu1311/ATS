@@ -17,12 +17,19 @@
     import _findIndex from 'lodash/findIndex';
     import _find from 'lodash/find';
     import CreateForm from '~/components/Job/CreateForm/index.vue';
+    import { MANAGE_JOB } from '~/enums/permission';
 
     export default {
         name: 'CreateJobPage',
 
         components: {
             CreateForm,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_JOB],
         },
 
         data() {

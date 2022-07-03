@@ -13,12 +13,19 @@
 
 <script>
     import EditForm from '~/components/Job/EditForm/index.vue';
+    import { MANAGE_JOB } from '~/enums/permission';
 
     export default {
         name: 'EditJobPage',
 
         components: {
             EditForm,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_JOB],
         },
 
         async asyncData({ $axios, params }) {

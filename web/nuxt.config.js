@@ -28,6 +28,7 @@ export default {
         '@/plugins/lodash-get',
         '@/plugins/handle-error',
         '@/plugins/vue-avatar',
+        '@/plugins/directive',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

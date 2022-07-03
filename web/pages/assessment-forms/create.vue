@@ -9,12 +9,19 @@
 
 <script>
     import CreateAssessmentForm from '~/components/Assessment/Form/index.vue';
+    import { MANAGE_ASSESSMENT_FORM } from '~/enums/permission';
 
     export default {
         name: 'CreateAssessmentFormPage',
 
         components: {
             CreateAssessmentForm,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_ASSESSMENT_FORM],
         },
 
         data() {

@@ -6,12 +6,19 @@
 
 <script>
     import CreatePipeline from '~/components/Pipeline/Form/index.vue';
+    import { MANAGE_PIPELINE } from '~/enums/permission';
 
     export default {
         name: 'CreatePipelinePage',
 
         components: {
             CreatePipeline,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_PIPELINE],
         },
 
         async asyncData({ $axios }) {

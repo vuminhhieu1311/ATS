@@ -42,6 +42,7 @@
     import StageKanban from '~/components/Stage/Kanban/index.vue';
     import PipelineSetting from '~/components/Pipeline/List/PipelineSetting.vue';
     import CandidateFilter from '~/components/Pipeline/List/Filter/index.vue';
+    import { MANAGE_PIPELINE, VIEW_PIPELINE } from '~/enums/permission';
 
     export default {
         name: 'PipelinesPage',
@@ -50,6 +51,12 @@
             StageKanban,
             PipelineSetting,
             CandidateFilter,
+        },
+
+        middleware: 'permission',
+
+        meta: {
+            permissions: [MANAGE_PIPELINE, VIEW_PIPELINE],
         },
 
         async asyncData({ $axios, query }) {
