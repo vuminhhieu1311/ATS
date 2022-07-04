@@ -25,6 +25,8 @@ class PipelineController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Pipeline::class);
+
         $pipelines = $this->pipelineRepository->getAll([
             'stages',
             'jobs',
@@ -35,6 +37,8 @@ class PipelineController extends Controller
 
     public function store(PipelineRequest $request)
     {
+        $this->authorize('create', Pipeline::class);
+
         try {
             DB::beginTransaction();
             $pipeline = $this->pipelineRepository->create([
@@ -67,6 +71,8 @@ class PipelineController extends Controller
 
     public function show(Pipeline $pipeline)
     {
+        $this->authorize('view', $pipeline);
+
         $pipeline->load([
             'stages',
             'jobs',
@@ -77,6 +83,8 @@ class PipelineController extends Controller
 
     public function update(PipelineRequest $request, Pipeline $pipeline)
     {
+        $this->authorize('update', $pipeline);
+
         try {
             DB::beginTransaction();
             $pipeline->update([

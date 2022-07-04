@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PermissionResource;
 use App\Repositories\Permission\PermissionRepositoryInterface;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -17,6 +18,7 @@ class PermissionController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Permission::class);
         $queries = $request->query();
         $permissions = $this->permissionRepository->queryAllByConditions($queries)->get();
 

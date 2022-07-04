@@ -27,6 +27,7 @@ class InterviewController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Interview::class);
         $queries = $request->query();
         $interviews = $this->interviewRepository->queryAllByConditions($queries, [
             'candidateJob.job',
@@ -40,6 +41,7 @@ class InterviewController extends Controller
 
     public function store(InterviewRequest $request)
     {
+        $this->authorize('create', Interview::class);
         $candidateJob = $this->candidateJobRepo->findOrFail($request->input('candidateJobId'));
         $inProgress = $candidateJob->load([
             'interviews' => function ($query) use ($request) {
@@ -96,6 +98,7 @@ class InterviewController extends Controller
 
     public function show(Interview $interview)
     {
+        $this->authorize('view', $interview);
         $interview->load([
             'candidateJob.job',
             'candidateJob.candidate.user',
@@ -121,6 +124,7 @@ class InterviewController extends Controller
 
     public function update(InterviewRequest $request, Interview $interview)
     {
+        $this->authorize('update', $interview);
         $inProgress = $interview->candidateJob->load([
             'interviews' => function ($query) use ($request, $interview) {
                 $query->where('id', '!=', $interview->id)
@@ -173,6 +177,8 @@ class InterviewController extends Controller
 
     public function destroy(Interview $interview)
     {
+        $this->authorize('delete', $interview);
+
         try {
             DB::beginTransaction();
 

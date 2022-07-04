@@ -20,6 +20,8 @@ class CandidateController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Candidate::class);
+
         $queries = $request->query();
         $candidates = $this->candidateRepository->queryAllByConditions($queries, [
             'user',
@@ -35,6 +37,7 @@ class CandidateController extends Controller
 
     public function show(Candidate $candidate)
     {
+        $this->authorize('view', $candidate);
         $candidate->load('user', 'education', 'experiences', 'currentCandidateJob.stage', 'currentCandidateJob.job');
 
         return CandidateResource::make($candidate);
@@ -42,6 +45,8 @@ class CandidateController extends Controller
 
     public function update(Request $request, Candidate $candidate)
     {
+        $this->authorize('update', $candidate);
+
         try {
             DB::beginTransaction();
             $candidate->user()->update([

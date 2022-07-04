@@ -21,6 +21,8 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Job::class);
+
         $queries = $request->query();
         $jobs = $this->jobRepository->queryAllByConditions($queries, [
             'pipeline',
@@ -32,6 +34,8 @@ class JobController extends Controller
 
     public function store(JobRequest $request)
     {
+        $this->authorize('create', Job::class);
+
         try {
             DB::beginTransaction();
 
@@ -63,11 +67,15 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
+        $this->authorize('view', $job);
+
         return JobResource::make($job);
     }
 
     public function update(Request $request, Job $job)
     {
+        $this->authorize('update', $job);
+
         try {
             DB::beginTransaction();
 
@@ -99,6 +107,8 @@ class JobController extends Controller
 
     public function destroy(Job $job)
     {
+        $this->authorize('delete', $job);
+
         return $job->delete();
     }
 }

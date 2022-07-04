@@ -20,11 +20,15 @@ class StageController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Stage::class);
+
         return StageResource::collection($this->stageRepository->getAll());
     }
 
     public function store(StageRequest $request)
     {
+        $this->authorize('create', Stage::class);
+
         $existed = $this->stageRepository->findByConditions([
             'type' => Str::slug($request->input('name')),
         ])->exists();
@@ -40,11 +44,12 @@ class StageController extends Controller
 
     public function update(Request $request, Stage $stage)
     {
-        //
+        $this->authorize('update', $stage);
     }
 
     public function destroy(Stage $stage)
     {
+        $this->authorize('delete', $stage);
         $stage->pipelineStages()->delete();
 
         return $stage->delete();

@@ -22,24 +22,4 @@ class RoomController extends Controller
 
         return RoomResource::collection($rooms);
     }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Room $room)
-    {
-        //
-    }
-
-    public function update(Request $request, Room $room)
-    {
-        //
-    }
-
-    public function destroy(Room $room)
-    {
-        //
-    }
 }

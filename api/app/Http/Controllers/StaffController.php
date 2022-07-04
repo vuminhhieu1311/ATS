@@ -24,24 +24,4 @@ class StaffController extends Controller
 
         return StaffResource::collection($staffs);
     }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Staff $staff)
-    {
-        //
-    }
-
-    public function update(Request $request, Staff $staff)
-    {
-        //
-    }
-
-    public function destroy(Staff $staff)
-    {
-        //
-    }
 }
