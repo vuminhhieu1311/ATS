@@ -203,5 +203,7 @@
     "add": "Add",
     "search users": "Search users",
     "search roles": "Search roles",
-    "remove": "Remove"
+    "remove": "Remove",
+    "hello": "Hello",
+    "welcome to": "Welcome to"
 }

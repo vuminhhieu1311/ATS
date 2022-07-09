@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssessmentFormController;
+use App\Http\Controllers\Candidate\CountCandidatesByMonthController;
 use App\Http\Controllers\Candidate\CreateEducationController;
 use App\Http\Controllers\Candidate\CreateExperienceController;
 use App\Http\Controllers\Candidate\MoveStageController;
@@ -83,11 +84,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('candidates')->group(function () {
-        Route::put('/update-profile', UpdateProfileController::class);
+        Route::put('update-profile', UpdateProfileController::class);
         Route::get('{candidate}/star', UpdateCandidateStar::class);
-        Route::get('/{candidate}/stages/{stage}/move', MoveStageController::class);
+        Route::get('{candidate}/stages/{stage}/move', MoveStageController::class);
         Route::post('{candidate}/education', CreateEducationController::class);
         Route::post('{candidate}/experiences', CreateExperienceController::class);
+        Route::get('count-by-months', CountCandidatesByMonthController::class);
     });
 
     Route::prefix('interviews')->group(function () {
